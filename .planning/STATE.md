@@ -64,7 +64,7 @@ Recent decisions affecting current work:
 
 ### Pending Todos
 
-None yet.
+- [ ] Kor `/gsd:plan-phase 1` for att skapa exekverbar plan for Strukturell grund (deadline: 2026-03-11)
 
 ### Blockers/Concerns
 
