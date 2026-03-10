@@ -59,28 +59,28 @@
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| KRIT-01 | - | Pending |
-| KRIT-02 | - | Pending |
-| KRIT-03 | - | Pending |
-| KRIT-04 | - | Pending |
-| KONSP-01 | - | Pending |
-| KONSP-02 | - | Pending |
-| KONSP-03 | - | Pending |
-| KONSP-04 | - | Pending |
-| AI-01 | - | Pending |
-| AI-02 | - | Pending |
-| BED-01 | - | Pending |
-| BED-02 | - | Pending |
-| BED-03 | - | Pending |
-| MAT-01 | - | Pending |
-| MAT-02 | - | Pending |
-| MAT-03 | - | Pending |
+| KRIT-01 | Phase 3 | Pending |
+| KRIT-02 | Phase 3 | Pending |
+| KRIT-03 | Phase 3 | Pending |
+| KRIT-04 | Phase 3 | Pending |
+| KONSP-01 | Phase 3 | Pending |
+| KONSP-02 | Phase 2 | Pending |
+| KONSP-03 | Phase 2 | Pending |
+| KONSP-04 | Phase 3 | Pending |
+| AI-01 | Phase 3 | Pending |
+| AI-02 | Phase 4 | Pending |
+| BED-01 | Phase 1 | Pending |
+| BED-02 | Phase 2 | Pending |
+| BED-03 | Phase 1 | Pending |
+| MAT-01 | Phase 5 | Pending |
+| MAT-02 | Phase 4 | Pending |
+| MAT-03 | Phase 5 | Pending |
 
 **Coverage:**
 - v1 requirements: 16 total
-- Mapped to phases: 0
-- Unmapped: 16 ⚠️
+- Mapped to phases: 16
+- Unmapped: 0
 
 ---
 *Requirements defined: 2026-03-10*
-*Last updated: 2026-03-10 after initial definition*
+*Last updated: 2026-03-10 after roadmap creation*
