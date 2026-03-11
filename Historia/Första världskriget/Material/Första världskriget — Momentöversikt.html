@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Första världskriget — Momentöversikt</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Sans+3:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Source Sans 3', sans-serif;
+      background-color: #f3efe9;
+      color: #2b2520;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .container {
+      max-width: 940px;
+      margin: 0 auto;
+      padding: 1rem;
+    }
+
+    /* --- Header --- */
+    .header {
+      background-color: #4a2c20;
+      color: #f3efe9;
+      padding: 3rem 1.5rem 2.5rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .header::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, #c4724e, #d4a574, #c4724e);
+    }
+
+    .header .kurs {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #d4a574;
+      margin-bottom: 0.75rem;
+    }
+
+    .header h1 {
+      font-family: 'Inter', sans-serif;
+      font-size: clamp(1.8rem, 4vw, 2.4rem);
+      font-weight: 700;
+      line-height: 1.2;
+      margin-bottom: 1rem;
+    }
+
+    .header .beskrivning {
+      font-size: 1.05rem;
+      max-width: 620px;
+      margin: 0 auto 1.25rem;
+      color: #e0cfc0;
+      line-height: 1.55;
+    }
+
+    .header .lektioner-badge {
+      display: inline-block;
+      background-color: rgba(255,255,255,0.1);
+      padding: 0.4rem 1rem;
+      border-radius: 20px;
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: #d4a574;
+    }
+
+    /* --- Lärandemål --- */
+    .larandemal {
+      background-color: #fff;
+      border-radius: 12px;
+      padding: 2rem 1.5rem;
+      margin: -1.5rem auto 2rem;
+      max-width: 940px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+      position: relative;
+    }
+
+    .larandemal h2 {
+      font-family: 'Inter', sans-serif;
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: #4a2c20;
+      margin-bottom: 1rem;
+    }
+
+    .larandemal ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .larandemal li {
+      padding: 0.5rem 0 0.5rem 1.5rem;
+      position: relative;
+      font-size: 1rem;
+    }
+
+    .larandemal li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0.85rem;
+      width: 8px;
+      height: 8px;
+      background-color: #c4724e;
+      border-radius: 50%;
+    }
+
+    /* --- Lektioner --- */
+    .lektioner-rubrik {
+      font-family: 'Inter', sans-serif;
+      font-size: 1.4rem;
+      font-weight: 600;
+      color: #2b2520;
+      margin-bottom: 1.25rem;
+      padding-top: 0.5rem;
+    }
+
+    .lektioner-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .lektion-kort {
+      background: #fff;
+      border-radius: 10px;
+      padding: 1.5rem;
+      box-shadow: 0 1px 8px rgba(0,0,0,0.05);
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 1.25rem;
+      align-items: start;
+      transition: box-shadow 0.2s ease;
+      border-left: 3px solid transparent;
+    }
+
+    .lektion-kort:hover {
+      box-shadow: 0 3px 16px rgba(0,0,0,0.1);
+      border-left-color: #c4724e;
+    }
+
+    .lektion-nummer {
+      font-family: 'Inter', sans-serif;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #fff;
+      background-color: #4a2c20;
+      width: 46px;
+      height: 46px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .lektion-fas {
+      display: inline-block;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      padding: 0.2rem 0.55rem;
+      border-radius: 4px;
+      margin-bottom: 0.35rem;
+    }
+
+    .fas-grund {
+      background-color: #eee5d8;
+      color: #7a5c3e;
+    }
+
+    .fas-fordjupning {
+      background-color: #e4ddd6;
+      color: #5c4a3a;
+    }
+
+    .fas-syntes {
+      background-color: #dbd0c4;
+      color: #4a2c20;
+    }
+
+    .lektion-innehall h3 {
+      font-family: 'Inter', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: #2b2520;
+      margin-bottom: 0.4rem;
+    }
+
+    .lektion-beskrivning {
+      font-size: 0.95rem;
+      color: #4a4540;
+      line-height: 1.55;
+    }
+
+    .lektion-metod {
+      margin-top: 0.65rem;
+      font-size: 0.85rem;
+      color: #8a7e74;
+    }
+
+    .lektion-metod span {
+      font-weight: 600;
+      color: #6b5a4a;
+    }
+
+    /* --- Examination --- */
+    .examination {
+      background-color: #fff;
+      border-radius: 12px;
+      padding: 2rem 1.5rem;
+      margin-bottom: 2rem;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+      border-top: 3px solid #c4724e;
+    }
+
+    .examination h2 {
+      font-family: 'Inter', sans-serif;
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: #4a2c20;
+      margin-bottom: 0.75rem;
+    }
+
+    .examination p {
+      font-size: 0.95rem;
+      color: #4a4540;
+      line-height: 1.55;
+    }
+
+    /* --- Footer --- */
+    .footer {
+      text-align: center;
+      padding: 1.5rem 1rem;
+      font-size: 0.85rem;
+      color: #8a7e74;
+      border-top: 1px solid #e0d8d0;
+    }
+
+    /* --- Responsive --- */
+    @media (min-width: 768px) {
+      .container {
+        padding: 1.5rem;
+      }
+
+      .header {
+        padding: 4rem 2rem 3rem;
+      }
+
+      .larandemal {
+        padding: 2.5rem 2rem;
+        margin-top: -2rem;
+      }
+
+      .lektioner-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.25rem;
+      }
+
+      .lektion-kort {
+        grid-template-columns: 1fr;
+        gap: 0;
+      }
+
+      .lektion-nummer {
+        margin-bottom: 1rem;
+      }
+    }
+
+    @media (min-width: 1024px) {
+      .lektioner-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="header">
+    <div class="container">
+      <p class="kurs">Historia 1b</p>
+      <h1>Första världskriget</h1>
+      <p class="beskrivning">Varför drog Europa ut i ett krig som ingen kunde vinna — och hur förändrade det världen? Vi följer vägen från 1800-talets spänningar till skyttegravarna och en fred som bar på fröet till nya konflikter.</p>
+      <span class="lektioner-badge">5 lektioner</span>
+    </div>
+  </header>
+
+  <main class="container">
+
+    <section class="larandemal">
+      <h2>Det här ska du kunna efter momentet</h2>
+      <ul>
+        <li>Beskriva varför första världskriget bröt ut — både de långsiktiga orsakerna och den händelse som tände gnistan</li>
+        <li>Förklara hur kriget fördes och varför det blev så annorlunda mot vad alla hade trott</li>
+        <li>Visa hur orsaker, krigets gång och konsekvenser hänger ihop med varandra</li>
+        <li>Granska och tolka historiska källor från perioden — brev, bilder och dokument</li>
+        <li>Använda historiska begrepp som nationalism, imperialism, militarism och alliansystem</li>
+      </ul>
+    </section>
+
+    <h2 class="lektioner-rubrik">Lektionsplan</h2>
+
+    <div class="lektioner-grid">
+
+      <article class="lektion-kort">
+        <div class="lektion-nummer">1</div>
+        <div class="lektion-innehall">
+          <span class="lektion-fas fas-grund">Grund</span>
+          <h3>Krutdurken Europa</h3>
+          <p class="lektion-beskrivning">Vi börjar med att förstå varför Europa stod på randen till krig 1914. Fyra krafter byggde upp spänningen: allianser, nationalism, imperialism och militarism. Ni skapar ett orsaksdiagram som visar hur de hänger ihop.</p>
+          <p class="lektion-metod"><span>Ni arbetar med:</span> orsaksdiagram och begreppslista</p>
+        </div>
+      </article>
+
+      <article class="lektion-kort">
+        <div class="lektion-nummer">2</div>
+        <div class="lektion-innehall">
+          <span class="lektion-fas fas-grund">Grund</span>
+          <h3>Skotten som förändrade allt</h3>
+          <p class="lektion-beskrivning">Ett mord i Sarajevo den 28 juni 1914 satte igång en kedjereaktion. Inom fem veckor var hela Europa i krig. Ni bygger en tidslinje och spårar hur det gick till — steg för steg.</p>
+          <p class="lektion-metod"><span>Ni arbetar med:</span> tidslinje och orsak-konsekvenskedja</p>
+        </div>
+      </article>
+
+      <article class="lektion-kort">
+        <div class="lektion-nummer">3</div>
+        <div class="lektion-innehall">
+          <span class="lektion-fas fas-fordjupning">Fördjupning</span>
+          <h3>Kriget ingen planerat</h3>
+          <p class="lektion-beskrivning">Alla trodde kriget skulle vara över till jul. Istället blev det fyra år av skyttegravskrig. Ni analyserar soldatbrev och fotografier för att förstå hur kriget egentligen var — och vad källorna berättar och inte berättar.</p>
+          <p class="lektion-metod"><span>Ni arbetar med:</span> källanalys av brev och bilder</p>
+        </div>
+      </article>
+
+      <article class="lektion-kort">
+        <div class="lektion-nummer">4</div>
+        <div class="lektion-innehall">
+          <span class="lektion-fas fas-fordjupning">Fördjupning</span>
+          <h3>Freden som bar på nytt krig</h3>
+          <p class="lektion-beskrivning">Kriget slutade 1918, men hur skulle freden se ut? Frankrike ville ha hämnd, Tyskland kände sig förnedrat, USA drömde om en ny världsordning. Ni kliver in i rollen som olika länder och diskuterar: var Versaillesfreden rättvis?</p>
+          <p class="lektion-metod"><span>Ni arbetar med:</span> rollbaserad perspektivanalys</p>
+        </div>
+      </article>
+
+      <article class="lektion-kort">
+        <div class="lektion-nummer">5</div>
+        <div class="lektion-innehall">
+          <span class="lektion-fas fas-syntes">Syntes</span>
+          <h3>En värld i spillror</h3>
+          <p class="lektion-beskrivning">Vi zoomar ut och ser hela bilden. Hur hänger orsaker, krigets gång och konsekvenser ihop? Ni skapar en sambandskarta som kopplar ihop allt ni lärt er under momentet — från imperialismens rivaliteter till Versaillesfredens sår.</p>
+          <p class="lektion-metod"><span>Ni arbetar med:</span> multicausal sambandsanalys</p>
+        </div>
+      </article>
+
+    </div>
+
+    <section class="examination">
+      <h2>Examination</h2>
+      <p>Momentet avslutas med ett skriftligt prov som planeras separat. Provet testar din förmåga att redogöra för krigets orsaker och konsekvenser, förklara samband och arbeta med källmaterial. Mer information kommer längre fram.</p>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <p>Historia 1b — Anders — Skapad mars 2026</p>
+  </footer>
+
+</body>
+</html>

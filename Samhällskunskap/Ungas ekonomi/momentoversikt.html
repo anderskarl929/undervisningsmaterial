@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ungas ekonomi — Samhällskunskap 1a1</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Plus+Jakarta+Sans:wght@600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --primary: #028090;
+      --primary-light: #e8f4f6;
+      --primary-dark: #015c68;
+      --accent: #f0b429;
+      --accent-light: #fef9ec;
+      --bg: #f7f9fa;
+      --white: #ffffff;
+      --text: #1a2a3a;
+      --text-muted: #5a6b7d;
+      --border: #e2e8f0;
+      --shadow: 0 2px 8px rgba(13, 33, 55, 0.08);
+      --shadow-hover: 0 4px 16px rgba(13, 33, 55, 0.12);
+      --radius: 10px;
+    }
+
+    body {
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      font-size: 16px;
+    }
+
+    .container {
+      max-width: 940px;
+      margin: 0 auto;
+      padding: 1.5rem;
+    }
+
+    /* HEADER */
+    .header {
+      background: linear-gradient(135deg, #0d2137 0%, #015c68 100%);
+      color: var(--white);
+      padding: 3rem 0 2.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .header .container {
+      text-align: center;
+    }
+
+    .header__kurs {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      opacity: 0.7;
+      margin-bottom: 0.75rem;
+    }
+
+    .header__titel {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: clamp(1.8rem, 5vw, 2.5rem);
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+
+    .header__accent {
+      width: 60px;
+      height: 3px;
+      background: var(--accent);
+      margin: 1rem auto;
+      border-radius: 2px;
+    }
+
+    .header__beskrivning {
+      font-size: 1rem;
+      opacity: 0.85;
+      max-width: 600px;
+      margin: 0 auto;
+      line-height: 1.7;
+    }
+
+    .header__period {
+      display: inline-block;
+      margin-top: 1.2rem;
+      padding: 0.3rem 1rem;
+      background: rgba(255,255,255,0.12);
+      border-radius: 20px;
+      font-size: 0.85rem;
+      opacity: 0.8;
+    }
+
+    /* SECTIONS */
+    .section {
+      margin-bottom: 2.5rem;
+    }
+
+    .section__rubrik {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: var(--primary-dark);
+      margin-bottom: 1rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 2px solid var(--primary-light);
+    }
+
+    /* LÄRANDEMÅL */
+    .mal-lista {
+      list-style: none;
+      display: grid;
+      gap: 0.75rem;
+    }
+
+    .mal-item {
+      background: var(--white);
+      border-left: 3px solid var(--primary);
+      padding: 0.85rem 1.1rem;
+      border-radius: 0 var(--radius) var(--radius) 0;
+      box-shadow: var(--shadow);
+      font-size: 0.95rem;
+      line-height: 1.5;
+    }
+
+    /* LEKTIONSKORT */
+    .lektioner {
+      display: grid;
+      gap: 1.2rem;
+    }
+
+    @media (min-width: 640px) {
+      .lektioner {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    .lektion {
+      background: var(--white);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      transition: box-shadow 0.2s ease;
+    }
+
+    .lektion:hover {
+      box-shadow: var(--shadow-hover);
+    }
+
+    .lektion__header {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 1rem 1.1rem 0.6rem;
+    }
+
+    .lektion__nummer {
+      flex-shrink: 0;
+      width: 2.2rem;
+      height: 2.2rem;
+      background: var(--primary);
+      color: var(--white);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 700;
+      font-size: 0.95rem;
+    }
+
+    .lektion__titel {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: var(--text);
+      line-height: 1.3;
+    }
+
+    .lektion__datum {
+      display: inline-block;
+      margin-left: 3.95rem;
+      padding: 0.15rem 0.6rem;
+      background: var(--primary-light);
+      color: var(--primary-dark);
+      border-radius: 12px;
+      font-size: 0.78rem;
+      font-weight: 500;
+    }
+
+    .lektion__innehall {
+      padding: 0.6rem 1.1rem 1rem;
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      line-height: 1.55;
+    }
+
+    .lektion__forberedelse {
+      margin: 0.5rem 1.1rem 1rem;
+      padding: 0.6rem 0.8rem;
+      background: var(--accent-light);
+      border-left: 3px solid var(--accent);
+      border-radius: 0 6px 6px 0;
+      font-size: 0.85rem;
+      color: var(--text);
+    }
+
+    /* Full-width for last card if odd number */
+    @media (min-width: 640px) {
+      .lektion:last-child:nth-child(odd) {
+        grid-column: 1 / -1;
+        max-width: 50%;
+        justify-self: center;
+      }
+    }
+
+    /* FOOTER */
+    .footer {
+      text-align: center;
+      padding: 2rem 0;
+      margin-top: 1rem;
+      border-top: 1px solid var(--border);
+      color: var(--text-muted);
+      font-size: 0.82rem;
+    }
+
+    .footer__namn {
+      font-weight: 600;
+      color: var(--text);
+    }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <div class="container">
+      <p class="header__kurs">Samhällskunskap 1a1</p>
+      <h1 class="header__titel">Ungas ekonomi</h1>
+      <div class="header__accent"></div>
+      <p class="header__beskrivning">
+        I det här momentet följer vi Alex, 19 år, genom det ekonomiska systemet. Ni lär er hur samhällets ekonomi hänger ihop, hur arbetsmarknaden fungerar för unga och hur man gör kloka ekonomiska val.
+      </p>
+      <span class="header__period">5 lektioner × 60 minuter</span>
+    </div>
+  </header>
+
+  <main class="container">
+
+    <section class="section">
+      <h2 class="section__rubrik">Vad ska ni kunna efter momentet?</h2>
+      <ul class="mal-lista">
+        <li class="mal-item">Förklara hur pengarna flödar i samhället — mellan hushåll, företag och det offentliga (det ekonomiska kretsloppet)</li>
+        <li class="mal-item">Resonera om hur arbetsmarknaden fungerar för unga — vilka jobb finns, vad innebär olika anställningsformer?</li>
+        <li class="mal-item">Göra en budget och förstå konsekvenserna av ekonomiska val — lån, sparande, skulder</li>
+        <li class="mal-item">Diskutera hur er egen ekonomi hänger ihop med hela samhällets ekonomi</li>
+      </ul>
+    </section>
+
+    <section class="section">
+      <h2 class="section__rubrik">Lektionsöversikt</h2>
+      <div class="lektioner">
+
+        <article class="lektion">
+          <div class="lektion__header">
+            <span class="lektion__nummer">1</span>
+            <h3 class="lektion__titel">Vad händer med pengarna?</h3>
+          </div>
+          <span class="lektion__datum">Datum meddelas</span>
+          <p class="lektion__innehall">
+            Vi börjar med att förstå det ekonomiska kretsloppet — hur pengar flödar mellan hushåll, företag och stat. Ni möter Alex, 19 år, som precis fått sitt första jobb. Tillsammans ritar vi kretsloppet och diskuterar vad som händer om Alex blir arbetslös.
+          </p>
+        </article>
+
+        <article class="lektion">
+          <div class="lektion__header">
+            <span class="lektion__nummer">2</span>
+            <h3 class="lektion__titel">Vem får jobben?</h3>
+          </div>
+          <span class="lektion__datum">Datum meddelas</span>
+          <p class="lektion__innehall">
+            Alex söker jobb — men vilka jobb finns och vad innebär det att vara ung på arbetsmarknaden? Vi jämför olika anställningsformer (fast, tim, gig) och diskuterar vilka konsekvenser de har för trygghet och framtidsplanering.
+          </p>
+        </article>
+
+        <article class="lektion">
+          <div class="lektion__header">
+            <span class="lektion__nummer">3</span>
+            <h3 class="lektion__titel">Räcker pengarna?</h3>
+          </div>
+          <span class="lektion__datum">Datum meddelas</span>
+          <p class="lektion__innehall">
+            Alex har fått jobb och ska flytta hemifrån. Vad kostar det att leva? Vi räknar på bruttolön, nettolön och skatt, och ni gör Alex månadsbudget med verkliga siffror. Räcker pengarna till hyra, mat och nöje?
+          </p>
+        </article>
+
+        <article class="lektion">
+          <div class="lektion__header">
+            <span class="lektion__nummer">4</span>
+            <h3 class="lektion__titel">Vad händer om...?</h3>
+          </div>
+          <span class="lektion__datum">Datum meddelas</span>
+          <p class="lektion__innehall">
+            Mobilen går sönder, hyran höjs, kompisen föreslår en resa. Vad gör Alex? Vi analyserar scenarion med oväntade utgifter, diskuterar skuldfällan och snabblån, och funderar på vems ansvar det är att unga inte hamnar i ekonomiska problem.
+          </p>
+        </article>
+
+        <article class="lektion">
+          <div class="lektion__header">
+            <span class="lektion__nummer">5</span>
+            <h3 class="lektion__titel">Min ekonomi, hela samhällets ekonomi</h3>
+          </div>
+          <span class="lektion__datum">Datum meddelas</span>
+          <p class="lektion__innehall">
+            Sista lektionen — nu kopplar vi ihop allt! Ni skriver en kort analys där ni visar hur kretsloppet, arbetsmarknaden och privatekonomin hänger samman. Sedan ger ni varandra feedback. Här visar ni vad ni lärt er under hela momentet.
+          </p>
+        </article>
+
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <p><span class="footer__namn">Anders</span> · Samhällskunskap 1a1</p>
+  </footer>
+</body>
+</html>
