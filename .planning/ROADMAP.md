@@ -43,11 +43,11 @@ Plans:
   2. L6 har en summativ skrivuppgift med rubrik kopplad till E/C/A-kriterierna fran fas 1
   3. L8 har en seminariestruktur med equity-safeguards for konspirationskansligt amne (tilldelade roller, tredjepersons-framing, privat uppfoljningsplan)
   4. Alla tre lektionsplaner finns som .docx med 6-fas struktur
-**Plans**: TBD
+**Plans**: 2 plans
 
 Plans:
-- [ ] 02-01: L1 - Oppningslektion med AI-labb och inokulering
-- [ ] 02-02: L6 + L8 - Summativa andpunkter
+- [ ] 02-01-PLAN.md — L1 oppningslektion med AI-labb och inokulering
+- [ ] 02-02-PLAN.md — L6 summativ skrivuppgift + L8 seminarie-examination
 
 ### Phase 3: Verktygslektioner (L2 + L3)
 **Goal**: Eleverna har fatt alla analytiska verktyg de behover for sjalvstandig tillampning - kallkritiska fragor, SIFT, Harvard-referering, konspirationsmekanism och AI-koppling
@@ -59,7 +59,7 @@ Plans:
   3. L3 behandlar AI+konspirationsteori-intersektionen (hur AI forstarker spridning) som huvudfokus
   4. L3 exit ticket fungerar som gateway check for om elever ar redo for sjalvstandig tillampning i L4
   5. Bada lektionsplanerna finns som .docx med 6-fas struktur och tillhorande .pptx
-**Plans**: TBD
+**Plans**: 2 plans
 
 Plans:
 - [ ] 03-01: L2 - Kallkritiska verktyg och konspirationsteorins psykologi
@@ -74,7 +74,7 @@ Plans:
   2. L5 har en skriftlig perspektivanalys som fungerar som dress rehearsal for L6 summativa uppgift
   3. Scaffolding ar tillganglig pa begaran men inte utdelad som standard (explicit fade fran L3)
   4. Presentationer (.pptx) finns for lektioner med instruktionsmoment
-**Plans**: TBD
+**Plans**: 2 plans
 
 Plans:
 - [ ] 04-01: L4 - Formativt seminarium
@@ -88,7 +88,7 @@ Plans:
   1. L7 innehaller metakognitiv reflektion med specifika prompts (inte ytlig "vad larde vi oss")
   2. Momentoversikt finns som self-contained HTML-sida med alla lektioner, datum och resurser
   3. Alla 7 lektionsplaner finns som .docx i korrekt format med 6-fas struktur
-**Plans**: TBD
+**Plans**: 2 plans
 
 Plans:
 - [ ] 05-01: L7 - Reflektion och sjalvbedomning
