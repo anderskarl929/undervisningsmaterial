@@ -102,7 +102,7 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 1. Strukturell grund | 1/1 | Complete   | 2026-03-12 |
-| 2. Andpunkter (L1 + L6 + L8) | 0/2 | Not started | - |
+| 2. Andpunkter (L1 + L6 + L8) | 1/2 | In Progress|  |
 | 3. Verktygslektioner (L2 + L3) | 0/2 | Not started | - |
 | 4. Tillampningslektioner (L4 + L5) | 0/2 | Not started | - |
 | 5. Avslutning (L7 + momentoversikt) | 0/2 | Not started | - |

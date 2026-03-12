@@ -15,8 +15,8 @@
 ### Konspirationsteorier
 
 - [ ] **KONSP-01**: Elev kan förklara psykologiska mekanismer bakom konspirationstro
-- [ ] **KONSP-02**: Elev har genomgått inokulering/prebunking genom AI-labb i kontrollerad miljö
-- [ ] **KONSP-03**: Momentet använder aktuella svenska och internationella exempel (2025-2026)
+- [x] **KONSP-02**: Elev har genomgått inokulering/prebunking genom AI-labb i kontrollerad miljö
+- [x] **KONSP-03**: Momentet använder aktuella svenska och internationella exempel (2025-2026)
 - [ ] **KONSP-04**: Elev kan analysera hur AI förstärker konspirationsteoriers spridning
 
 ### AI och källkritik
@@ -64,8 +64,8 @@
 | KRIT-03 | Phase 3 | Pending |
 | KRIT-04 | Phase 3 | Pending |
 | KONSP-01 | Phase 3 | Pending |
-| KONSP-02 | Phase 2 | Pending |
-| KONSP-03 | Phase 2 | Pending |
+| KONSP-02 | Phase 2 | Complete |
+| KONSP-03 | Phase 2 | Complete |
 | KONSP-04 | Phase 3 | Pending |
 | AI-01 | Phase 3 | Pending |
 | AI-02 | Phase 4 | Pending |
