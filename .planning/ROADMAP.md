@@ -29,10 +29,10 @@ Decimal phases appear between their surrounding integers in numeric order.
   2. E/C/A-bedomningskriterier finns med explicit C-niva for bade skriftlig och muntlig examination
   3. Exit ticket-mall finns som kopplar formativ bedomning till nasta lektions retrieval practice
   4. Tredjepersons-framing ar dokumenterad som genomgaende norm med konkreta exempelformuleringar
-**Plans**: TBD
+**Plans:** 1 plan
 
 Plans:
-- [ ] 01-01: Momentplan och bedomningskriterier
+- [ ] 01-01-PLAN.md — Bedomningsramverk, momentplan, exit ticket-mall och tredjepersons-framing
 
 ### Phase 2: Andpunkter (L1 + L6 + L8)
 **Goal**: Eleverna har en stark oppning (L1 med inokulering) och tva tydliga bedomningsandpunkter (L6 skriftlig, L8 seminarium) som definierar vad resten av momentet ska lara mot
