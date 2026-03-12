@@ -13,7 +13,7 @@ Ett undervisningsmoment i 5 faser som foljer backward design: forst definieras b
 Decimal phases appear between their surrounding integers in numeric order.
 
 - [x] **Phase 1: Strukturell grund** - Momentplan, bedomningskriterier och epistemiska normer (completed 2026-03-12)
-- [ ] **Phase 2: Andpunkter (L1 + L6 + L8)** - Oppningslektion, summativ skrivuppgift och seminarieexamination
+- [x] **Phase 2: Andpunkter (L1 + L6 + L8)** - Oppningslektion, summativ skrivuppgift och seminarieexamination (completed 2026-03-12)
 - [ ] **Phase 3: Verktygslektioner (L2 + L3)** - Kallkritiska verktyg, konspirationsteori och AI-intersection
 - [ ] **Phase 4: Tillampningslektioner (L4 + L5)** - Seminarium och skriftlig analys med minskad scaffolding
 - [ ] **Phase 5: Avslutning (L7 + momentoversikt)** - Reflektion, sjalvbedomning och elevmaterial
@@ -102,7 +102,7 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 1. Strukturell grund | 1/1 | Complete   | 2026-03-12 |
-| 2. Andpunkter (L1 + L6 + L8) | 1/2 | In Progress|  |
+| 2. Andpunkter (L1 + L6 + L8) | 2/2 | Complete   | 2026-03-12 |
 | 3. Verktygslektioner (L2 + L3) | 0/2 | Not started | - |
 | 4. Tillampningslektioner (L4 + L5) | 0/2 | Not started | - |
 | 5. Avslutning (L7 + momentoversikt) | 0/2 | Not started | - |
