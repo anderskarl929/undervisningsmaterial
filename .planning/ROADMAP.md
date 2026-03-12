@@ -12,7 +12,7 @@ Ett undervisningsmoment i 5 faser som foljer backward design: forst definieras b
 
 Decimal phases appear between their surrounding integers in numeric order.
 
-- [ ] **Phase 1: Strukturell grund** - Momentplan, bedomningskriterier och epistemiska normer
+- [x] **Phase 1: Strukturell grund** - Momentplan, bedomningskriterier och epistemiska normer (completed 2026-03-12)
 - [ ] **Phase 2: Andpunkter (L1 + L6 + L8)** - Oppningslektion, summativ skrivuppgift och seminarieexamination
 - [ ] **Phase 3: Verktygslektioner (L2 + L3)** - Kallkritiska verktyg, konspirationsteori och AI-intersection
 - [ ] **Phase 4: Tillampningslektioner (L4 + L5)** - Seminarium och skriftlig analys med minskad scaffolding
@@ -29,7 +29,7 @@ Decimal phases appear between their surrounding integers in numeric order.
   2. E/C/A-bedomningskriterier finns med explicit C-niva for bade skriftlig och muntlig examination
   3. Exit ticket-mall finns som kopplar formativ bedomning till nasta lektions retrieval practice
   4. Tredjepersons-framing ar dokumenterad som genomgaende norm med konkreta exempelformuleringar
-**Plans:** 1 plan
+**Plans:** 1/1 plans complete
 
 Plans:
 - [ ] 01-01-PLAN.md — Bedomningsramverk, momentplan, exit ticket-mall och tredjepersons-framing
@@ -101,7 +101,7 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Strukturell grund | 0/1 | Not started | - |
+| 1. Strukturell grund | 1/1 | Complete   | 2026-03-12 |
 | 2. Andpunkter (L1 + L6 + L8) | 0/2 | Not started | - |
 | 3. Verktygslektioner (L2 + L3) | 0/2 | Not started | - |
 | 4. Tillampningslektioner (L4 + L5) | 0/2 | Not started | - |

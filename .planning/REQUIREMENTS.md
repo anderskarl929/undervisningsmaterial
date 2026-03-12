@@ -26,9 +26,9 @@
 
 ### Bedömning och progression
 
-- [ ] **BED-01**: Exit ticket varje lektion som informerar nästa lektions retrieval review
-- [ ] **BED-02**: Seminarium som examination med equity-safeguards för konspirationskänsligt ämne
-- [ ] **BED-03**: Tredjepersons-framing genomgående ("varför kan någon finna detta övertygande?")
+- [x] **BED-01**: Exit ticket varje lektion som informerar nästa lektions retrieval review
+- [x] **BED-02**: Seminarium som examination med equity-safeguards för konspirationskänsligt ämne
+- [x] **BED-03**: Tredjepersons-framing genomgående ("varför kan någon finna detta övertygande?")
 
 ### Material
 
@@ -69,9 +69,9 @@
 | KONSP-04 | Phase 3 | Pending |
 | AI-01 | Phase 3 | Pending |
 | AI-02 | Phase 4 | Pending |
-| BED-01 | Phase 1 | Pending |
-| BED-02 | Phase 2 | Pending |
-| BED-03 | Phase 1 | Pending |
+| BED-01 | Phase 1 | Complete |
+| BED-02 | Phase 2 | Complete |
+| BED-03 | Phase 1 | Complete |
 | MAT-01 | Phase 5 | Pending |
 | MAT-02 | Phase 4 | Pending |
 | MAT-03 | Phase 5 | Pending |
