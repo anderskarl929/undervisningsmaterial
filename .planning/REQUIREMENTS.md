@@ -7,10 +7,10 @@
 
 ### Källkritiska verktyg
 
-- [ ] **KRIT-01**: Elev kan tillämpa de fyra källkritiska grundfrågorna på digitalt innehåll
-- [ ] **KRIT-02**: Elev kan använda SIFT-metoden/lateral reading för att verifiera påståenden
-- [ ] **KRIT-03**: Elev kan använda Harvard-referering i skriftliga uppgifter
-- [ ] **KRIT-04**: Elev kan använda digitala verifieringsverktyg (omvänd bildsökning, Google Lens)
+- [x] **KRIT-01**: Elev kan tillämpa de fyra källkritiska grundfrågorna på digitalt innehåll
+- [x] **KRIT-02**: Elev kan använda SIFT-metoden/lateral reading för att verifiera påståenden
+- [x] **KRIT-03**: Elev kan använda Harvard-referering i skriftliga uppgifter
+- [x] **KRIT-04**: Elev kan använda digitala verifieringsverktyg (omvänd bildsökning, Google Lens)
 
 ### Konspirationsteorier
 
@@ -59,10 +59,10 @@
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| KRIT-01 | Phase 3 | Pending |
-| KRIT-02 | Phase 3 | Pending |
-| KRIT-03 | Phase 3 | Pending |
-| KRIT-04 | Phase 3 | Pending |
+| KRIT-01 | Phase 3 | Complete |
+| KRIT-02 | Phase 3 | Complete |
+| KRIT-03 | Phase 3 | Complete |
+| KRIT-04 | Phase 3 | Complete |
 | KONSP-01 | Phase 3 | Pending |
 | KONSP-02 | Phase 2 | Complete |
 | KONSP-03 | Phase 2 | Complete |
