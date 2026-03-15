@@ -91,8 +91,8 @@ Plans:
 **Plans**: 2 plans
 
 Plans:
-- [ ] 05-01: L7 - Reflektion och sjalvbedomning
-- [ ] 05-02: Momentoversikt (HTML)
+- [ ] 05-01-PLAN.md — L7 lektionsplan (uppdatera och generera .docx) + CSV exit ticket-export
+- [ ] 05-02-PLAN.md — Momentoversikt som self-contained HTML-sida for eleverna
 
 ## Progress
 
