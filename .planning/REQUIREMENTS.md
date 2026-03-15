@@ -34,7 +34,7 @@
 
 - [ ] **MAT-01**: 7 lektionsplaner som Word-dokument (.docx) med 6-fas struktur
 - [x] **MAT-02**: Presentationer som PowerPoint (.pptx) för lektioner med instruktionsmoment
-- [ ] **MAT-03**: Momentöversikt som HTML-sida för eleverna
+- [x] **MAT-03**: Momentöversikt som HTML-sida för eleverna
 
 ## v2 Requirements
 
@@ -74,7 +74,7 @@
 | BED-03 | Phase 1 | Complete |
 | MAT-01 | Phase 5 | Pending |
 | MAT-02 | Phase 4 | Complete |
-| MAT-03 | Phase 5 | Pending |
+| MAT-03 | Phase 5 | Complete |
 
 **Coverage:**
 - v1 requirements: 16 total
