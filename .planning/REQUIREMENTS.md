@@ -32,7 +32,7 @@
 
 ### Material
 
-- [ ] **MAT-01**: 7 lektionsplaner som Word-dokument (.docx) med 6-fas struktur
+- [x] **MAT-01**: 7 lektionsplaner som Word-dokument (.docx) med 6-fas struktur
 - [x] **MAT-02**: Presentationer som PowerPoint (.pptx) för lektioner med instruktionsmoment
 - [x] **MAT-03**: Momentöversikt som HTML-sida för eleverna
 
@@ -72,7 +72,7 @@
 | BED-01 | Phase 1 | Complete |
 | BED-02 | Phase 2 | Complete |
 | BED-03 | Phase 1 | Complete |
-| MAT-01 | Phase 5 | Pending |
+| MAT-01 | Phase 5 | Complete |
 | MAT-02 | Phase 4 | Complete |
 | MAT-03 | Phase 5 | Complete |
 
