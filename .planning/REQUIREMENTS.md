@@ -22,7 +22,7 @@
 ### AI och källkritik
 
 - [x] **AI-01**: Elev kan källkritiskt granska AI-genererat innehåll
-- [ ] **AI-02**: Elev kan reflektera över sitt eget tänkande och blinda fläckar (metakognition)
+- [x] **AI-02**: Elev kan reflektera över sitt eget tänkande och blinda fläckar (metakognition)
 
 ### Bedömning och progression
 
@@ -33,7 +33,7 @@
 ### Material
 
 - [ ] **MAT-01**: 7 lektionsplaner som Word-dokument (.docx) med 6-fas struktur
-- [ ] **MAT-02**: Presentationer som PowerPoint (.pptx) för lektioner med instruktionsmoment
+- [x] **MAT-02**: Presentationer som PowerPoint (.pptx) för lektioner med instruktionsmoment
 - [ ] **MAT-03**: Momentöversikt som HTML-sida för eleverna
 
 ## v2 Requirements
@@ -68,12 +68,12 @@
 | KONSP-03 | Phase 2 | Complete |
 | KONSP-04 | Phase 3 | Complete |
 | AI-01 | Phase 3 | Complete |
-| AI-02 | Phase 4 | Pending |
+| AI-02 | Phase 4 | Complete |
 | BED-01 | Phase 1 | Complete |
 | BED-02 | Phase 2 | Complete |
 | BED-03 | Phase 1 | Complete |
 | MAT-01 | Phase 5 | Pending |
-| MAT-02 | Phase 4 | Pending |
+| MAT-02 | Phase 4 | Complete |
 | MAT-03 | Phase 5 | Pending |
 
 **Coverage:**
