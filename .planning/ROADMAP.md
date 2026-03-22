@@ -23,7 +23,7 @@ See: `.planning/milestones/v1.0-ROADMAP.md` for full details.
 
 | Phase | Milestone | Plans Complete | Status | Completed |
 |-------|-----------|----------------|--------|-----------|
-| 1. Strukturell grund | v1.0 | 1/1 | Complete | 2026-03-12 |
+| 1. Strukturell grund | v1.0 | 1/1 | Complete    | 2026-03-22 |
 | 2. Ändpunkter (L1 + L6 + L8) | v1.0 | 2/2 | Complete | 2026-03-12 |
 | 3. Verktygslektioner (L2 + L3) | v1.0 | 2/2 | Complete | 2026-03-15 |
 | 4. Tillämpningslektioner (L4 + L5) | v1.0 | 2/2 | Complete | 2026-03-15 |
