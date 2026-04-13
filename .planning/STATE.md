@@ -40,8 +40,7 @@ All decisions archived in PROJECT.md Key Decisions table with v1.0 outcomes.
 
 ### Pending Todos
 
-1 pending:
-- Installera superpowers-pluginen (tooling)
+None
 
 ### Blockers/Concerns
 
