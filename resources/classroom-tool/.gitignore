@@ -1,0 +1,6 @@
+__pycache__/
+*.pyc
+aliases.json
+keys/
+cache/
+.tmp/

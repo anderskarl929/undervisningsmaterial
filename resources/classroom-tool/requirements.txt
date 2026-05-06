@@ -1,0 +1,6 @@
+# Pure-Python-konverterare för uppladdade Drive-bilagor (PDF/DOCX/ODT).
+# Google Workspace-filer (Docs/Sheets/Slides) exporteras fortfarande via `gws`
+# och kräver inga Python-deps utöver standardbiblioteket.
+pypdf>=4.0
+python-docx>=1.0
+odfpy>=1.4
