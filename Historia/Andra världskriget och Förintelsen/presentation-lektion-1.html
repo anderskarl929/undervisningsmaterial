@@ -1,0 +1,776 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lektion 1 — Hédis vardag</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/reveal.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/theme/white.css">
+  <style>
+    :root {
+      --navy: #1B3A5C;
+      --navy-soft: #2C4F7A;
+      --gold: #C8A951;
+      --gold-soft: #E0C97D;
+      --creme: #FAF6EC;     /* [VERIFIERA — föreslagen crème för Historia 1a1 */
+      --paper: #F4EEDB;
+      --ink: #1A1A1A;
+      --ink-soft: #4A4A4A;
+      --rule: #C8A95133;
+    }
+
+    html, body { background: var(--creme); }
+
+    .reveal {
+      font-family: 'Calibri', 'Carlito', 'Segoe UI', sans-serif;
+      color: var(--ink);
+      font-size: 30px;
+    }
+
+    .reveal .slides section {
+      background: var(--creme);
+      text-align: left;
+      height: 100%;
+    }
+
+    .reveal h1, .reveal h2, .reveal h3, .reveal h4 {
+      font-family: Georgia, 'Times New Roman', serif;
+      color: var(--navy);
+      text-transform: none;
+      letter-spacing: -0.01em;
+      font-weight: 700;
+    }
+
+    .reveal h1 { font-size: 2.2em; line-height: 1.15; margin-bottom: 0.3em; }
+    .reveal h2 { font-size: 1.6em; line-height: 1.2; margin-bottom: 0.5em; }
+    .reveal h3 { font-size: 1.1em; line-height: 1.25; }
+
+    .reveal p, .reveal li { line-height: 1.5; }
+
+    .reveal ul { display: block; }
+    .reveal ul li { margin-bottom: 0.45em; }
+
+    .reveal em { font-style: italic; color: var(--navy); }
+    .reveal strong { color: var(--navy); }
+
+    /* === Components === */
+
+    .eyebrow {
+      font-family: Georgia, serif;
+      font-size: 0.55em;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1.2em;
+      font-weight: 600;
+    }
+
+    .rule {
+      border: none;
+      height: 2px;
+      background: var(--gold);
+      width: 70px;
+      margin: 0.8em 0;
+    }
+
+    .rule-thin {
+      border: none;
+      height: 1px;
+      background: var(--rule);
+      margin: 0.8em 0;
+      width: 100%;
+    }
+
+    .lead {
+      font-size: 1.05em;
+      color: var(--ink-soft);
+      max-width: 22em;
+    }
+
+    .pull {
+      font-family: Georgia, serif;
+      font-size: 1.45em;
+      line-height: 1.35;
+      color: var(--navy);
+      font-style: italic;
+      max-width: 18em;
+      padding-left: 0.7em;
+      border-left: 4px solid var(--gold);
+    }
+
+    .pull cite {
+      display: block;
+      margin-top: 0.6em;
+      font-style: normal;
+      font-size: 0.55em;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--gold);
+      font-family: Calibri, sans-serif;
+      font-weight: 600;
+    }
+
+    .meta-foot {
+      position: absolute;
+      bottom: 0.8em;
+      left: 1.6em;
+      right: 1.6em;
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.45em;
+      letter-spacing: 0.06em;
+      color: var(--ink-soft);
+      font-family: Calibri, sans-serif;
+      border-top: 1px solid var(--rule);
+      padding-top: 0.6em;
+    }
+    .meta-foot .moment { color: var(--navy); font-weight: 600; }
+    .meta-foot .gold { color: var(--gold); font-weight: 600; }
+
+    /* Title slide */
+    .title-slide {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      height: 100%;
+      padding: 2em 2em 4em 2em;
+    }
+
+    .title-slide .marker {
+      font-family: Georgia, serif;
+      font-size: 0.5em;
+      color: var(--gold);
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      font-weight: 600;
+      margin-bottom: 1.5em;
+    }
+
+    .title-slide h1 {
+      font-size: 2.6em;
+      max-width: 14em;
+      margin-bottom: 0.6em;
+    }
+
+    .title-slide .sub {
+      font-family: Georgia, serif;
+      font-style: italic;
+      font-size: 1.15em;
+      color: var(--ink-soft);
+      max-width: 20em;
+    }
+
+    /* Goals */
+    .goal-list {
+      list-style: none;
+      padding: 0;
+      counter-reset: g;
+      max-width: 24em;
+    }
+    .goal-list li {
+      counter-increment: g;
+      padding: 0.7em 0 0.7em 2.2em;
+      border-bottom: 1px solid var(--rule);
+      position: relative;
+    }
+    .goal-list li::before {
+      content: counter(g);
+      position: absolute;
+      left: 0;
+      top: 0.6em;
+      font-family: Georgia, serif;
+      font-size: 1.4em;
+      color: var(--gold);
+      font-weight: 700;
+      width: 1.4em;
+    }
+    .goal-list li:last-child { border-bottom: none; }
+
+    /* Concept (Frayer) */
+    .frayer {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1px;
+      background: var(--gold);
+      border: 2px solid var(--gold);
+      max-width: 22em;
+      margin-top: 0.5em;
+    }
+    .frayer > div {
+      background: var(--creme);
+      padding: 0.7em 0.9em;
+    }
+    .frayer .label {
+      font-family: Georgia, serif;
+      font-size: 0.55em;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gold);
+      font-weight: 600;
+      margin-bottom: 0.3em;
+    }
+    .frayer .body {
+      font-size: 0.78em;
+      line-height: 1.4;
+      color: var(--ink);
+    }
+
+    .concept-term {
+      font-family: Georgia, serif;
+      font-size: 2.6em;
+      color: var(--navy);
+      letter-spacing: -0.02em;
+      font-weight: 700;
+      line-height: 1;
+      margin-bottom: 0.1em;
+    }
+    .concept-pronounce {
+      font-family: Calibri, sans-serif;
+      font-size: 0.55em;
+      letter-spacing: 0.08em;
+      color: var(--gold);
+      text-transform: uppercase;
+      font-weight: 600;
+    }
+
+    /* Timeline event slide */
+    .timeline-event {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 1.2em;
+      align-items: start;
+      max-width: 26em;
+    }
+    .te-year {
+      font-family: Georgia, serif;
+      font-size: 4em;
+      color: var(--gold);
+      line-height: 0.9;
+      font-weight: 700;
+    }
+    .te-body { padding-top: 0.5em; }
+    .te-body h3 {
+      font-size: 1.5em;
+      margin: 0 0 0.3em 0;
+    }
+    .te-body p { margin: 0.3em 0; }
+
+    /* Two column */
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.6em;
+      align-items: start;
+    }
+
+    .card {
+      background: rgba(255,255,255,0.4);
+      border: 1px solid var(--rule);
+      border-left: 4px solid var(--gold);
+      padding: 0.8em 1em;
+    }
+    .card h4 {
+      font-size: 0.95em;
+      margin: 0 0 0.4em 0;
+      color: var(--navy);
+    }
+    .card p, .card li { font-size: 0.78em; color: var(--ink); margin: 0.2em 0; }
+    .card ul { padding-left: 1em; }
+
+    .ask {
+      font-family: Georgia, serif;
+      font-style: italic;
+      color: var(--navy);
+      font-size: 1.5em;
+      line-height: 1.3;
+      max-width: 18em;
+      margin: 0.4em 0;
+    }
+
+    .exit {
+      background: var(--navy);
+      color: var(--creme);
+      padding: 1em 1.4em;
+      border-left: 6px solid var(--gold);
+      max-width: 22em;
+    }
+    .exit .lbl {
+      font-family: Georgia, serif;
+      font-size: 0.55em;
+      letter-spacing: 0.18em;
+      color: var(--gold-soft);
+      text-transform: uppercase;
+      font-weight: 600;
+      display: block;
+      margin-bottom: 0.4em;
+    }
+    .exit .q {
+      font-family: Georgia, serif;
+      font-size: 1.25em;
+      font-style: italic;
+      line-height: 1.35;
+      color: var(--creme);
+    }
+
+    .preview {
+      display: flex;
+      gap: 1em;
+      align-items: flex-start;
+      max-width: 24em;
+      padding: 0.8em 0;
+      border-top: 2px solid var(--gold);
+    }
+    .preview .next-no {
+      font-family: Georgia, serif;
+      font-size: 2.4em;
+      color: var(--gold);
+      line-height: 0.9;
+      font-weight: 700;
+    }
+    .preview .next-body { padding-top: 0.4em; }
+    .preview .next-body h4 {
+      font-size: 1.1em;
+      margin: 0 0 0.2em 0;
+    }
+    .preview .next-body p {
+      font-size: 0.85em;
+      color: var(--ink-soft);
+      margin: 0;
+    }
+
+    .source {
+      position: absolute;
+      bottom: 2.6em;
+      left: 1.6em;
+      font-size: 0.45em;
+      color: var(--ink-soft);
+      font-style: italic;
+      max-width: 30em;
+    }
+
+    .placeholder {
+      border: 1.5px dashed var(--gold);
+      background: rgba(200, 169, 81, 0.06);
+      padding: 1.2em;
+      font-family: Georgia, serif;
+      font-size: 0.7em;
+      color: var(--ink-soft);
+      font-style: italic;
+      max-width: 16em;
+    }
+    .placeholder .marker {
+      font-family: Calibri, sans-serif;
+      font-style: normal;
+      font-size: 0.85em;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gold);
+      font-weight: 600;
+      margin-bottom: 0.4em;
+      display: block;
+    }
+
+    /* Portrait */
+    .portrait-frame {
+      max-width: 14em;
+      margin: 0;
+    }
+    .portrait-frame img {
+      width: 100%;
+      height: auto;
+      display: block;
+      border: 6px solid var(--creme);
+      box-shadow: 0 0 0 1px var(--gold), 0 8px 24px rgba(27, 58, 92, 0.18);
+      filter: saturate(0.92);
+    }
+    .portrait-caption {
+      font-family: Georgia, serif;
+      font-size: 0.55em;
+      font-style: italic;
+      color: var(--ink-soft);
+      margin-top: 0.7em;
+      line-height: 1.4;
+    }
+    .portrait-caption .credit {
+      display: block;
+      font-style: normal;
+      font-family: Calibri, sans-serif;
+      font-size: 0.85em;
+      letter-spacing: 0.04em;
+      color: var(--gold);
+      margin-top: 0.2em;
+      font-weight: 600;
+    }
+
+    .title-portrait {
+      position: absolute;
+      top: 1.4em;
+      right: 1.6em;
+      width: 9em;
+    }
+    .title-portrait img {
+      width: 100%;
+      height: auto;
+      display: block;
+      border: 5px solid var(--creme);
+      box-shadow: 0 0 0 1px var(--gold), 0 6px 20px rgba(27, 58, 92, 0.18);
+      filter: saturate(0.92);
+    }
+    .title-portrait .caption {
+      font-family: Georgia, serif;
+      font-style: italic;
+      font-size: 0.42em;
+      color: var(--ink-soft);
+      margin-top: 0.4em;
+      line-height: 1.35;
+      text-align: right;
+    }
+
+    .lesson-no {
+      font-family: Georgia, serif;
+      font-size: 0.7em;
+      color: var(--gold);
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      font-weight: 600;
+      margin-bottom: 0.6em;
+      display: block;
+    }
+
+    /* Reveal control color */
+    .reveal .controls { color: var(--navy); }
+    .reveal .progress { color: var(--gold); background: rgba(27,58,92,0.12); }
+  </style>
+</head>
+<body>
+<div class="reveal">
+<div class="slides">
+
+<!-- 1. Titelsida -->
+<section>
+  <div class="title-slide">
+    <div class="marker">Historia 1a1 · Andra världskriget och Förintelsen</div>
+    <h1>Hédis vardag — och hotet hon inte ser</h1>
+    <hr class="rule">
+    <div class="sub">Lektion 1 av 7. Vi börjar i Sighet 1933 och följer en flicka genom det århundrade som ska komma.</div>
+  </div>
+  <aside class="notes">
+    Stå vid tavlan. Säg titeln långsamt. Visa att momentet är 7 lektioner och att vi kommer att följa en konkret människa hela vägen. Detta är det affektiva ankaret. Cirka 30 sekunder.
+  </aside>
+</section>
+
+<!-- 2. Lärandemål -->
+<section>
+  <span class="lesson-no">Lektion 1 · Mål</span>
+  <h2>Vad du ska kunna efter idag</h2>
+  <hr class="rule">
+  <ol class="goal-list">
+    <li>Berätta kort om hur nazismen kom till makten i Tyskland mellan 1933 och 1939.</li>
+    <li>Använda och förklara tre begrepp: <em>antisemitism</em>, <em>rasideologi</em>, <em>eugenik</em>.</li>
+    <li>Ge minst ett konkret exempel på antijudisk politik i Tyskland under 1930-talet.</li>
+  </ol>
+  <div class="meta-foot">
+    <span class="moment">Andra världskriget och Förintelsen</span>
+    <span class="gold">Lektion 1 · Mål</span>
+  </div>
+  <aside class="notes">
+    Läs målen högt. Säg att vi inte ska kunna allt om andra världskriget — vi ska kunna stegen bakåt mot Förintelsen, sedda genom en familj. Återkoppla till exit ticket: "I slutet ska ni kunna förklara antisemitism med era egna ord."
+  </aside>
+</section>
+
+<!-- 3. Retrieval -->
+<section>
+  <span class="lesson-no">Fas 1 · Repetition</span>
+  <h2>Tre frågor att börja med</h2>
+  <hr class="rule">
+  <ol style="font-family: Georgia, serif; font-size: 1.25em; color: var(--navy); line-height: 1.5; max-width: 18em;">
+    <li>Vem var Hitler?</li>
+    <li>Vad var Versaillesfördraget?</li>
+    <li>Vad menas med <em>nationalism</em>?</li>
+  </ol>
+  <p class="lead" style="margin-top: 1em;">Skriv ditt svar på miniwhiteboarden — du har 30 sekunder per fråga.</p>
+  <div class="meta-foot">
+    <span class="moment">Andra världskriget och Förintelsen</span>
+    <span class="gold">L1 · Retrieval</span>
+  </div>
+  <aside class="notes">
+    No-hands-up. Vänta hela 30 sekunder per fråga. Ta in svar från två slumpvalda elever per fråga. Korrigera kort om nationalism är vagt — säg: "Nationalism = att sätta sin nation främst, ofta med tanken att den är speciell eller överlägsen." Total tid: ungefär 3 minuter.
+  </aside>
+</section>
+
+<!-- 4. Kroken: Hédi -->
+<section>
+  <span class="lesson-no">Fas 1 · Krok</span>
+  <h2>Det här är Hédi</h2>
+  <hr class="rule">
+  <div class="two-col" style="grid-template-columns: auto 1fr; gap: 2em; align-items: center;">
+    <figure class="portrait-frame">
+      <img src="hedi-fried-2015.jpg" alt="Hédi Fried, 91 år, fotograferad i Stockholm 2015.">
+      <figcaption class="portrait-caption">
+        Hédi Fried (1924–2022), Stockholm 2015.
+        <span class="credit">Foto: Frankie Fouganthin · CC BY-SA 4.0</span>
+      </figcaption>
+    </figure>
+    <div>
+      <p class="ask" style="font-size: 1.05em;">Hédi Fried föddes 1924 i Sighet — en stad där judar, ungrare, rumäner och tyskar levde sida vid sida.</p>
+      <hr class="rule-thin">
+      <p style="font-size: 0.82em; color: var(--ink-soft); line-height: 1.5;">Hon levde till 2022 — 102 år gammal. Det här är hon som äldre. Men vi börjar när hon var 9 år, hemma i Sighet: skola, högtider, somrar vid floden Iza.<br><br><span style="color: var(--navy); font-style: italic;">Sju år senare är hon i Auschwitz.</span></p>
+    </div>
+  </div>
+  <div class="meta-foot">
+    <span class="moment">Andra världskriget och Förintelsen</span>
+    <span class="gold">L1 · Krok</span>
+  </div>
+  <aside class="notes">
+    Visa bilden i 5–10 sekunder utan att säga något. Säg sedan namnet långsamt: "Hédi Fried. F-R-I-E-D." Berätta att hon levde till 2022 och blev 102 år — många elever kanske aldrig sett henne, men hennes vittnesmål finns kvar (vi kommer till dem i lektion 7). Berätta om Sighet med varm röst. Säg INTE Auschwitz först — låt sjuåret-meningen komma långsamt på slutet, sedan paus. Detta är hela momentets affektiva ankare. Cirka 1 minut.
+  </aside>
+</section>
+
+<!-- 5. Hédis Sighet -->
+<section>
+  <span class="lesson-no">Fas 2 · Bakgrund</span>
+  <h2>Sighet 1933 — vardagen</h2>
+  <hr class="rule">
+  <div class="two-col">
+    <div>
+      <p style="font-size: 0.9em;">Sighet (Sighetu Marmației) ligger i <strong>Transsylvanien</strong> — då en del av <strong>Rumänien</strong>.<br>[VERIFIERA: Sighet annekteras av Ungern först 1940.]</p>
+      <ul style="font-size: 0.82em;">
+        <li>Multietnisk stad: rumäner, ungrare, tyskar, judar, romer.</li>
+        <li>Judiska familjer hade levt här i flera hundra år.</li>
+        <li>Familjen Fried — vanlig medelklass: skola, högtider, släkt.</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h4>Att lägga märke till</h4>
+      <p>I Sighet är livet 1933 i stort sett detsamma som året innan. Hédi är 9 år.</p>
+      <p>Det är i <em>Tyskland</em> något börjar förändras — först långsamt, sedan snabbt.</p>
+    </div>
+  </div>
+  <div class="meta-foot">
+    <span class="moment">Andra världskriget och Förintelsen</span>
+    <span class="gold">L1 · Sighet</span>
+  </div>
+  <aside class="notes">
+    Visa karta över Europa 1933 (separat material). Peka på Sighet — visa att det INTE är Ungern 1933 (vanlig missuppfattning). Säg: "Vi behöver hålla två saker i huvudet samtidigt: Hédis vardag i Sighet, och politiken i Tyskland. Just nu känns de helt olika." 2 minuter.
+  </aside>
+</section>
+
+<!-- 6. Begrepp 1: Antisemitism -->
+<section>
+  <span class="lesson-no">Fas 2 · Begrepp 1 av 3</span>
+  <div class="concept-term">Antisemitism</div>
+  <div class="concept-pronounce">Anti-semi-tism</div>
+  <hr class="rule" style="margin: 0.8em 0 1em;">
+  <p class="pull" style="font-size: 1.1em;">"Hat eller fientlighet riktad specifikt mot judar — som grupp, oavsett vad enskilda judar gör eller tror."</p>
+  <div class="frayer" style="margin-top: 1em;">
+    <div><div class="label">Exempel</div><div class="body">Nürnberglagarna 1935: judar förlorar tyskt medborgarskap.</div></div>
+    <div><div class="label">Icke-exempel</div><div class="body">Religionsfrihet, jämlikhet inför lagen.</div></div>
+    <div><div class="label">Egenskap</div><div class="body">Riktas mot människor på grund av att de <em>är</em> judar — inte vad de gör.</div></div>
+    <div><div class="label">Härkomst</div><div class="body">Rötter i Europa går århundraden bakåt — moderniseras under 1800-talet.</div></div>
+  </div>
+  <div class="meta-foot">
+    <span class="moment">Andra världskriget och Förintelsen</span>
+    <span class="gold">L1 · Antisemitism</span>
+  </div>
+  <aside class="notes">
+    Bygg Frayer-modellen TILLSAMMANS med eleverna på tavlan, fyll inte i färdig text. Börja med definitionen, fråga sedan: "Vilket är ett icke-exempel?" Låt eleverna ge förslag innan ni låser ett. Fråga slutligen: "Är antisemitism något nytt eller gammalt?" Visa att rötterna är långt äldre än nazismen — men att nazismen radikaliserade den. Cirka 3 minuter.
+  </aside>
+</section>
+
+<!-- 7. Begrepp 2: Rasideologi -->
+<section>
+  <span class="lesson-no">Fas 2 · Begrepp 2 av 3</span>
+  <div class="concept-term">Rasideologi</div>
+  <div class="concept-pronounce">Ras-ideologi</div>
+  <hr class="rule" style="margin: 0.8em 0 1em;">
+  <p class="pull" style="font-size: 1.1em;">"En lögn om att människor kan delas in i 'raser' med olika värde — och att den egna 'rasen' är överlägsen."</p>
+  <div class="card" style="margin-top: 1em; max-width: 24em;">
+    <h4>Inom nazismen var detta en kärnidé, inte en bisak</h4>
+    <p>Nazisterna hävdade att det fanns en "arisk ras" och att judar var en "underordnad ras". Det var pseudovetenskap — men staten satte den i politiken.</p>
+  </div>
+  <div class="meta-foot">
+    <span class="moment">Andra världskriget och Förintelsen</span>
+    <span class="gold">L1 · Rasideologi</span>
+  </div>
+  <aside class="notes">
+    Var tydlig: säg att raser i nazistisk mening INTE är vetenskap — det är en politisk lögn. Använd citattecken kring "ras" när du skriver på tavlan. Knyt tillbaka: "Nationalism + antisemitism + rasideologi = grunden för det vi ska se." Kontrollfråga: "Är all antisemitism också rasideologi?" — svar: nej, äldre antisemitism var ofta religiös, inte rasbiologisk. 2 minuter.
+  </aside>
+</section>
+
+<!-- 8. Begrepp 3: Eugenik -->
+<section>
+  <span class="lesson-no">Fas 2 · Begrepp 3 av 3</span>
+  <div class="concept-term">Eugenik</div>
+  <div class="concept-pronounce">Eu-genik · "ras-hygien"</div>
+  <hr class="rule" style="margin: 0.8em 0 1em;">
+  <p class="pull" style="font-size: 1.1em;">"Tanken att samhället kan 'förbättras' genom att kontrollera vilka som får skaffa barn — i värsta fall genom tvångssterilisering eller mord."</p>
+  <div class="card" style="margin-top: 1em; max-width: 24em;">
+    <h4>Naziregimen tillämpade detta först på funktionsnedsatta tyskar</h4>
+    <p>T4-programmet [VERIFIERA: 1939] mördade tiotusentals tyska medborgare med funktionsnedsättning. Det var <em>generalrepetitionen</em> för folkmordet på judarna.</p>
+  </div>
+  <div class="meta-foot">
+    <span class="moment">Andra världskriget och Förintelsen</span>
+    <span class="gold">L1 · Eugenik</span>
+  </div>
+  <aside class="notes">
+    Säg: "Eugenik var inte uppfunnet av nazisterna — idéerna var spridda i hela Europa och USA på 1920-talet. Det är delvis därför detta kunde hända i en av Europas mest 'utvecklade' länder." Notera kort: eugenik fanns även i Sverige under 1930-talet (tvångssteriliseringar) — kan komma upp. Snäv återkoppling till de tre begreppen tillsammans innan du går vidare. 2 minuter.
+  </aside>
+</section>
+
+<!-- 9. Tidslinje 1933 -->
+<section>
+  <span class="lesson-no">Fas 2 · Tidslinje 1 av 4</span>
+  <h2>Steg för steg, 1933–1938</h2>
+  <hr class="rule">
+  <div class="timeline-event">
+    <div class="te-year">1933</div>
+    <div class="te-body">
+      <h3>Hitler vid makten</h3>
+      <p>I januari 1933 utses Hitler till rikskansler. Inom månader avskaffas demokratin: yttrandefrihet, partier, fackföreningar.</p>
+      <p style="color: var(--ink-soft); font-size: 0.85em;">I Sighet märks ingenting. Hédi är 9 år.</p>
+    </div>
+  </div>
+  <div class="source">Källa: Roberts, J.M. <em>The Penguin History of the World</em>, kap. 25 — nazismens framväxt.</div>
+  <div class="meta-foot">
+    <span class="moment">Andra världskriget och Förintelsen</span>
+    <span class="gold">L1 · 1933</span>
+  </div>
+  <aside class="notes">
+    Snabb kontextfråga: "Hur kunde Hitler komma till makten lagligt?" — kort: ekonomisk kris, splittrad vänster, konservativa som trodde de kunde 'använda' honom. Detta är repetition från Mellankrigstiden. 1 minut.
+  </aside>
+</section>
+
+<!-- 10. Tidslinje 1935 -->
+<section>
+  <span class="lesson-no">Fas 2 · Tidslinje 2 av 4</span>
+  <div class="timeline-event">
+    <div class="te-year">1935</div>
+    <div class="te-body">
+      <h3>Nürnberglagarna</h3>
+      <p>Två lagar antas i september 1935: <em>Reichsbürgergesetz</em> och <em>lagen för skydd av tyskt blod och tysk ära</em>.</p>
+      <ul style="font-size: 0.85em;">
+        <li>Judar förlorar tyskt medborgarskap.</li>
+        <li>Äktenskap mellan judar och "ariska" tyskar förbjuds.</li>
+        <li>Staten definierar vem som är "jude" — bortom religion, baserat på släktskap.</li>
+      </ul>
+    </div>
+  </div>
+  <div class="source">Källa: Roberts, J.M. <em>The Penguin History of the World</em>; jfr. McKay et al., <em>A History of World Societies</em>, kap. 30.</div>
+  <div class="meta-foot">
+    <span class="moment">Andra världskriget och Förintelsen</span>
+    <span class="gold">L1 · 1935</span>
+  </div>
+  <aside class="notes">
+    Worked example för fas 3: säg högt — "1935, Nürnberglagarna. Detta är ett exempel på antisemitism för att lagen specifikt riktar sig mot judar. Det är också rasideologi för att 'jude' definieras genom blod, inte tro." Visa att modelleringen är samma uppgift eleverna ska göra strax. 2 minuter.
+  </aside>
+</section>
+
+<!-- 11. Tidslinje 1938 -->
+<section>
+  <span class="lesson-no">Fas 2 · Tidslinje 3–4 av 4</span>
+  <div class="timeline-event" style="margin-bottom: 1em;">
+    <div class="te-year" style="font-size: 3em;">1938</div>
+    <div class="te-body">
+      <h3>Anschluss · mars</h3>
+      <p style="font-size: 0.9em;">Tyskland annekterar Österrike. Antijudiska lagar utvidgas över natten till Wien.</p>
+    </div>
+  </div>
+  <div class="timeline-event">
+    <div class="te-year" style="font-size: 3em; color: transparent;">1938</div>
+    <div class="te-body">
+      <h3>Kristallnatten · 9–10 november</h3>
+      <p style="font-size: 0.9em;">Statsorganiserade pogromer i hela Tyskland och Österrike. Synagogor brinner. Cirka 30 000 judiska män skickas till koncentrationsläger. [VERIFIERA siffran]</p>
+      <p style="color: var(--navy); font-style: italic; font-size: 0.85em;">Frågan står då: stanna eller fly?</p>
+    </div>
+  </div>
+  <div class="source">Källa: Roberts, J.M. <em>The Penguin History of the World</em>; bystander-perspektivet återkommer i lektion 6.</div>
+  <div class="meta-foot">
+    <span class="moment">Andra världskriget och Förintelsen</span>
+    <span class="gold">L1 · 1938</span>
+  </div>
+  <aside class="notes">
+    Stanna upp efter Kristallnatten. Ställ frågan högt: "Om ni var judiska i Tyskland efter 9 november 1938 — skulle ni stanna eller fly?" Låt 2–3 elever svara. Notera utan att fördjupa: "Hédis familj kunde inte fly — vi förstår varför nästa lektion." Spegelfråga: "Hédi var 14 år 1938. Märkte hon något av det här?" 2 minuter.
+  </aside>
+</section>
+
+<!-- 12. Elevuppgift -->
+<section>
+  <span class="lesson-no">Fas 3 · Elevaktivitet · 15 min</span>
+  <h2>I par: tidslinjeanalys</h2>
+  <hr class="rule">
+  <ol style="font-size: 0.92em; max-width: 24em;">
+    <li>Placera de fyra händelserna i tidslinjen.</li>
+    <li>Skriv vid varje händelse:<br><em>"Detta är ett exempel på antisemitism / rasideologi / eugenik — för att…"</em></li>
+    <li>Avsluta med en mening:<br><em>"När Hédi gick i sjuan 1937 hade hon ännu inte märkt mycket av det här, för…"</em></li>
+  </ol>
+  <hr class="rule-thin">
+  <p style="font-size: 0.7em; color: var(--ink-soft);"><strong>Stöd:</strong> exempelmening på blädderbladet · <strong>Utmaning ★:</strong> hitta en händelse som är <em>alla tre</em> begreppen samtidigt.</p>
+  <div class="meta-foot">
+    <span class="moment">Andra världskriget och Förintelsen</span>
+    <span class="gold">L1 · Elevuppgift</span>
+  </div>
+  <aside class="notes">
+    Modellera Nürnberglagarna fullt ut innan paren börjar (se slide 10). Cirkulera till stödpar först. Ställ Frayer-frågor: "Vilket av begreppen passar bäst? Varför inte de andra två?" Samla in efter 13 minuter — sista 2 minuterna är gemensam genomgång av en eller två par. 15 minuter totalt.
+  </aside>
+</section>
+
+<!-- 13. Exit ticket -->
+<section>
+  <span class="lesson-no">Fas 4 · Summering</span>
+  <h2>Exit ticket</h2>
+  <hr class="rule">
+  <div class="exit">
+    <span class="lbl">Skriv enskilt — 3 minuter</span>
+    <p class="q">Förklara med egna ord vad antisemitism är. Ge ett exempel från Tyskland 1933–1938.</p>
+  </div>
+  <div class="meta-foot">
+    <span class="moment">Andra världskriget och Förintelsen</span>
+    <span class="gold">L1 · Exit ticket</span>
+  </div>
+  <aside class="notes">
+    Eleverna skriver på lapp och lämnar in. Sortera efter lektionen i tre högar: förstod / osäker / missade. Använd som retrieval-data för L2:s introduktion. Spara dessa lappar — de blir formativ data även för L6.
+  </aside>
+</section>
+
+<!-- 14. Preview -->
+<section>
+  <span class="lesson-no">Slut på lektion 1</span>
+  <h2>Nästa gång</h2>
+  <hr class="rule">
+  <div class="preview">
+    <div class="next-no">2</div>
+    <div class="next-body">
+      <h4>Tonåringen och kriget</h4>
+      <p>1939 bryter kriget ut. Hédi blir tonåring. Vi följer henne när lagarna gradvis kryper närmare hennes vardag — också i Ungern, dit Sighet snart hör.</p>
+    </div>
+  </div>
+  <div class="meta-foot">
+    <span class="moment">Andra världskriget och Förintelsen</span>
+    <span class="gold">L2 · 1939–1943</span>
+  </div>
+  <aside class="notes">
+    Säg titeln för L2 högt. Antyd att kriget kommer in i bilden, men att Hédis liv förändras gradvis — inte plötsligt. Påminn om läxa om någon (t.ex. läs sidor i lärobok eller kolla begreppslista). Tacka klassen — håll tonen lugn, vi är just i bör­jan av en tung båge.
+  </aside>
+</section>
+
+</div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/reveal.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@5/plugin/notes/notes.js"></script>
+<script>
+  Reveal.initialize({
+    hash: true,
+    slideNumber: false,
+    controls: true,
+    progress: true,
+    transition: 'fade',
+    backgroundTransition: 'fade',
+    width: 1280,
+    height: 800,
+    margin: 0.06,
+    plugins: [ RevealNotes ]
+  });
+</script>
+</body>
+</html>
