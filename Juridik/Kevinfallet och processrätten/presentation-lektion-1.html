@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lektion 1 — När rättsstaten brister</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/reveal.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Inter+Tight:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --ink: #1F1A15; --ink-2: #4A3F33;
+      --paper: #F4EDE1; --paper-2: #EBE1CF;
+      --rule: #2A221A;
+      --bordeaux: #7A2E2E; --marin: #2C3E55; --oliv: #5A6A3A; --ocker: #B8862F;
+      --kritbla: #5A7A9A; --mossgron: #3E5A3E; --tegel: #C96442;
+      --serif: "Cormorant Garamond", Georgia, serif;
+      --sans: "Inter Tight", system-ui, sans-serif;
+      --mono: "JetBrains Mono", ui-monospace, monospace;
+    }
+    html, body { background: var(--ink); }
+    .reveal { font-family: var(--sans); color: var(--ink); font-size: 28px; font-weight: 500; }
+    .reveal .slides { text-align: left; }
+    .reveal .slides section { background: var(--paper); padding: 0; height: 100%; }
+    .reveal .slides section.present { display: flex !important; flex-direction: column; }
+
+    /* Chrome */
+    .chrome { width: 100%; height: 100%; padding: 32px 56px 28px; display: flex; flex-direction: column; position: relative; overflow: hidden; box-sizing: border-box; }
+    .chrome.paper { background: var(--paper); color: var(--ink); }
+    .chrome.dark { color: var(--paper); }
+    .chrome .masthead { display: flex; justify-content: space-between; align-items: baseline; font-family: var(--mono); font-size: 16px; letter-spacing: 2px; text-transform: uppercase; font-weight: 600; flex-shrink: 0; padding-bottom: 12px; }
+    .chrome .baseline { display: flex; justify-content: space-between; align-items: baseline; font-family: var(--mono); font-size: 15px; letter-spacing: 2px; text-transform: uppercase; font-weight: 600; flex-shrink: 0; padding-top: 12px; }
+    .chrome.paper .masthead { color: var(--ink-2); border-bottom: 2px solid var(--rule); }
+    .chrome.paper .baseline { color: var(--ink-2); border-top: 2px solid var(--rule); }
+    .chrome.dark .masthead { color: var(--paper); opacity: 0.7; border-bottom: 2px solid rgba(244,237,225,0.27); }
+    .chrome.dark .baseline { color: var(--paper); opacity: 0.7; border-top: 2px solid rgba(244,237,225,0.27); }
+    .chrome .body { flex: 1; display: flex; flex-direction: column; min-height: 0; padding: 32px 0; overflow: hidden; }
+
+    /* Typografi */
+    .reveal h1, .reveal h2, .reveal h3 { font-family: var(--serif); color: inherit; font-weight: 600; letter-spacing: -0.015em; text-transform: none; margin: 0; }
+    .reveal h1 { line-height: 1; }
+    .reveal h3 { font-family: var(--sans); font-size: 22px; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; }
+    .reveal em { font-style: italic; font-family: var(--serif); font-weight: 600; }
+    .reveal strong, .reveal b { font-weight: 800; }
+    .reveal mark { background: rgba(184,134,47,0.4); color: inherit; padding: 0 8px; border-radius: 2px; font-weight: 700; }
+    .reveal u { text-decoration: underline; text-decoration-color: var(--bordeaux); text-decoration-thickness: 4px; text-underline-offset: 6px; font-weight: 700; }
+    .chrome.dark mark { background: rgba(184,134,47,0.55); }
+    .chrome.dark u { text-decoration-color: var(--ocker); }
+
+    .eyebrow { font-family: var(--mono); font-size: 18px; letter-spacing: 2px; text-transform: uppercase; font-weight: 700; margin-bottom: 16px; color: var(--bordeaux); }
+    .eyebrow::before { content: "▸ "; }
+    .chrome.dark .eyebrow { color: var(--ocker); }
+    .lede { font-family: var(--serif); font-style: italic; font-weight: 500; font-size: 32px; line-height: 1.3; margin-top: 22px; color: var(--ink-2); max-width: 32ch; }
+    .chrome.dark .lede { color: var(--paper); opacity: 0.9; max-width: 38ch; }
+    .body-text { font-family: var(--sans); font-size: 28px; line-height: 1.45; max-width: 32em; font-weight: 500; }
+
+    /* COVER */
+    .cover-outer { background: var(--bordeaux) !important; padding: 36px; box-sizing: border-box; }
+    .cover-inner { background: var(--paper); height: 100%; padding: 56px 72px; display: flex; flex-direction: column; justify-content: space-between; box-sizing: border-box; }
+    .cover-inner .top { display: flex; justify-content: space-between; font-family: var(--mono); font-size: 17px; letter-spacing: 2px; text-transform: uppercase; }
+    .cover-inner .top span:first-child { color: var(--bordeaux); font-weight: 700; }
+    .cover-inner .top span:last-child { color: var(--ink-2); font-weight: 600; }
+    .cover-inner h1 { font-size: 116px; font-weight: 600; line-height: 1; letter-spacing: -2px; color: var(--ink); }
+    .cover-inner .subtitle { font-family: var(--serif); font-style: italic; font-weight: 500; font-size: 36px; color: var(--ink-2); margin-top: 28px; max-width: 22ch; }
+    .cover-inner .bottom { display: flex; justify-content: space-between; font-family: var(--mono); font-size: 16px; letter-spacing: 2px; text-transform: uppercase; color: var(--ink-2); font-weight: 600; }
+
+    /* SECTION */
+    .section-slide { position: relative; }
+    .section-slide .big-num { position: absolute; top: -20px; right: -20px; font-family: var(--serif); font-size: 340px; font-weight: 500; opacity: 0.2; letter-spacing: -8px; line-height: 0.85; }
+    .section-slide .kapitel { font-family: var(--mono); font-size: 18px; letter-spacing: 2px; text-transform: uppercase; font-weight: 700; color: var(--ocker); margin-bottom: 16px; }
+    .section-slide h1 { font-size: 96px; font-weight: 600; line-height: 1; max-width: 16ch; }
+    .section-slide .lede { color: var(--paper); opacity: 0.9; max-width: 26ch; }
+
+    /* QUESTION */
+    .question-slide h1 { font-size: 104px; font-weight: 600; line-height: 1.05; max-width: 15ch; }
+    .question-slide .lede { max-width: 38ch; font-size: 34px; }
+
+    /* CONTENT */
+    .content-slide h1 { font-size: 72px; font-weight: 600; max-width: 18ch; margin-bottom: 36px; line-height: 1.05; }
+    .content-slide .body-text { margin-bottom: 24px; }
+    .bullets { list-style: none; padding: 0; margin: 0; }
+    .bullets li { display: flex; gap: 24px; padding: 16px 0; font-size: 28px; font-weight: 500; line-height: 1.4; border-bottom: 2px solid rgba(74,63,51,0.33); }
+    .bullets li:last-child { border-bottom: none; }
+    .bullets li .index { font-family: var(--mono); font-size: 24px; font-weight: 700; color: var(--ocker); width: 44px; flex-shrink: 0; padding-top: 4px; }
+    .bullets li > span:last-child { flex: 1; max-width: 32em; }
+
+    /* PROCESS-FLOW (för rättens fem steg) */
+    .flow { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; margin-top: 32px; }
+    .flow-step { background: var(--paper-2); border-top: 4px solid var(--bordeaux); padding: 22px 20px; display: flex; flex-direction: column; }
+    .flow-step:nth-child(1) { border-top-color: var(--marin); }
+    .flow-step:nth-child(2) { border-top-color: var(--marin); }
+    .flow-step:nth-child(3) { border-top-color: var(--ocker); }
+    .flow-step:nth-child(4) { border-top-color: var(--bordeaux); }
+    .flow-step:nth-child(5) { border-top-color: var(--oliv); }
+    .flow-step .num { font-family: var(--mono); font-size: 16px; font-weight: 700; letter-spacing: 2px; color: var(--ocker); margin-bottom: 8px; }
+    .flow-step .name { font-family: var(--serif); font-style: italic; font-size: 30px; font-weight: 600; color: var(--ink); margin-bottom: 10px; line-height: 1.05; }
+    .flow-step .who { font-family: var(--sans); font-size: 18px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--ink-2); margin-bottom: 6px; }
+    .flow-step .desc { font-family: var(--sans); font-size: 18px; font-weight: 500; line-height: 1.4; color: var(--ink); }
+
+    /* TABLE — kontrafaktisk matris */
+    .table-slide h1 { font-size: 56px; font-weight: 600; margin-bottom: 24px; line-height: 1.05; }
+    .table-slide .body-text { font-size: 24px; margin-bottom: 18px; max-width: 42em; }
+    .arkiv-table { width: 100%; border-collapse: collapse; }
+    .arkiv-table th { font-family: var(--mono); font-size: 16px; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; color: var(--ink-2); padding: 14px 18px; text-align: left; border-bottom: 2px solid var(--rule); }
+    .arkiv-table th:nth-child(2) { color: var(--bordeaux); }
+    .arkiv-table th:nth-child(3) { color: var(--marin); }
+    .arkiv-table td { font-family: var(--serif); font-size: 22px; font-weight: 500; padding: 16px 18px; border-bottom: 1px solid rgba(42,34,26,0.2); vertical-align: top; line-height: 1.35; }
+    .arkiv-table td:first-child { font-weight: 700; font-family: var(--sans); font-size: 20px; text-transform: uppercase; letter-spacing: 1px; color: var(--ink); }
+
+    /* DISCUSS */
+    .discuss-slide h1 { font-size: 62px; font-weight: 600; max-width: 18ch; margin-bottom: 24px; line-height: 1.05; letter-spacing: -0.5px; }
+    .discuss-slide .questions { list-style: none; padding: 0; margin: 0; }
+    .discuss-slide .questions li { display: flex; gap: 24px; padding: 14px 0; align-items: baseline; }
+    .discuss-slide .questions .roman { font-family: var(--serif); font-style: italic; font-size: 36px; font-weight: 600; color: var(--ocker); width: 60px; flex-shrink: 0; }
+    .discuss-slide .questions li > span:last-child { font-size: 26px; font-weight: 500; color: var(--paper); flex: 1; max-width: 32em; }
+
+    /* CALLOUT */
+    .callout-outer { padding: 36px; box-sizing: border-box; }
+    .callout-outer.fakta { background: var(--marin) !important; }
+    .callout-outer.begrepp { background: var(--ocker) !important; }
+    .callout-outer.varning { background: var(--bordeaux) !important; }
+    .callout-inner { background: var(--paper-2); height: 100%; padding: 56px 72px; display: flex; flex-direction: column; justify-content: space-between; box-sizing: border-box; }
+    .callout-inner .top { display: flex; justify-content: space-between; font-family: var(--mono); font-size: 18px; letter-spacing: 2px; text-transform: uppercase; }
+    .callout-outer.fakta .callout-inner .top span:first-child { font-weight: 800; color: var(--marin); }
+    .callout-outer.begrepp .callout-inner .top span:first-child { font-weight: 800; color: var(--ocker); }
+    .callout-outer.varning .callout-inner .top span:first-child { font-weight: 800; color: var(--bordeaux); }
+    .callout-inner .top span:last-child { color: var(--ink-2); font-weight: 600; }
+    .callout-inner h1 { font-family: var(--serif); font-style: italic; font-size: 64px; font-weight: 600; color: var(--ink); max-width: 22ch; line-height: 1.05; }
+    .callout-inner .body-text { font-size: 28px; max-width: 30em; margin-top: 28px; line-height: 1.4; }
+    .callout-inner .quote-line { font-family: var(--serif); font-style: italic; font-size: 30px; font-weight: 500; border-left: 4px solid var(--bordeaux); padding-left: 24px; margin-top: 22px; color: var(--ink-2); max-width: 28em; line-height: 1.3; }
+    .callout-inner .bottom { display: flex; justify-content: space-between; font-family: var(--mono); font-size: 16px; letter-spacing: 2px; text-transform: uppercase; color: var(--ink-2); font-weight: 600; }
+
+    /* CLOSE */
+    .close-slide h1 { font-size: 64px; font-weight: 600; margin-bottom: 32px; }
+    .takeaways { list-style: none; padding: 0; margin: 0 0 28px; }
+    .takeaways li { font-size: 26px; font-weight: 500; line-height: 1.4; padding: 8px 0 8px 28px; position: relative; max-width: 36em; }
+    .takeaways li::before { content: "▪"; position: absolute; left: 0; color: var(--bordeaux); font-size: 32px; line-height: 1; }
+    .next-steps { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 12px; }
+    .next-box { padding: 22px 26px; }
+    .next-box.exit { background: rgba(184,134,47,0.18); border-left: 4px solid var(--ocker); }
+    .next-box.next { background: rgba(44,62,85,0.12); border-left: 4px solid var(--marin); }
+    .next-box .label { font-family: var(--mono); font-size: 16px; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 8px; color: var(--ink-2); }
+    .next-box .text { font-family: var(--serif); font-style: italic; font-size: 24px; font-weight: 500; color: var(--ink); line-height: 1.3; }
+
+    .reveal .progress { color: var(--bordeaux); }
+    .reveal .controls { color: var(--ink-2); }
+  </style>
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+      <!-- 01 · COVER -->
+      <section class="cover-outer">
+        <div class="cover-inner">
+          <div class="top">
+            <span>Rätten och samhället · Kevinfallet och processrätten</span>
+            <span>Lektion 01 / 06</span>
+          </div>
+          <div>
+            <h1>När rättsstaten <em>brister</em></h1>
+            <div class="subtitle">Kevinfallet och <strong>processrätten</strong></div>
+          </div>
+          <div class="bottom">
+            <span>Arkiv · v2 · Kursomslag</span>
+            <span>01 / 16</span>
+          </div>
+        </div>
+        <aside class="notes">
+          Öppning. Låt rubriken landa. Säg: "Det här är vårt sista moment i kursen. Vi ska titta på ett av de mest omskrivna rättsfallen i modern svensk historia — och vi ska göra det för att förstå hur den svenska processrätten egentligen fungerar."
+          Tid: ca 1 min. Ramverk för momentet: 6 lektioner, dokumentären som ryggrad, slutar med ett brev till justitieministern.
+        </aside>
+      </section>
+
+      <!-- 02 · QUESTION (mossgrön) — aktivering av förkunskap -->
+      <section style="background: var(--mossgron) !important;">
+        <div class="chrome dark" style="background: var(--mossgron);">
+          <div class="masthead">
+            <span>Rätten och samhället · Lektion 01</span>
+            <span>Fas 1 · 8 min · par</span>
+          </div>
+          <div class="body question-slide">
+            <div class="eyebrow">Aktivera förkunskap</div>
+            <h1>Vad krävs för att <em>fälla</em> någon för ett brott?</h1>
+            <div class="lede">Skriv ner <strong>tre saker</strong> som du tror måste finnas på plats. Diskutera sedan i par — kom överens om en gemensam topp tre.</div>
+          </div>
+          <div class="baseline">
+            <span>Arkiv · v2</span>
+            <span>02 / 16</span>
+          </div>
+        </div>
+        <aside class="notes">
+          Fas 1 — Aktivering av förkunskaper (8 min totalt). Eftersom det här är momentets första lektion finns ingen retrieval review — vi aktiverar elevernas befintliga uppfattning istället.
+          2 min enskilt → 4 min par → 2 min uppsamling. Skriv förslagen på tavlan i två kolumner: "bevis-relaterat" och "regel-relaterat".
+          Vanliga svar: "att personen erkänt", "vittnen", "bevis", "att man är säker". Bra ingångar att utmana: "räcker att man är säker?", "räcker ett erkännande?". Spara svaren — vi återkommer till dem på slide 7 (beviskrav) och slide 8 (oskuldspresumtionen).
+        </aside>
+      </section>
+
+      <!-- 03 · CONTENT — Mål för lektionen -->
+      <section>
+        <div class="chrome paper">
+          <div class="masthead">
+            <span>Rätten och samhället · Lektion 01</span>
+            <span>Fas 2 · 3 min</span>
+          </div>
+          <div class="body content-slide">
+            <div class="eyebrow">Dagens mål</div>
+            <h1>Vad ska vi <em>klara av</em> idag?</h1>
+            <ul class="bullets">
+              <li class="fragment"><span class="index">01</span><span><strong>Förstå</strong> hur det svenska <u>rättegångsväsendet</u> är uppbyggt — i fem steg.</span></li>
+              <li class="fragment"><span class="index">02</span><span><strong>Lära oss</strong> tre nyckelbegrepp: <em>förundersökning</em>, <em>beviskrav</em>, <em>oskuldspresumtion</em>.</span></li>
+              <li class="fragment"><span class="index">03</span><span><strong>Möta</strong> Kevinfallet och vårt arbetsverktyg — den <mark>kontrafaktiska matrisen</mark>.</span></li>
+            </ul>
+          </div>
+          <div class="baseline">
+            <span>Arkiv · v2</span>
+            <span>03 / 16</span>
+          </div>
+        </div>
+        <aside class="notes">
+          Fas 2 — Målaktivering (3 min). Visa målen progressivt. Förklara: "Idag bygger vi grunden. Resten av momentet bygger på det här."
+          Säg också: "Den kontrafaktiska matrisen är vårt verktyg hela momentet. Den följer er till slutuppgiften."
+        </aside>
+      </section>
+
+      <!-- 04 · SECTION (bordeaux) — Rättegångsväsendet -->
+      <section style="background: var(--bordeaux) !important;">
+        <div class="chrome dark" style="background: var(--bordeaux);">
+          <div class="masthead">
+            <span>Rätten och samhället · Lektion 01</span>
+            <span>Fas 3 · 12 min</span>
+          </div>
+          <div class="body section-slide">
+            <div class="big-num">01</div>
+            <div>
+              <div class="kapitel">§ Kapitel 01</div>
+              <h1>Rätten i <em>fem steg</em></h1>
+              <div class="lede">Från anmälan till dom — så går det till i ett brottmål.</div>
+            </div>
+          </div>
+          <div class="baseline">
+            <span>Arkiv · v2</span>
+            <span>04 / 16</span>
+          </div>
+        </div>
+        <aside class="notes">
+          Fas 3 — Explicit instruktion (12 min totalt, varav slide 4 ca 30 sek). Sektionsövergång. Säg: "Innan vi går in i Kevinfallet behöver vi en karta över rättegångsväsendet. Den kartan har fem stationer."
+        </aside>
+      </section>
+
+      <!-- 05 · CONTENT — Processflödet -->
+      <section>
+        <div class="chrome paper">
+          <div class="masthead">
+            <span>Rätten och samhället · Lektion 01</span>
+            <span>Fas 3 · 12 min</span>
+          </div>
+          <div class="body content-slide">
+            <div class="eyebrow">Brottmålets fem steg</div>
+            <h1>Från <em>anmälan</em> till <em>dom</em></h1>
+            <div class="flow">
+              <div class="flow-step">
+                <div class="num">01</div>
+                <div class="name">Anmälan</div>
+                <div class="who">Den som drabbats</div>
+                <div class="desc">Brott anmäls till polis — eller upptäcks av polisen själv.</div>
+              </div>
+              <div class="flow-step">
+                <div class="num">02</div>
+                <div class="name">Förundersökning</div>
+                <div class="who">Polis &amp; åklagare</div>
+                <div class="desc">Utredning. Förhör, beslag, teknisk bevisning. Får brott begåtts? Av vem?</div>
+              </div>
+              <div class="flow-step">
+                <div class="num">03</div>
+                <div class="name">Åtal</div>
+                <div class="who">Åklagaren</div>
+                <div class="desc">Räcker bevisen? Åklagaren beslutar att <strong>väcka åtal</strong> — eller att skriva av.</div>
+              </div>
+              <div class="flow-step">
+                <div class="num">04</div>
+                <div class="name">Rättegång</div>
+                <div class="who">Domstolen</div>
+                <div class="desc">Tingsrätten prövar bevisen. Åklagare och försvar argumenterar.</div>
+              </div>
+              <div class="flow-step">
+                <div class="num">05</div>
+                <div class="name">Dom</div>
+                <div class="who">Domstolen</div>
+                <div class="desc">Fällande eller friande. Kan överklagas till hovrätt — och i sällsynta fall HD.</div>
+              </div>
+            </div>
+          </div>
+          <div class="baseline">
+            <span>Arkiv · v2</span>
+            <span>05 / 16</span>
+          </div>
+        </div>
+        <aside class="notes">
+          Fas 3 (ca 4 min). Gå igenom de fem stegen. Betona: "I Kevinfallet stannade processen vid steg 2 — en förundersökning som aldrig blev åtal. Men det betyder INTE att fallet sköttes som en förundersökning ska skötas. Det är där hela vår analys börjar."
+          Worked example: "Tänk er en stöld. Steg 1: någon ringer 114 14. Steg 2: polisen utreder, förhör vittnen. Steg 3: åklagaren beslutar — räcker bevisen? Steg 4: rättegång. Steg 5: dom."
+          Kontrollfråga till klassen: "Vid vilket steg får man advokat?" (svar: senast vid åtal, men ofta tidigare under förundersökningen).
+        </aside>
+      </section>
+
+      <!-- 06 · CALLOUT (fakta marin) — Förundersökning -->
+      <section class="callout-outer fakta">
+        <div class="callout-inner">
+          <div class="top">
+            <span>▸ Begrepp</span>
+            <span>Lektion 01 / 06</span>
+          </div>
+          <div>
+            <h1>Vad är en <em>förundersökning</em>?</h1>
+            <div class="body-text">Polisens och åklagarens utredning <strong>innan</strong> ett åtal väcks. Syftet: utreda om brott begåtts, vem som kan misstänkas, och om bevisen räcker.</div>
+            <div class="quote-line">Reglerna finns i <u>23 kap. rättegångsbalken</u>. Förundersökningsledaren — polis eller åklagare — har en <strong>objektivitetsplikt</strong>: även det som talar för den misstänktes oskuld måste utredas.</div>
+          </div>
+          <div class="bottom">
+            <span>Arkiv · v2 · Begrepp</span>
+            <span>06 / 16</span>
+          </div>
+        </div>
+        <aside class="notes">
+          Fas 3 (ca 2 min). Begreppet att eleverna måste ha klart för sig. [VERIFIERA paragrafhänvisning 23 kap rättegångsbalken — det stämmer men dubbelkolla aktuell lydelse.]
+          Nyckelpoäng: objektivitetsplikten. Förundersökningen är INTE en jakt på en gärningsman — det är en utredning av sanningen. Den här poängen kommer återupprepas hela momentet eftersom det är just objektivitetsplikten som diskuteras i Kevinfallet.
+        </aside>
+      </section>
+
+      <!-- 07 · CALLOUT (fakta marin) — Beviskrav -->
+      <section class="callout-outer fakta">
+        <div class="callout-inner">
+          <div class="top">
+            <span>▸ Begrepp</span>
+            <span>Lektion 01 / 06</span>
+          </div>
+          <div>
+            <h1><em>Ställt utom rimligt tvivel</em></h1>
+            <div class="body-text">Beviskravet i brottmål. Det är ett <strong>mycket högt</strong> beviskrav — det räcker inte med "troligen", "sannolikt" eller "mest tänkbart". Det ska vara <u>ställt utom rimligt tvivel</u>.</div>
+            <div class="quote-line">"Hellre fria tio skyldiga än fälla en oskyldig." — en princip som funnits i västerländsk rätt sedan 1700-talet.</div>
+          </div>
+          <div class="bottom">
+            <span>Arkiv · v2 · Begrepp</span>
+            <span>07 / 16</span>
+          </div>
+        </div>
+        <aside class="notes">
+          Fas 3 (ca 2 min). Återkoppla till slide 2: "På tavlan står era svar. Räcker det ni skrev? Många skriver 'bevis' — men hur mycket bevis?"
+          Citatet "hellre fria tio skyldiga än fälla en oskyldig" tillskrivs ofta William Blackstone (1700-tal) [VERIFIERA exakt formulering — Blackstones princip lyder ungefär: "It is better that ten guilty persons escape than that one innocent suffer"].
+          Förklara också: civilrätt (tvistemål) har ett LÄGRE beviskrav ("övervägande sannolikt" / "styrkt") — i brottmål är ribban högst eftersom konsekvenserna är hårdast.
+        </aside>
+      </section>
+
+      <!-- 08 · CALLOUT (begrepp ocker) — Oskuldspresumtionen -->
+      <section class="callout-outer begrepp">
+        <div class="callout-inner">
+          <div class="top">
+            <span>▸ Princip</span>
+            <span>Lektion 01 / 06</span>
+          </div>
+          <div>
+            <h1><em>Oskyldig</em> tills motsatsen bevisats</h1>
+            <div class="body-text">Oskuldspresumtionen — alla anses <strong>oskyldiga</strong> tills en domstol fastställt motsatsen. Konsekvensen: <u>bevisbördan</u> ligger hos åklagaren, inte hos den misstänkte. Du behöver inte bevisa att du är oskyldig.</div>
+            <div class="quote-line"><em>Regeringsformen</em> (RF 2 kap.) och <em>Europakonventionen</em> (EKMR art. 6) garanterar denna princip — och rätten till en <strong>rättvis rättegång</strong>.</div>
+          </div>
+          <div class="bottom">
+            <span>Arkiv · v2 · Princip</span>
+            <span>08 / 16</span>
+          </div>
+        </div>
+        <aside class="notes">
+          Fas 3 (ca 2 min). Den TREDJE av dagens nyckelbegrepp — och troligen den viktigaste för hela momentet. [VERIFIERA: Oskuldspresumtionen finns explicit i EKMR art. 6.2; i RF är skyddet implicit via art. 2 kap men dubbelkolla aktuell formulering.]
+          Konkret exempel: "Om du blir misstänkt behöver DU inte bevisa att du är oskyldig. Det är åklagaren som måste bevisa att du är skyldig. Och beviskravet är 'utom rimligt tvivel' — alltså väldigt högt."
+          Bro till nästa: "Men vad innebär det här i praktiken? Ska media inte få nämna namn? Ska polisen behandla en misstänkt som vilken medborgare som helst?"
+        </aside>
+      </section>
+
+      <!-- 09 · DISCUSS (mossgrön) — oskuldspresumtionen i praktiken -->
+      <section style="background: var(--mossgron) !important;">
+        <div class="chrome dark" style="background: var(--mossgron);">
+          <div class="masthead">
+            <span>Rätten och samhället · Lektion 01</span>
+            <span>Fas 4 · 8 min · EPA</span>
+          </div>
+          <div class="body discuss-slide">
+            <div class="eyebrow">Diskutera</div>
+            <h1>Vad innebär oskuldspresumtionen <em>i praktiken</em>?</h1>
+            <ol class="questions">
+              <li class="fragment"><span class="roman">I.</span><span>Hur ska polisen behandla en misstänkt under en förundersökning?</span></li>
+              <li class="fragment"><span class="roman">II.</span><span>Får media skriva ut en misstänkts namn? <strong>Varför</strong> eller varför inte?</span></li>
+              <li class="fragment"><span class="roman">III.</span><span>Vad händer om bevisen inte räcker — frias man, eller "skrivs fallet av"? Är det samma sak?</span></li>
+            </ol>
+          </div>
+          <div class="baseline">
+            <span>Arkiv · v2</span>
+            <span>09 / 16</span>
+          </div>
+        </div>
+        <aside class="notes">
+          Fas 4 — Guidad övning (8 min av totalt 25). EPA-format: 2 min enskilt, 3 min par, 3 min helklass.
+          Cirkulera under parsamtalen. Lyssna efter: missuppfattningar (t.ex. "om man inte är dömd så har man rätt att få sitt namn bort"), bra resonemang som kan lyftas i helklass.
+          Helklassdiskussionen: lyft upp fråga III särskilt — "skrivs av" betyder INTE friande dom. Det är en återkommande tråd hela momentet — vi kommer tillbaka till detta i lektion 4 när vi pratar om Kevinfallets avskrivning 2018.
+        </aside>
+      </section>
+
+      <!-- 10 · SECTION (ink) — Kevinfallet -->
+      <section style="background: var(--ink) !important;">
+        <div class="chrome dark" style="background: var(--ink);">
+          <div class="masthead">
+            <span>Rätten och samhället · Lektion 01</span>
+            <span>Fas 4 · 17 min</span>
+          </div>
+          <div class="body section-slide">
+            <div class="big-num">02</div>
+            <div>
+              <div class="kapitel">§ Kapitel 02</div>
+              <h1>Kevinfallet — <em>en tragedi</em></h1>
+              <div class="lede">Augusti 1998. En liten pojke dör. Två andra barn pekas ut. Frågan är inte vad som hände — utan hur det utreddes.</div>
+            </div>
+          </div>
+          <div class="baseline">
+            <span>Arkiv · v2</span>
+            <span>10 / 16</span>
+          </div>
+        </div>
+        <aside class="notes">
+          Fas 4 fortsätter. Sektionsövergång (ca 30 sek). Tonen ska skifta — ink-bakgrunden signalerar allvar.
+          Säg: "Det vi nu går in i är ingen vanlig genomgång. Det är ett av de mest omskrivna rättsfallen i modern svensk historia. Resten av momentet bygger på det här fallet."
+          Be eleverna lägga undan datorerna här om ni har en sådan rutin.
+        </aside>
+      </section>
+
+      <!-- 11 · CONTENT — 1998 -->
+      <section>
+        <div class="chrome paper">
+          <div class="masthead">
+            <span>Rätten och samhället · Lektion 01</span>
+            <span>Fas 4 · 17 min</span>
+          </div>
+          <div class="body content-slide">
+            <div class="eyebrow">1998</div>
+            <h1><em>Augusti</em> i Arvika</h1>
+            <ul class="bullets">
+              <li class="fragment"><span class="index">01</span><span><strong>4-årige Kevin Hjalmarsson</strong> hittas död utomhus i Arvika. <mark>Augusti 1998</mark>.</span></li>
+              <li class="fragment"><span class="index">02</span><span>Två pojkar — <strong>5 och 7 år</strong> — kommer efter en serie polisförhör att pekas ut som ansvariga.</span></li>
+              <li class="fragment"><span class="index">03</span><span>Pojkarna är under <u>straffmyndighetsåldern</u> (15 år). De kan inte åtalas. Fallet förklaras "uppklarat" — utan rättegång, utan dom.</span></li>
+            </ul>
+          </div>
+          <div class="baseline">
+            <span>Arkiv · v2</span>
+            <span>11 / 16</span>
+          </div>
+        </div>
+        <aside class="notes">
+          Fas 4 (ca 4 min). Berätta nyktert. Inga dramatiska vändningar — fakta först.
+          [VERIFIERA: Kevin Hjalmarsson, 4 år, hittades död i Arvika i augusti 1998. Han hittades vid eller i vatten — exakt plats varierar i källor (sjö/hamn). Pojkarna var 5 och 7 år. Detta är vedertagna fakta men dubbelkolla detaljer mot Wikipedia eller SVT innan lektion.]
+          Nyckelpoäng — elever frågar ofta: "Varför åtalades de inte?" Svar: straffmyndighetsåldern i Sverige är 15. Yngre barn kan utredas av polis och socialtjänst men inte dömas. Detta gör att fallets "uppklaring" 1998 aldrig prövades i domstol.
+          Förbered eleverna mentalt: "Vi kommer titta på dokumentären i avsnitt — och ni kommer se att det polisen kallade 'uppklarat' inte alls var det."
+        </aside>
+      </section>
+
+      <!-- 12 · CONTENT — 2017-2018 -->
+      <section>
+        <div class="chrome paper">
+          <div class="masthead">
+            <span>Rätten och samhället · Lektion 01</span>
+            <span>Fas 4 · 17 min</span>
+          </div>
+          <div class="body content-slide">
+            <div class="eyebrow">Tjugo år senare</div>
+            <h1><em>Dokumentären</em> som vände allt</h1>
+            <ul class="bullets">
+              <li class="fragment"><span class="index">01</span><span><mark>2017</mark>: SVT:s "<em>Fallet Kevin</em>" granskar förhörsmaterialet i detalj. Tre avsnitt à 60 minuter.</span></li>
+              <li class="fragment"><span class="index">02</span><span><strong>Slutsats:</strong> förhörsmetodiken var <u>djupt bristfällig</u>. Pojkarna leddes mot bestämda svar genom upprepade och ledande frågor.</span></li>
+              <li class="fragment"><span class="index">03</span><span><mark>2018</mark>: åklagaren <strong>skriver av</strong> brottet. De utpekade pojkarna är inte längre misstänkta. Men en friande dom finns inte — det fanns aldrig något åtal.</span></li>
+            </ul>
+          </div>
+          <div class="baseline">
+            <span>Arkiv · v2</span>
+            <span>12 / 16</span>
+          </div>
+        </div>
+        <aside class="notes">
+          Fas 4 (ca 3 min). [VERIFIERA: SVT:s dokumentärserie "Fallet Kevin" sändes 2017. Avskrivningen från åklagarämbetet kom 2018. Dubbelkolla år innan lektion.]
+          Återkoppla till slide 9, fråga III: "Kommer ni ihåg att vi pratade om skillnaden mellan friande och avskriven? Här är skillnaden konkret. Pojkarna har formellt inte fått en frikännande dom — för det fanns aldrig en rättegång. De har 'avskrivits' — myndigheten erkänner att man inte längre kan misstänka dem."
+          Det här är en av de etiskt obekväma punkterna i fallet — att pojkarna aldrig kan få en domstolsförklaring av oskuld, eftersom systemet aldrig prövade saken.
+        </aside>
+      </section>
+
+      <!-- 13 · SECTION (marin) — Vårt arbetsverktyg -->
+      <section style="background: var(--marin) !important;">
+        <div class="chrome dark" style="background: var(--marin);">
+          <div class="masthead">
+            <span>Rätten och samhället · Lektion 01</span>
+            <span>Fas 4 · sista delen</span>
+          </div>
+          <div class="body section-slide">
+            <div class="big-num">03</div>
+            <div>
+              <div class="kapitel">§ Kapitel 03</div>
+              <h1>Vårt <em>arbetsverktyg</em></h1>
+              <div class="lede">Hela momentet bygger på en fråga: vad hände faktiskt — och vad borde hänt enligt processrättens regler?</div>
+            </div>
+          </div>
+          <div class="baseline">
+            <span>Arkiv · v2</span>
+            <span>13 / 16</span>
+          </div>
+        </div>
+        <aside class="notes">
+          Fas 4 fortsätter. Sektionsövergång (ca 30 sek). Säg: "Innan vi börjar titta på dokumentären nästa lektion behöver ni ert arbetsverktyg."
+        </aside>
+      </section>
+
+      <!-- 14 · TABLE — kontrafaktisk matris -->
+      <section>
+        <div class="chrome paper">
+          <div class="masthead">
+            <span>Rätten och samhället · Lektion 01</span>
+            <span>Fas 5 · 12 min</span>
+          </div>
+          <div class="body table-slide">
+            <div class="eyebrow">Den kontrafaktiska matrisen</div>
+            <h1>Vad <em>hände</em> — och vad <em>borde</em> hänt?</h1>
+            <p class="body-text">För varje moment i Kevinfallet ställer vi två kolumner mot varandra. Matrisen växer fram genom hela momentet — den är även grunden för slutuppgiften.</p>
+            <table class="arkiv-table">
+              <thead>
+                <tr>
+                  <th>Moment i processen</th>
+                  <th>Vad hände faktiskt</th>
+                  <th>Vad borde hänt enligt processrätten</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Polisförhör</td>
+                  <td><em>(fylls i efter avsnitt 1)</em></td>
+                  <td><em>(fylls i efter avsnitt 1)</em></td>
+                </tr>
+                <tr>
+                  <td>Bevis &amp; beviskrav</td>
+                  <td><em>(fylls i löpande)</em></td>
+                  <td><em>(fylls i löpande)</em></td>
+                </tr>
+                <tr>
+                  <td>Avskrivning</td>
+                  <td><em>(fylls i efter avsnitt 3)</em></td>
+                  <td><em>(fylls i efter avsnitt 3)</em></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="baseline">
+            <span>Arkiv · v2</span>
+            <span>14 / 16</span>
+          </div>
+        </div>
+        <aside class="notes">
+          Fas 5 — Självständig övning (12 min av 15). Dela ut matrisen som papper eller dela en digital version. Eleverna ska redan nu fylla i en första rad: "Vad krävde vi i dagens lektion av en rättsprocess?" — alltså sammanfatta de tre begreppen från idag som ramen för vad som "borde hänt".
+          Stöd mot E: ge exempel-fyllning för raden "Polisförhör" — "Vad borde hänt: förhören borde dokumenterats fullständigt, frågor får inte vara ledande, en förälder eller socialsekreterare ska närvara vid förhör med barn."
+          Utmaning mot A: "Lägg till en egen rad — finns det andra moment vi inte tagit upp?" T.ex. mediernas roll, samhällets roll, JO/JK-prövning.
+        </aside>
+      </section>
+
+      <!-- 15 · DISCUSS (mossgrön) — varför kontrafaktisk metod? -->
+      <section style="background: var(--mossgron) !important;">
+        <div class="chrome dark" style="background: var(--mossgron);">
+          <div class="masthead">
+            <span>Rätten och samhället · Lektion 01</span>
+            <span>Fas 5 · slut · par</span>
+          </div>
+          <div class="body discuss-slide">
+            <div class="eyebrow">Reflektera i par</div>
+            <h1>Varför skilja <em>hände</em> från <em>borde</em>?</h1>
+            <ol class="questions">
+              <li class="fragment"><span class="roman">I.</span><span>Vad <strong>förlorar</strong> vi om vi bara berättar vad som hände?</span></li>
+              <li class="fragment"><span class="roman">II.</span><span>Vad <strong>vinner</strong> vi på att jämföra med ett ideal?</span></li>
+              <li class="fragment"><span class="roman">III.</span><span>Hur skiljer sig <em>juridik</em> från <em>moral</em> i denna jämförelse?</span></li>
+            </ol>
+          </div>
+          <div class="baseline">
+            <span>Arkiv · v2</span>
+            <span>15 / 16</span>
+          </div>
+        </div>
+        <aside class="notes">
+          Fas 5 slut (3 min). Snabb par-diskussion. Inte hela klassen — bara par. Detta är en kognitiv "preview" av matrismetoden.
+          Centralt svar att lyfta i helklass om tid finns: vinsten är att vi får syn på REGLERNA — inte bara händelseförloppet. Att jämföra med ett ideal är vad jurister gör hela tiden: regeln existerar, frågan är om den följdes.
+          Skillnaden mellan juridik och moral: juridik är skrivna regler, moral är värderingar. De överlappar men är inte samma. I Kevinfallet ska vi mest analysera juridiken — men moralen kommer också att bli en bärande tråd.
+        </aside>
+      </section>
+
+      <!-- 16 · CLOSE — sammanfattning + exit ticket + nästa lektion -->
+      <section>
+        <div class="chrome paper">
+          <div class="masthead">
+            <span>Rätten och samhället · Lektion 01</span>
+            <span>Fas 6 · 5 min</span>
+          </div>
+          <div class="body close-slide">
+            <div class="eyebrow">Innan vi avslutar</div>
+            <h1><em>Tre saker</em> att ta med</h1>
+            <ul class="takeaways">
+              <li class="fragment">Rättegångsväsendet har <strong>fem steg</strong>: anmälan, förundersökning, åtal, rättegång, dom.</li>
+              <li class="fragment">Tre nyckelbegrepp: <em>förundersökning</em>, <em>beviskrav</em> ("utom rimligt tvivel"), <em>oskuldspresumtion</em>.</li>
+              <li class="fragment">I Kevinfallet stannade processen vid <u>förundersökning</u> — och det är där vår analys börjar.</li>
+            </ul>
+            <div class="next-steps">
+              <div class="next-box exit">
+                <div class="label">Exit ticket</div>
+                <div class="text">Förklara med egna ord skillnaden mellan <em>förundersökning</em> och <em>rättegång</em>. Vad är beviskravet i ett brottmål?</div>
+              </div>
+              <div class="next-box next">
+                <div class="label">Nästa lektion</div>
+                <div class="text">Lektion 02 — vi ser <em>avsnitt 1</em> av Fallet Kevin och börjar fylla i matrisen.</div>
+              </div>
+            </div>
+          </div>
+          <div class="baseline">
+            <span>Arkiv · v2</span>
+            <span>16 / 16</span>
+          </div>
+        </div>
+        <aside class="notes">
+          Fas 6 — Avslut (5 min). Visa takeaways progressivt. Läs exit ticket-frågan högt och förklara: "Skriv på ett papper, max tre meningar. Lämna in på vägen ut."
+          Sortera exit tickets snabbt i tre högar (förstod / osäker / missade) — informerar lektion 2 retrieval review (5 min).
+          Preview lektion 2: "Nästa gång ser vi första avsnittet av dokumentären. 60 minuter film + 20 minuter bearbetning. Ta med papper för anteckningar — eller dator om ni vill skriva matrisen digitalt."
+          Tangentbindning för dig som lärare: F = helskärm, S = talarnoter, Esc = översikt, mellanslag/→ = nästa fragment.
+        </aside>
+      </section>
+
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/reveal.js"></script>
+  <script>
+    Reveal.initialize({
+      hash: true,
+      slideNumber: false,
+      width: 1280,
+      height: 720,
+      margin: 0,
+      transition: 'fade',
+      controls: true,
+      progress: true
+    });
+  </script>
+</body>
+</html>
