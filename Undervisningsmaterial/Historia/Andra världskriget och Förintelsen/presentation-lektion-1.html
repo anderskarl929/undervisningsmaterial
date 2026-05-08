@@ -1,0 +1,932 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lektion 1 — Hédis vardag</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/reveal.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/theme/white.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter+Tight:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    /* === Arkiv v2 designtokens === */
+    :root {
+      --paper: #F4EDE1;
+      --paper-2: #EBE1CF;
+      --ink: #1F1A15;
+      --ink-2: #4A3F33;
+      --rule: #2A221A;
+      --rule-soft: rgba(42, 34, 26, 0.18);
+      --bordeaux: #7A2E2E;
+      --marin: #2C3E55;
+      --oliv: #5A6A3A;
+      --ocker: #B8862F;
+      --kritbla: #5A7A9A;
+      --mossgron: #3E5A3E;
+      --tegel: #C96442;
+      --hl: rgba(184, 134, 47, 0.22);
+    }
+
+    html, body { background: var(--paper); }
+
+    /* === Base typography === */
+    .reveal {
+      font-family: 'Inter Tight', system-ui, sans-serif;
+      color: var(--ink);
+      font-size: 22px;
+      font-weight: 400;
+      letter-spacing: 0.005em;
+    }
+
+    .reveal .slides section {
+      background: var(--paper);
+      text-align: left;
+      height: 100%;
+      padding: 56px 64px;
+      box-sizing: border-box;
+    }
+
+    .reveal h1, .reveal h2, .reveal h3 {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      color: var(--ink);
+      text-transform: none;
+      letter-spacing: -0.005em;
+      font-weight: 500;
+    }
+
+    .reveal h1 { font-size: 64px; line-height: 1.1; margin: 0 0 24px 0; }
+    .reveal h2 { font-size: 40px; line-height: 1.15; margin: 0 0 16px 0; font-style: italic; font-weight: 500; }
+    .reveal h3 { font-size: 28px; line-height: 1.2; margin: 0 0 8px 0; }
+
+    .reveal p { font-size: 22px; line-height: 1.45; margin: 0.5em 0; max-width: 36em; }
+    .reveal li { font-size: 22px; line-height: 1.5; margin-bottom: 0.5em; }
+    .reveal ul, .reveal ol { padding-left: 0; list-style: none; max-width: 36em; }
+
+    .reveal em { font-style: italic; font-family: 'Cormorant Garamond', Georgia, serif; font-size: 1.05em; color: inherit; }
+    .reveal strong { font-weight: 700; color: inherit; }
+    .reveal mark.hl { background: var(--hl); color: inherit; padding: 0 4px; border-radius: 1px; }
+    .reveal u.ub { text-decoration: none; border-bottom: 3px solid var(--bordeaux); padding-bottom: 1px; }
+
+    /* === Components === */
+
+    .eyebrow {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--bordeaux);
+      margin-bottom: 28px;
+      display: block;
+    }
+    .eyebrow.ocker { color: var(--ocker); }
+    .eyebrow.paper { color: var(--paper); opacity: 0.85; }
+
+    .rule {
+      border: none;
+      height: 1.5px;
+      background: var(--rule);
+      width: 96px;
+      margin: 16px 0 28px 0;
+    }
+    .rule.full { width: 100%; opacity: 0.4; }
+    .rule.paper { background: var(--paper); }
+    .rule.ocker { background: var(--ocker); }
+
+    .lead {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 30px;
+      line-height: 1.35;
+      font-style: italic;
+      color: var(--ink-2);
+      max-width: 28em;
+      margin-top: 12px;
+    }
+
+    .meta-foot {
+      position: absolute;
+      left: 64px;
+      right: 64px;
+      bottom: 32px;
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 13px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--ink-2);
+      padding-top: 12px;
+      border-top: 1px solid var(--rule-soft);
+    }
+    .meta-foot.paper { color: var(--paper); border-top-color: rgba(244, 237, 225, 0.25); }
+    .meta-foot .accent { color: var(--bordeaux); font-weight: 500; }
+    .meta-foot.paper .accent { color: var(--ocker); }
+
+    /* === Slide variants === */
+
+    /* COVER — Mönster D, bred bordeaux ram */
+    section.cover {
+      background: var(--bordeaux);
+      padding: 0;
+    }
+    section.cover .inner {
+      background: var(--paper);
+      margin: 56px;
+      padding: 64px;
+      height: calc(100% - 112px);
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    section.cover .inner .top { }
+    section.cover .inner .top .label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 14px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--bordeaux);
+      margin-bottom: 48px;
+      display: block;
+    }
+    section.cover h1 {
+      font-size: 92px;
+      line-height: 1.05;
+      margin: 0 0 24px 0;
+      max-width: 14em;
+      font-weight: 500;
+    }
+    section.cover .inner .sub {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-style: italic;
+      font-size: 30px;
+      color: var(--ink-2);
+      max-width: 28em;
+      line-height: 1.35;
+    }
+    section.cover .inner .footer {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 13px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--ink-2);
+      display: flex;
+      justify-content: space-between;
+      border-top: 1.5px solid var(--rule);
+      padding-top: 16px;
+    }
+
+    /* SECTION B — färgad helyta */
+    section.bg-bordeaux { background: var(--bordeaux); color: var(--paper); }
+    section.bg-marin { background: var(--marin); color: var(--paper); }
+    section.bg-mossgron { background: var(--mossgron); color: var(--paper); }
+    section.bg-bla { background: var(--ink); color: var(--paper); }
+
+    section.bg-bordeaux h1, section.bg-marin h1, section.bg-mossgron h1, section.bg-bla h1 { color: var(--paper); }
+    section.bg-bordeaux h2, section.bg-marin h2, section.bg-mossgron h2, section.bg-bla h2 { color: var(--paper); }
+    section.bg-bordeaux p, section.bg-marin p, section.bg-mossgron p, section.bg-bla p { color: var(--paper); }
+    section.bg-bordeaux li, section.bg-marin li, section.bg-mossgron li, section.bg-bla li { color: var(--paper); }
+    section.bg-bordeaux em, section.bg-marin em, section.bg-mossgron em, section.bg-bla em { color: var(--paper); }
+
+    /* GOAL LIST — numrerade i mono */
+    .goal-list {
+      counter-reset: g;
+      max-width: 28em;
+    }
+    .goal-list li {
+      counter-increment: g;
+      padding: 18px 0 18px 64px;
+      border-bottom: 1px solid var(--rule-soft);
+      position: relative;
+      font-size: 24px;
+      line-height: 1.4;
+    }
+    .goal-list li::before {
+      content: "0" counter(g);
+      position: absolute;
+      left: 0;
+      top: 22px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 16px;
+      letter-spacing: 2px;
+      color: var(--ocker);
+      font-weight: 600;
+    }
+    .goal-list li:last-child { border-bottom: none; }
+
+    /* RETRIEVAL — romerska siffror */
+    .roman-list { max-width: 24em; }
+    .roman-list li {
+      counter-increment: r;
+      padding: 14px 0 14px 64px;
+      position: relative;
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 32px;
+      line-height: 1.3;
+      font-style: italic;
+      color: var(--ink);
+    }
+    .roman-list { counter-reset: r; }
+    .roman-list li::before {
+      content: counter(r, upper-roman);
+      position: absolute;
+      left: 0;
+      top: 18px;
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 28px;
+      color: var(--ocker);
+      font-weight: 600;
+      font-style: normal;
+    }
+    section.bg-mossgron .roman-list li, section.bg-bordeaux .roman-list li { color: var(--paper); }
+
+    /* PORTRAIT */
+    .portrait-row {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 56px;
+      align-items: start;
+    }
+    .portrait {
+      width: 320px;
+      flex-shrink: 0;
+    }
+    .portrait img {
+      width: 100%;
+      height: auto;
+      display: block;
+      border: 1px solid var(--rule);
+      filter: saturate(0.92) contrast(0.97);
+    }
+    .portrait .caption {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-style: italic;
+      font-size: 16px;
+      color: var(--ink-2);
+      margin-top: 12px;
+      line-height: 1.4;
+    }
+    .portrait .credit {
+      display: block;
+      font-family: 'JetBrains Mono', monospace;
+      font-style: normal;
+      font-size: 11px;
+      letter-spacing: 1px;
+      color: var(--ocker);
+      margin-top: 4px;
+      text-transform: uppercase;
+    }
+
+    /* BULLET LIST — för fragments */
+    .arkiv-list { max-width: 32em; }
+    .arkiv-list li {
+      padding-left: 24px;
+      position: relative;
+      font-size: 22px;
+      line-height: 1.5;
+      margin-bottom: 14px;
+    }
+    .arkiv-list li::before {
+      content: "▸";
+      position: absolute;
+      left: 0;
+      top: 0;
+      color: var(--bordeaux);
+      font-size: 18px;
+    }
+    section.bg-bordeaux .arkiv-list li::before { color: var(--ocker); }
+    section.bg-marin .arkiv-list li::before { color: var(--ocker); }
+    section.bg-mossgron .arkiv-list li::before { color: var(--ocker); }
+
+    /* CALLOUT — Mönster D, ramad ruta för begrepp */
+    .callout {
+      border: 3px solid var(--ocker);
+      background: var(--paper);
+      padding: 40px 48px;
+      max-width: 28em;
+    }
+    .callout .label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 14px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--ocker);
+      margin-bottom: 16px;
+      display: block;
+    }
+    .callout .term {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 72px;
+      line-height: 1;
+      color: var(--ink);
+      font-weight: 500;
+      margin-bottom: 8px;
+    }
+    .callout .pronounce {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 13px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--bordeaux);
+      margin-bottom: 24px;
+    }
+    .callout .definition {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-style: italic;
+      font-size: 28px;
+      line-height: 1.35;
+      color: var(--ink);
+      margin: 0 0 20px 0;
+      padding-left: 16px;
+      border-left: 3px solid var(--bordeaux);
+    }
+
+    .callout-extra {
+      max-width: 28em;
+      margin-top: 24px;
+      padding: 24px 28px;
+      background: var(--paper-2);
+      border-left: 3px solid var(--marin);
+    }
+    .callout-extra h4 {
+      font-family: 'Inter Tight', sans-serif;
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--marin);
+      margin: 0 0 8px 0;
+    }
+    .callout-extra p { margin: 0; font-size: 19px; line-height: 1.45; color: var(--ink-2); }
+
+    /* TIMELINE */
+    .timeline-event {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 40px;
+      align-items: start;
+      max-width: 32em;
+      padding-bottom: 24px;
+    }
+    .te-year {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 96px;
+      color: var(--ocker);
+      line-height: 0.9;
+      font-weight: 500;
+    }
+    .te-year.muted { color: var(--rule-soft); }
+    .te-body { padding-top: 12px; }
+    .te-body h3 {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-style: italic;
+      font-size: 32px;
+      margin: 0 0 12px 0;
+      color: var(--ink);
+    }
+    .te-body p { margin: 6px 0; font-size: 21px; line-height: 1.45; }
+    .te-body .annot {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-style: italic;
+      color: var(--bordeaux);
+      font-size: 22px;
+      margin-top: 8px;
+    }
+    .te-body ul {
+      margin-top: 8px;
+    }
+    .te-body ul li {
+      font-size: 19px;
+      padding-left: 18px;
+      position: relative;
+      margin-bottom: 6px;
+      line-height: 1.4;
+    }
+    .te-body ul li::before {
+      content: "▪";
+      color: var(--ocker);
+      position: absolute;
+      left: 0;
+      top: 0;
+    }
+
+    /* TWO COLUMN */
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 56px;
+      align-items: start;
+      max-width: 60em;
+    }
+
+    .info-card {
+      padding: 28px 32px;
+      background: var(--paper-2);
+      border-left: 3px solid var(--marin);
+      max-width: 26em;
+    }
+    .info-card h4 {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--marin);
+      margin: 0 0 12px 0;
+    }
+    .info-card p { margin: 0 0 8px 0; font-size: 20px; line-height: 1.5; }
+
+    /* DRAMATIC SLIDE — för "sju år senare" */
+    .dramatic-anchor {
+      max-width: 28em;
+    }
+    .dramatic-anchor .pull-quote {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 64px;
+      line-height: 1.2;
+      font-weight: 500;
+      color: var(--paper);
+      font-style: italic;
+      margin-bottom: 48px;
+    }
+    .dramatic-anchor .followup {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 28px;
+      line-height: 1.4;
+      color: var(--paper);
+      opacity: 0.9;
+      margin-bottom: 18px;
+      max-width: 24em;
+    }
+
+    /* DISCUSS / EXIT */
+    .discuss-box, .exit-box {
+      max-width: 30em;
+    }
+    .exit-quote {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 42px;
+      line-height: 1.3;
+      font-style: italic;
+      color: var(--paper);
+      max-width: 22em;
+    }
+    .exit-meta {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 13px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--ocker);
+      margin-bottom: 24px;
+      display: block;
+    }
+
+    /* PREVIEW (close) */
+    .preview-row {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 32px;
+      align-items: start;
+      max-width: 32em;
+      border-top: 1.5px solid var(--rule);
+      padding-top: 24px;
+    }
+    .preview-num {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 96px;
+      color: var(--ocker);
+      line-height: 0.85;
+      font-weight: 500;
+    }
+    .preview-body h3 {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 32px;
+      font-style: italic;
+      margin: 0 0 8px 0;
+    }
+    .preview-body p {
+      font-size: 21px;
+      color: var(--ink-2);
+      margin: 0;
+      max-width: 28em;
+    }
+
+    /* SOURCE */
+    .source {
+      position: absolute;
+      left: 64px;
+      bottom: 76px;
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-style: italic;
+      font-size: 14px;
+      color: var(--ink-2);
+      max-width: 32em;
+    }
+
+    /* Reveal controls */
+    .reveal .controls { color: var(--bordeaux); }
+    .reveal .progress { color: var(--ocker); background: rgba(122, 46, 46, 0.12); }
+    .reveal .controls button { color: var(--bordeaux); }
+  </style>
+</head>
+<body>
+<div class="reveal">
+<div class="slides">
+
+<!-- 1. COVER -->
+<section class="cover">
+  <div class="inner">
+    <div class="top">
+      <span class="label">Historia 1a1 · Andra världskriget och Förintelsen</span>
+      <h1>Hédis vardag — och hotet hon inte ser</h1>
+      <hr class="rule" style="background: var(--bordeaux); width: 120px; height: 2px;">
+      <div class="sub">Lektion 1 av 7. Vi börjar i Sighet 1933 och följer en flicka genom det århundrade som ska komma.</div>
+    </div>
+    <div class="footer">
+      <span>№ 01 · Hédis vardag</span>
+      <span>Sighet 1924 — Stockholm 2022</span>
+    </div>
+  </div>
+  <aside class="notes">
+    Stå vid tavlan. Säg titeln långsamt. Visa att momentet är 7 lektioner och att vi kommer att följa en konkret människa hela vägen. Detta är det affektiva ankaret. Cirka 30 sekunder.
+  </aside>
+</section>
+
+<!-- 2. LÄRANDEMÅL -->
+<section>
+  <span class="eyebrow">▸ Lektion 1 · Mål</span>
+  <h1>Vad du ska kunna efter <em>idag</em></h1>
+  <hr class="rule">
+  <ol class="goal-list">
+    <li class="fragment fade-in">Berätta kort om hur nazismen kom till makten i Tyskland mellan <mark class="hl">1933 och 1939</mark>.</li>
+    <li class="fragment fade-in">Använda och förklara tre begrepp: <em>antisemitism</em>, <em>rasideologi</em>, <em>eugenik</em>.</li>
+    <li class="fragment fade-in">Ge minst ett konkret exempel på antijudisk politik i Tyskland under <mark class="hl">1930-talet</mark>.</li>
+  </ol>
+  <div class="meta-foot">
+    <span>AVK & Förintelsen · L1</span>
+    <span class="accent">Mål</span>
+  </div>
+  <aside class="notes">
+    Läs målen högt. Säg att vi inte ska kunna allt om andra världskriget — vi ska kunna stegen bakåt mot Förintelsen, sedda genom en familj. Återkoppla till exit ticket: "I slutet ska ni kunna förklara antisemitism med era egna ord."
+  </aside>
+</section>
+
+<!-- 3. RETRIEVAL -->
+<section>
+  <span class="eyebrow">▸ Fas 1 · Repetition</span>
+  <h1>Tre frågor att börja med</h1>
+  <hr class="rule">
+  <ol class="roman-list">
+    <li class="fragment fade-in">Vem var <em>Hitler</em>?</li>
+    <li class="fragment fade-in">Vad var <em>Versaillesfördraget</em>?</li>
+    <li class="fragment fade-in">Vad menas med <em>nationalism</em>?</li>
+  </ol>
+  <p class="lead" style="margin-top: 32px;">Skriv ditt svar på miniwhiteboarden — du har <strong>30 sekunder</strong> per fråga.</p>
+  <div class="meta-foot">
+    <span>AVK & Förintelsen · L1</span>
+    <span class="accent">Retrieval</span>
+  </div>
+  <aside class="notes">
+    No-hands-up. Vänta hela 30 sekunder per fråga. Ta in svar från två slumpvalda elever per fråga. Korrigera kort om nationalism är vagt — säg: "Nationalism = att sätta sin nation främst, ofta med tanken att den är speciell eller överlägsen." Total tid: ungefär 3 minuter.
+  </aside>
+</section>
+
+<!-- 4. KROK: DET HÄR ÄR HÉDI -->
+<section>
+  <span class="eyebrow">▸ Hédi Fried · 1924–2022</span>
+  <h1>Det här är <em>Hédi</em></h1>
+  <hr class="rule">
+  <div class="portrait-row">
+    <figure class="portrait">
+      <img src="hedi-fried-2015.jpg" alt="Hédi Fried fotograferad i Stockholm 2015.">
+      <figcaption class="caption">
+        Hédi Fried, Stockholm 2015.
+        <span class="credit">Foto: Frankie Fouganthin · CC BY-SA 4.0</span>
+      </figcaption>
+    </figure>
+    <div>
+      <p class="lead" style="margin-top: 0;">Född 1924 i <em>Sighet</em> — en multietnisk stad i Transsylvanien, då en del av Rumänien.</p>
+      <ul class="arkiv-list" style="margin-top: 32px;">
+        <li class="fragment fade-in">Skola, judiska högtider, somrar vid floden <em>Iza</em>.</li>
+        <li class="fragment fade-in">Vi följer henne genom <strong>hela momentet</strong> — sju lektioner, sju steg.</li>
+        <li class="fragment fade-in">Hon dog 2022, <mark class="hl">98 år gammal</mark>. Hennes vittnesmål finns kvar.</li>
+      </ul>
+    </div>
+  </div>
+  <div class="meta-foot">
+    <span>AVK & Förintelsen · L1</span>
+    <span class="accent">Krok</span>
+  </div>
+  <aside class="notes">
+    Visa bilden i 5–10 sekunder utan att säga något. Säg sedan namnet långsamt: "Hédi Fried. F-R-I-E-D." Berätta att hon levde till 2022 och blev 98 år (NB: rättat från tidigare fel — 1924–2022 = 98 år). Berätta om Sighet med varm röst. Detta är hela momentets affektiva ankare. Cirka 1 minut.
+  </aside>
+</section>
+
+<!-- 5. FAMILJEN FRIED (NY) -->
+<section>
+  <span class="eyebrow">▸ Hédis värld · Sighet 1933</span>
+  <h1>Familjen Fried — en <em>helt vanlig</em> familj</h1>
+  <hr class="rule">
+  <ul class="arkiv-list">
+    <li class="fragment fade-in">Pappa <em>Ignác</em> och mamma <em>Ida</em>. <span style="color: var(--ink-2); font-size: 0.85em;">[VERIFIERA föräldrarnas namn]</span></li>
+    <li class="fragment fade-in">Lillasyster <em>Livi</em> — ett och ett halvt år yngre. De gjorde <strong>allt tillsammans</strong>.</li>
+    <li class="fragment fade-in">Hemma talas ungerska, rumänska, jiddisch — ibland tyska.</li>
+    <li class="fragment fade-in">Sabbatsmiddag varje fredagskväll. Stearinljus, vin, brödet som mamma bakat.</li>
+    <li class="fragment fade-in">Hédi älskar böcker. Hon drömmer om att bli <em>läkare</em>. <span style="color: var(--ink-2); font-size: 0.85em;">[VERIFIERA: yrkesdrömmen]</span></li>
+    <li class="fragment fade-in">Somrar vid floden <em>Iza</em>. Vinterhögtider med släkten. Skolresor. Förälskelser.</li>
+  </ul>
+  <p class="lead" style="margin-top: 32px;">Det är en <em>vanlig</em> tonårings vardag — i en europeisk stad, mellan två krig.</p>
+  <div class="meta-foot">
+    <span>AVK & Förintelsen · L1</span>
+    <span class="accent">Hédis värld</span>
+  </div>
+  <aside class="notes">
+    Berätta lugnt och konkret. Använd fragmenten för att låta varje detalj sjunka in. Poängen är *vanligheten* — Hédi är inte en symbol, hon är en flicka. Yad Vashems "from victim to person". När alla punkter är framme: paus några sekunder. Säg: "Det är detta vi måste hålla i huvudet när vi nu går vidare till politiken i Tyskland." Cirka 2 minuter. NB: Föräldrarnas namn och yrkesdrömmen är flaggade [VERIFIERA] — kolla i *Skärvor av ett liv* innan du undervisar om du är osäker.
+  </aside>
+</section>
+
+<!-- 6. SJU ÅR SENARE (NY — affektivt ankare) -->
+<section class="bg-bla">
+  <span class="eyebrow ocker">▸ 1933 → 1944</span>
+  <hr class="rule paper">
+  <div class="dramatic-anchor">
+    <p class="pull-quote">Sju år senare är hon i <em>Auschwitz</em>.</p>
+    <p class="followup fragment fade-in">Hennes föräldrar mördades.</p>
+    <p class="followup fragment fade-in">Hon och Livi överlevde — <strong>tillsammans</strong>.</p>
+  </div>
+  <div class="meta-foot paper">
+    <span>AVK & Förintelsen · L1</span>
+    <span class="accent">Sju år senare</span>
+  </div>
+  <aside class="notes">
+    Stäng av alla animationer i rösten. Säg meningen långsamt. Vänta. Klicka fram nästa rad. Vänta. Klicka fram sista raden. Vänta igen. Detta är en av momentets viktigaste 30 sekunder — låt det vara tyst. Säg sedan vänligt: "Vi är inte där än. Vi är 1933, och Hédi är nio år. Idag tittar vi på det första steget." 30–45 sekunder.
+  </aside>
+</section>
+
+<!-- 7. SIGHET 1933 -->
+<section>
+  <span class="eyebrow">▸ Fas 2 · Bakgrund</span>
+  <h1>Sighet 1933 — <em>vardagen</em></h1>
+  <hr class="rule">
+  <div class="two-col">
+    <div>
+      <p>Sighet (<em>Sighetu Marmației</em>) ligger i <strong>Transsylvanien</strong> — då en del av <strong>Rumänien</strong>. <span style="color: var(--ink-2); font-size: 0.85em;">[VERIFIERA: Sighet annekteras av Ungern först 1940.]</span></p>
+      <ul class="arkiv-list" style="margin-top: 24px;">
+        <li class="fragment fade-in">Multietnisk stad: rumäner, ungrare, tyskar, judar, romer.</li>
+        <li class="fragment fade-in">Judiska familjer hade levt här i flera <em>hundra år</em>.</li>
+        <li class="fragment fade-in">Familjen Fried — vanlig medelklass.</li>
+      </ul>
+    </div>
+    <div class="info-card fragment fade-in">
+      <h4>Att lägga märke till</h4>
+      <p>I Sighet är livet 1933 i stort sett detsamma som året innan. Hédi är <strong>9 år</strong>.</p>
+      <p>Det är i <em>Tyskland</em> något börjar förändras — först långsamt, sedan snabbt.</p>
+    </div>
+  </div>
+  <div class="meta-foot">
+    <span>AVK & Förintelsen · L1</span>
+    <span class="accent">Sighet</span>
+  </div>
+  <aside class="notes">
+    Visa karta över Europa 1933 (separat material). Peka på Sighet — visa att det INTE är Ungern 1933 (vanlig missuppfattning). Säg: "Vi behöver hålla två saker i huvudet samtidigt: Hédis vardag i Sighet, och politiken i Tyskland. Just nu känns de helt olika." 2 minuter.
+  </aside>
+</section>
+
+<!-- 8. BEGREPP: ANTISEMITISM -->
+<section>
+  <span class="eyebrow ocker">▸ Fas 2 · Begrepp 1 av 3</span>
+  <hr class="rule ocker">
+  <div class="callout">
+    <span class="label">Begrepp № 01</span>
+    <div class="term">Antisemitism</div>
+    <div class="pronounce">Anti-semi-tism</div>
+    <p class="definition">Hat eller fientlighet riktad <em>specifikt</em> mot judar — som grupp, oavsett vad enskilda judar gör eller tror.</p>
+  </div>
+  <div class="callout-extra fragment fade-in">
+    <h4>▪ Egenskap</h4>
+    <p>Riktas mot människor på grund av att de <em>är</em> judar — inte vad de gör.</p>
+  </div>
+  <div class="callout-extra fragment fade-in">
+    <h4>▪ Härkomst</h4>
+    <p>Rötter i Europa går århundraden bakåt — moderniseras under <mark class="hl">1800-talet</mark>.</p>
+  </div>
+  <div class="meta-foot">
+    <span>AVK & Förintelsen · L1</span>
+    <span class="accent">Antisemitism</span>
+  </div>
+  <aside class="notes">
+    Bygg Frayer-modellen TILLSAMMANS med eleverna på tavlan, fyll inte i färdig text. Börja med definitionen, fråga sedan: "Vilket är ett icke-exempel?" Låt eleverna ge förslag innan ni låser ett. Fråga slutligen: "Är antisemitism något nytt eller gammalt?" Visa att rötterna är långt äldre än nazismen — men att nazismen radikaliserade den. Cirka 3 minuter.
+  </aside>
+</section>
+
+<!-- 9. BEGREPP: RASIDEOLOGI -->
+<section>
+  <span class="eyebrow ocker">▸ Fas 2 · Begrepp 2 av 3</span>
+  <hr class="rule ocker">
+  <div class="callout">
+    <span class="label">Begrepp № 02</span>
+    <div class="term">Rasideologi</div>
+    <div class="pronounce">Ras-ideologi</div>
+    <p class="definition">En <u class="ub">lögn</u> om att människor kan delas in i "raser" med olika värde — och att den egna "rasen" är överlägsen.</p>
+  </div>
+  <div class="callout-extra fragment fade-in" style="border-left-color: var(--bordeaux);">
+    <h4 style="color: var(--bordeaux);">▪ Inom nazismen — en kärnidé, inte en bisak</h4>
+    <p>Nazisterna hävdade att det fanns en "arisk ras" och att judar var en "underordnad ras". Det var <em>pseudovetenskap</em> — men staten satte den i politiken.</p>
+  </div>
+  <div class="meta-foot">
+    <span>AVK & Förintelsen · L1</span>
+    <span class="accent">Rasideologi</span>
+  </div>
+  <aside class="notes">
+    Var tydlig: säg att raser i nazistisk mening INTE är vetenskap — det är en politisk lögn. Använd citattecken kring "ras" när du skriver på tavlan. Knyt tillbaka: "Nationalism + antisemitism + rasideologi = grunden för det vi ska se." Kontrollfråga: "Är all antisemitism också rasideologi?" — svar: nej, äldre antisemitism var ofta religiös, inte rasbiologisk. 2 minuter.
+  </aside>
+</section>
+
+<!-- 10. BEGREPP: EUGENIK -->
+<section>
+  <span class="eyebrow ocker">▸ Fas 2 · Begrepp 3 av 3</span>
+  <hr class="rule ocker">
+  <div class="callout">
+    <span class="label">Begrepp № 03</span>
+    <div class="term">Eugenik</div>
+    <div class="pronounce">Eu-genik · "ras-hygien"</div>
+    <p class="definition">Tanken att samhället kan "förbättras" genom att <em>kontrollera</em> vilka som får skaffa barn — i värsta fall genom tvångssterilisering eller mord.</p>
+  </div>
+  <div class="callout-extra fragment fade-in" style="border-left-color: var(--bordeaux);">
+    <h4 style="color: var(--bordeaux);">▪ Naziregimens tillämpning</h4>
+    <p>T4-programmet <span style="color: var(--ink-2); font-size: 0.9em;">[VERIFIERA: 1939]</span> mördade tiotusentals tyska medborgare med funktionsnedsättning. Det var <em>generalrepetitionen</em> för folkmordet på judarna.</p>
+  </div>
+  <div class="meta-foot">
+    <span>AVK & Förintelsen · L1</span>
+    <span class="accent">Eugenik</span>
+  </div>
+  <aside class="notes">
+    Säg: "Eugenik var inte uppfunnet av nazisterna — idéerna var spridda i hela Europa och USA på 1920-talet. Det är delvis därför detta kunde hända i en av Europas mest 'utvecklade' länder." Notera kort: eugenik fanns även i Sverige under 1930-talet (tvångssteriliseringar) — kan komma upp. Snäv återkoppling till de tre begreppen tillsammans innan du går vidare. 2 minuter.
+  </aside>
+</section>
+
+<!-- 11. TIDSLINJE 1933 -->
+<section>
+  <span class="eyebrow">▸ Fas 2 · Tidslinje 1 av 4</span>
+  <h1>Steg för steg, <em>1933–1938</em></h1>
+  <hr class="rule">
+  <div class="timeline-event">
+    <div class="te-year">1933</div>
+    <div class="te-body">
+      <h3>Hitler vid makten</h3>
+      <p class="fragment fade-in">I januari 1933 utses Hitler till rikskansler.</p>
+      <p class="fragment fade-in">Inom månader avskaffas demokratin: <em>yttrandefrihet</em>, <em>partier</em>, <em>fackföreningar</em>.</p>
+      <p class="annot fragment fade-in">I Sighet märks ingenting. Hédi är 9 år.</p>
+    </div>
+  </div>
+  <div class="source">Källa: Roberts, J.M. <em>The Penguin History of the World</em>, kap. 25 — nazismens framväxt.</div>
+  <div class="meta-foot">
+    <span>AVK & Förintelsen · L1</span>
+    <span class="accent">1933</span>
+  </div>
+  <aside class="notes">
+    Snabb kontextfråga: "Hur kunde Hitler komma till makten lagligt?" — kort: ekonomisk kris, splittrad vänster, konservativa som trodde de kunde 'använda' honom. Detta är repetition från Mellankrigstiden. 1 minut.
+  </aside>
+</section>
+
+<!-- 12. TIDSLINJE 1935 -->
+<section>
+  <span class="eyebrow">▸ Fas 2 · Tidslinje 2 av 4</span>
+  <hr class="rule">
+  <div class="timeline-event">
+    <div class="te-year">1935</div>
+    <div class="te-body">
+      <h3>Nürnberglagarna</h3>
+      <p>Två lagar antas i september 1935: <em>Reichsbürgergesetz</em> och <em>lagen för skydd av tyskt blod och tysk ära</em>.</p>
+      <ul>
+        <li class="fragment fade-in">Judar förlorar <strong>tyskt medborgarskap</strong>.</li>
+        <li class="fragment fade-in">Äktenskap mellan judar och "ariska" tyskar <strong>förbjuds</strong>.</li>
+        <li class="fragment fade-in">Staten definierar vem som är "jude" — bortom religion, baserat på <em>släktskap</em>.</li>
+      </ul>
+    </div>
+  </div>
+  <div class="source">Källa: Roberts, J.M. <em>The Penguin History of the World</em>; jfr. McKay et al., <em>A History of World Societies</em>, kap. 30.</div>
+  <div class="meta-foot">
+    <span>AVK & Förintelsen · L1</span>
+    <span class="accent">1935</span>
+  </div>
+  <aside class="notes">
+    Worked example för fas 3: säg högt — "1935, Nürnberglagarna. Detta är ett exempel på antisemitism för att lagen specifikt riktar sig mot judar. Det är också rasideologi för att 'jude' definieras genom blod, inte tro." Visa att modelleringen är samma uppgift eleverna ska göra strax. 2 minuter.
+  </aside>
+</section>
+
+<!-- 13. TIDSLINJE 1938 -->
+<section>
+  <span class="eyebrow">▸ Fas 2 · Tidslinje 3–4 av 4</span>
+  <hr class="rule">
+  <div class="timeline-event" style="padding-bottom: 16px;">
+    <div class="te-year" style="font-size: 72px;">1938</div>
+    <div class="te-body">
+      <h3>Anschluss · mars</h3>
+      <p class="fragment fade-in">Tyskland annekterar Österrike. Antijudiska lagar utvidgas <em>över natten</em> till Wien.</p>
+    </div>
+  </div>
+  <div class="timeline-event">
+    <div class="te-year muted" style="font-size: 72px;">1938</div>
+    <div class="te-body">
+      <h3>Kristallnatten · 9–10 november</h3>
+      <p class="fragment fade-in">Statsorganiserade pogromer i hela Tyskland och Österrike. Synagogor brinner.</p>
+      <p class="fragment fade-in">Cirka <mark class="hl">30 000 judiska män</mark> skickas till koncentrationsläger. <span style="color: var(--ink-2); font-size: 0.9em;">[VERIFIERA siffran]</span></p>
+      <p class="annot fragment fade-in">Frågan står då: <em>stanna eller fly?</em></p>
+    </div>
+  </div>
+  <div class="source">Källa: Roberts, J.M. <em>The Penguin History of the World</em>; bystander-perspektivet återkommer i lektion 6.</div>
+  <div class="meta-foot">
+    <span>AVK & Förintelsen · L1</span>
+    <span class="accent">1938</span>
+  </div>
+  <aside class="notes">
+    Stanna upp efter Kristallnatten. Ställ frågan högt: "Om ni var judiska i Tyskland efter 9 november 1938 — skulle ni stanna eller fly?" Låt 2–3 elever svara. Notera utan att fördjupa: "Hédis familj kunde inte fly — vi förstår varför nästa lektion." Spegelfråga: "Hédi var 14 år 1938. Märkte hon något av det här?" 2 minuter.
+  </aside>
+</section>
+
+<!-- 14. ELEVUPPGIFT -->
+<section class="bg-mossgron">
+  <span class="eyebrow ocker">▸ Diskutera · 15 min · I par</span>
+  <h1>Tidslinjeanalys</h1>
+  <hr class="rule paper">
+  <ol class="roman-list">
+    <li class="fragment fade-in">Placera de <em>fyra händelserna</em> i tidslinjen.</li>
+    <li class="fragment fade-in">Skriv vid varje händelse: <em>"Detta är ett exempel på antisemitism / rasideologi / eugenik — för att…"</em></li>
+    <li class="fragment fade-in">Avsluta med en mening: <em>"När Hédi gick i sjuan 1937 hade hon ännu inte märkt mycket av det här, för…"</em></li>
+  </ol>
+  <p style="margin-top: 32px; font-family: 'Cormorant Garamond', Georgia, serif; font-style: italic; font-size: 22px; color: var(--paper); opacity: 0.9; max-width: 32em;">
+    <strong style="font-style: normal;">Stöd:</strong> exempelmening på blädderbladet ·
+    <strong style="font-style: normal;">Utmaning ▪</strong> hitta en händelse som är <em>alla tre</em> begreppen samtidigt.
+  </p>
+  <div class="meta-foot paper">
+    <span>AVK & Förintelsen · L1</span>
+    <span class="accent">Elevuppgift</span>
+  </div>
+  <aside class="notes">
+    Modellera Nürnberglagarna fullt ut innan paren börjar (se slide 12). Cirkulera till stödpar först. Ställ Frayer-frågor: "Vilket av begreppen passar bäst? Varför inte de andra två?" Samla in efter 13 minuter — sista 2 minuterna är gemensam genomgång av en eller två par. 15 minuter totalt.
+  </aside>
+</section>
+
+<!-- 15. EXIT TICKET -->
+<section class="bg-bordeaux">
+  <span class="eyebrow ocker">▸ Fas 4 · Summering</span>
+  <h1>Exit ticket</h1>
+  <hr class="rule paper">
+  <div class="exit-box">
+    <span class="exit-meta">Skriv enskilt · 3 minuter</span>
+    <p class="exit-quote">Förklara med <em>egna ord</em> vad antisemitism är. Ge ett exempel från Tyskland 1933–1938.</p>
+  </div>
+  <div class="meta-foot paper">
+    <span>AVK & Förintelsen · L1</span>
+    <span class="accent">Exit ticket</span>
+  </div>
+  <aside class="notes">
+    Eleverna skriver på lapp och lämnar in. Sortera efter lektionen i tre högar: förstod / osäker / missade. Använd som retrieval-data för L2:s introduktion. Spara dessa lappar — de blir formativ data även för L6.
+  </aside>
+</section>
+
+<!-- 16. PREVIEW -->
+<section>
+  <span class="eyebrow">▸ Slut på lektion 1</span>
+  <h1>Nästa <em>gång</em></h1>
+  <hr class="rule">
+  <div class="preview-row">
+    <div class="preview-num">02</div>
+    <div class="preview-body">
+      <h3>Tonåringen och kriget</h3>
+      <p>1939 bryter kriget ut. Hédi blir tonåring. Vi följer henne när lagarna gradvis kryper närmare hennes vardag — också i Ungern, dit Sighet snart hör.</p>
+    </div>
+  </div>
+  <div class="meta-foot">
+    <span>AVK & Förintelsen · L2</span>
+    <span class="accent">1939–1943</span>
+  </div>
+  <aside class="notes">
+    Säg titeln för L2 högt. Antyd att kriget kommer in i bilden, men att Hédis liv förändras gradvis — inte plötsligt. Påminn om läxa om någon (t.ex. läs sidor i lärobok eller kolla begreppslista). Tacka klassen — håll tonen lugn, vi är just i början av en tung båge.
+  </aside>
+</section>
+
+</div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/reveal.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@5/plugin/notes/notes.js"></script>
+<script>
+  Reveal.initialize({
+    hash: true,
+    slideNumber: false,
+    controls: true,
+    progress: true,
+    transition: 'fade',
+    backgroundTransition: 'fade',
+    width: 1280,
+    height: 720,
+    margin: 0.04,
+    plugins: [ RevealNotes ]
+  });
+</script>
+</body>
+</html>
