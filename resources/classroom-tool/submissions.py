@@ -15,6 +15,7 @@ from datetime import datetime
 
 import gws_client
 import drive
+import forms
 from anonymize import CourseAliases
 
 GDPR_BANNER = (
@@ -132,6 +133,13 @@ def build_read(
     use_cache: bool = True,
 ) -> str:
     alias = _normalize_alias(alias_input)
+
+    # Om uppgiften är en Forms-uppgift: delegera till forms.py
+    work = gws_client.get_coursework(course_id, coursework_id)
+    form_id = forms.extract_form_id(work)
+    if form_id:
+        return forms.build_form_read(course_id, coursework_id, form_id, alias)
+
     aliases = CourseAliases(course_id)
     user_id = aliases.user_id_for_alias(alias)
     if not user_id:
@@ -147,7 +155,6 @@ def build_read(
         )
 
     course = gws_client.get_course(course_id)
-    work = gws_client.get_coursework(course_id, coursework_id)
     submissions = gws_client.list_submissions(course_id, coursework_id)
     match = next((s for s in submissions if s.get("userId") == user_id), None)
     if not match:
@@ -165,8 +172,15 @@ def build_dump(
     coursework_id: str,
     use_cache: bool = True,
 ) -> str:
-    course = gws_client.get_course(course_id)
     work = gws_client.get_coursework(course_id, coursework_id)
+
+    # Forms-uppgift? Delegera. Forms har all elevdata via Forms API,
+    # inte via studentSubmissions/Drive.
+    form_id = forms.extract_form_id(work)
+    if form_id:
+        return forms.build_form_dump(course_id, coursework_id, form_id)
+
+    course = gws_client.get_course(course_id)
     submissions = gws_client.list_submissions(course_id, coursework_id)
 
     aliases = CourseAliases(course_id)

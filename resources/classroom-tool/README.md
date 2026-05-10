@@ -60,13 +60,18 @@ echo 'export GOOGLE_WORKSPACE_CLI_KEYRING_BACKEND=file' >> ~/.bashrc
 gws auth login --scopes \
   https://www.googleapis.com/auth/classroom.courses.readonly,\
 https://www.googleapis.com/auth/classroom.rosters.readonly,\
+https://www.googleapis.com/auth/classroom.profile.emails,\
 https://www.googleapis.com/auth/classroom.coursework.students.readonly,\
 https://www.googleapis.com/auth/classroom.student-submissions.students.readonly,\
 https://www.googleapis.com/auth/classroom.announcements.readonly,\
 https://www.googleapis.com/auth/classroom.topics.readonly,\
 https://www.googleapis.com/auth/classroom.courseworkmaterials.readonly,\
-https://www.googleapis.com/auth/drive.readonly
+https://www.googleapis.com/auth/drive.readonly,\
+https://www.googleapis.com/auth/forms.body.readonly,\
+https://www.googleapis.com/auth/forms.responses.readonly
 ```
+
+**Forms-scopes** (sista tre): `classroom.profile.emails` behövs för att mappa Form-respondenter (email) till elev-alias. `forms.body.readonly` + `forms.responses.readonly` läser frågorna och svaren.
 
 **SSH-tips:** OAuth-callback går till `localhost:NNNNN` på den maskin där `gws` körs. Om du är SSH-inloggad behöver du port forwarda: `~C` följt av `-L NNNNN:localhost:NNNNN` i den interaktiva SSH-prompten, eller starta en separat SSH-session med `-L`-flaggan.
 
@@ -109,7 +114,15 @@ https://www.googleapis.com/auth/drive.readonly
 ./run.sh cache --clear   # radera allt
 ```
 
-Output är markdown med banner högst upp om GDPR-läckage i fritext, en sektion per `Elev N` med inlämnad text och bilage-titlar. Bilagor som inte är Google Docs (uppladdade .docx, PDF, länkar, YouTube) listas men inte exporteras.
+Output är markdown med banner högst upp om GDPR-läckage i fritext, en sektion per `Elev N` med inlämnad text och bilage-titlar. Google Docs exporteras som klartext; uppladdade .docx, .pdf och .odt konverteras lokalt. Övrigt (länkar, YouTube, bilder, legacy-format) listas men öppnas i browser.
+
+### Google Forms-uppgifter
+
+`read` och `dump` detekterar automatiskt om uppgiften har en Form bifogad och hämtar svaren via Forms API istället för Drive. Output följer samma struktur — alias per elev, sektion per fråga, GDPR-banner.
+
+För quiz-läge visas poäng per fråga (`✓`/`✗`) och totalt. Frågor i ordning, sortering på `Elev N`. Externa svar (respondenter som inte är medlemmar i kursens roster) listas separat som `Externt svar N` så datan inte tappas.
+
+**Förutsättning:** "Samla in e-postadresser" måste vara på i Forms-inställningarna — annars går det inte att mappa svar till elev-alias.
 
 **Tips för analys:** pipa direkt till en LLM-prompt:
 
@@ -144,13 +157,15 @@ Drive-text cachas i `cache/` (gitignored) i 24 h så att iterativa körningar in
 ```
 classroom-tool/
 ├── classroom.py        # CLI
-├── gws_client.py       # gws subprocess-wrapper
+├── gws_client.py       # gws subprocess-wrapper (Classroom + Drive + Forms)
 ├── anonymize.py        # alias-mapping
 ├── summary.py          # metadata-generator (kurssammanställning)
 ├── key.py              # HTML-nyckel-generator
 ├── drive.py            # Drive-export-orkestrering
+├── converters.py       # PDF/DOCX/ODT → text (pure-Python)
 ├── cache.py            # disk-cache för Drive-text
-├── submissions.py      # markdown-generator för inlämnings-text
+├── submissions.py      # markdown-generator för inlämnings-text (Drive)
+├── forms.py            # markdown-generator för Forms-svar
 ├── run.sh              # python3 wrapper
 ├── aliases.json        # (gitignored) userId -> alias
 ├── keys/               # (gitignored) genererade HTML-nycklar
@@ -162,5 +177,6 @@ classroom-tool/
 
 - Auth-token bor i `~/.config/gws/credentials.enc` (krypterad). Refresh tokens upphör efter 7 dagar i Testing-läge → relogga ~1 ggr/vecka.
 - `aliases.json` innehåller Google-userId:n (personidentifierare). Den är gitignored men ligger på disk.
-- Endast **Google Docs** exporteras till text (via `application/vnd.google-apps.document` → `text/plain`). Uppladdade .docx, PDF, bilder och länkar listas men exporteras inte. Lös ad-hoc i browsern för dem.
+- **Google Docs** exporteras till text via Drive API. **Uppladdade .docx, .pdf, .odt** konverteras lokalt med pure-Python (pypdf, python-docx, odfpy). Bilder, legacy .doc/.rtf, länkar och YouTube listas men exporteras inte — lös ad-hoc i browsern.
+- **Forms-uppgifter** kräver att "Samla in e-postadresser" är på i Forms-inställningarna. Filuppladdnings-frågor i Forms räknas men innehållet hämtas inte.
 - `submissionHistory` (revisioner, kommentarer från eleven) tas inte med — bara den senaste inlämnade texten.

@@ -71,6 +71,21 @@ def list_students(course_id: str) -> list[dict]:
     )
 
 
+def students_email_index(course_id: str) -> dict[str, str]:
+    """Returns lowercase email -> userId för alla studenter i kursen.
+
+    Kräver scope `classroom.profile.emails`. Studenter utan email
+    (saknat scope eller saknad profil-data) hoppas över.
+    """
+    out: dict[str, str] = {}
+    for s in list_students(course_id):
+        email = (s.get("profile") or {}).get("emailAddress")
+        uid = s.get("userId")
+        if email and uid:
+            out[email.lower()] = uid
+    return out
+
+
 def list_teachers(course_id: str) -> list[dict]:
     return _paginate(
         ["classroom", "courses", "teachers", "list"],
@@ -145,6 +160,26 @@ def drive_download_binary(file_id: str, output_path: Path) -> None:
             f"gws drive get (alt=media) misslyckades (exit {result.returncode}): "
             f"{result.stderr.strip() or result.stdout.strip()[:300]}"
         )
+
+
+def forms_get(form_id: str) -> dict:
+    """Hämtar form-strukturen (frågor, settings) via Forms API.
+
+    Kräver scope `forms.body.readonly` (eller högre).
+    """
+    return _run(["forms", "forms", "get"], {"formId": form_id})
+
+
+def forms_responses_list(form_id: str) -> list[dict]:
+    """Listar alla svar för ett formulär. Paginerar transparent.
+
+    Kräver scope `forms.responses.readonly` (eller högre).
+    """
+    return _paginate(
+        ["forms", "forms", "responses", "list"],
+        {"formId": form_id, "pageSize": 100},
+        "responses",
+    )
 
 
 def drive_export_text(file_id: str) -> str:

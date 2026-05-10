@@ -6,9 +6,12 @@ Användning:
   python classroom.py summary <course-id>                    # Anonymiserad metadata-sammanställning
   python classroom.py summary <id> -o file.md                # Spara till fil
   python classroom.py key <course-id>                        # HTML-nyckel (alias -> namn)
-  python classroom.py read <course-id> <work-id> <Elev N>    # Läs en elevs inlämning
-  python classroom.py dump <course-id> <work-id>             # Läs hela klassens inlämningar
+  python classroom.py read <course-id> <work-id> <Elev N>    # Läs en elevs inlämning (Drive eller Forms)
+  python classroom.py dump <course-id> <work-id>             # Läs hela klassens inlämningar (Drive eller Forms)
   python classroom.py cache --clear | --purge                # Hantera Drive-text-cache
+
+`read`/`dump` detekterar automatiskt om uppgiften är en Forms-uppgift och
+hämtar svar via Forms API istället för Drive.
 
 Auth hanteras av `gws` (Google Workspace CLI). Logga in med `gws auth login`.
 """
