@@ -40,7 +40,8 @@ All decisions archived in PROJECT.md Key Decisions table with v1.0 outcomes.
 
 ### Pending Todos
 
-None
+1 pending — see `.planning/todos/pending/`
+- Slutför ansökan — Verksamhetsutvecklare Göteborg (deadline 2026-05-22)
 
 ### Blockers/Concerns
 
