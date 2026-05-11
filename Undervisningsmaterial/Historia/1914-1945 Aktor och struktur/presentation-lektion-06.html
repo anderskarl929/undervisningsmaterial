@@ -1,0 +1,838 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lektion 6 — Vägen till AVK | Aktör och struktur</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/reveal.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&family=Inter+Tight:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* ============ Arkiv v2.1 — designtokens ============ */
+    :root {
+      --ink: #1F1A15;
+      --ink-2: #4A3F33;
+      --paper: #F4EDE1;
+      --paper-2: #EBE1CF;
+      --rule: #2A221A;
+      --bordeaux: #7A2E2E;
+      --marin: #2C3E55;
+      --oliv: #5A6A3A;
+      --ocker: #B8862F;
+      --kritbla: #5A7A9A;
+      --mossgron: #3E5A3E;
+      --tegel: #C96442;
+      --serif: "Cormorant Garamond", "EB Garamond", Georgia, serif;
+      --sans: "Inter Tight", "Work Sans", system-ui, sans-serif;
+      --mono: "JetBrains Mono", ui-monospace, monospace;
+    }
+
+    html, body { background: var(--ink); }
+    .reveal { font-family: var(--sans); color: var(--ink); font-size: 28px; font-weight: 500; }
+    .reveal .slides { text-align: left; }
+    .reveal .slides section { background: var(--paper); padding: 0; height: 100%; }
+    .reveal .slides section.present { display: flex !important; flex-direction: column; }
+
+    /* ============ Gemensam chrome ============ */
+    .chrome {
+      width: 100%; height: 100%;
+      padding: 32px 56px 28px;
+      display: flex; flex-direction: column;
+      position: relative; overflow: hidden;
+    }
+    .chrome.paper { background: var(--paper); color: var(--ink); }
+    .chrome.dark { color: var(--paper); }
+    .chrome .masthead {
+      display: flex; justify-content: space-between; align-items: baseline;
+      font-family: var(--mono); font-size: 16px; letter-spacing: 2px;
+      text-transform: uppercase; font-weight: 600; flex-shrink: 0;
+    }
+    .chrome .baseline {
+      display: flex; justify-content: space-between; align-items: baseline;
+      font-family: var(--mono); font-size: 15px; letter-spacing: 2px;
+      text-transform: uppercase; font-weight: 600; flex-shrink: 0;
+    }
+    .chrome.paper .masthead { color: var(--ink-2); border-bottom: 2px solid var(--rule); padding-bottom: 12px; }
+    .chrome.paper .baseline { color: var(--ink-2); border-top: 2px solid var(--rule); padding-top: 12px; }
+    .chrome.dark .masthead { color: var(--paper); opacity: 0.7; border-bottom: 2px solid rgba(244,237,225,0.27); padding-bottom: 12px; }
+    .chrome.dark .baseline { color: var(--paper); opacity: 0.7; border-top: 2px solid rgba(244,237,225,0.27); padding-top: 12px; }
+    .chrome .body { flex: 1; display: flex; flex-direction: column; min-height: 0; padding: 32px 0; overflow: hidden; }
+
+    /* ============ Typografi v2.1 ============ */
+    .reveal h1, .reveal h2, .reveal h3 {
+      font-family: var(--serif); color: inherit; font-weight: 600;
+      letter-spacing: -0.015em; text-transform: none; margin: 0;
+    }
+    .reveal h1 { line-height: 1; }
+    .reveal h3 {
+      font-family: var(--sans); font-size: 22px; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 2px;
+    }
+    .reveal em { font-style: italic; font-family: var(--serif); font-weight: 600; }
+    .reveal strong, .reveal b { font-weight: 800; }
+    .reveal mark {
+      background: rgba(184, 134, 47, 0.4); color: inherit;
+      padding: 0 8px; border-radius: 2px; font-weight: 700;
+    }
+    .reveal u {
+      text-decoration: underline; text-decoration-color: var(--bordeaux);
+      text-decoration-thickness: 4px; text-underline-offset: 6px; font-weight: 700;
+    }
+    .chrome.dark mark { background: rgba(184, 134, 47, 0.55); }
+    .chrome.dark u { text-decoration-color: var(--ocker); }
+
+    .eyebrow {
+      font-family: var(--mono); font-size: 18px; letter-spacing: 2px;
+      text-transform: uppercase; font-weight: 700;
+      margin-bottom: 16px; color: var(--bordeaux);
+    }
+    .eyebrow::before { content: "▸ "; }
+    .chrome.dark .eyebrow { color: var(--ocker); }
+
+    .lede {
+      font-family: var(--serif); font-style: italic; font-weight: 500;
+      font-size: 32px; line-height: 1.3; margin-top: 22px;
+      color: var(--ink-2); max-width: 32ch;
+    }
+    .chrome.dark .lede { color: var(--paper); opacity: 0.9; }
+
+    .body-text {
+      font-family: var(--sans); font-size: 28px; line-height: 1.45;
+      max-width: 32em; font-weight: 500;
+    }
+
+    /* ============ cover ============ */
+    section.cover-outer { background: var(--bordeaux) !important; padding: 36px !important; }
+    .cover-inner {
+      background: var(--paper); width: 100%; height: 100%;
+      padding: 56px 72px; display: flex; flex-direction: column; justify-content: space-between;
+    }
+    .cover-inner .top {
+      display: flex; justify-content: space-between;
+      font-family: var(--mono); font-size: 17px; letter-spacing: 2px;
+      text-transform: uppercase; color: var(--bordeaux); font-weight: 700;
+    }
+    .cover-inner .bottom {
+      display: flex; justify-content: space-between;
+      font-family: var(--mono); font-size: 16px; letter-spacing: 2px;
+      text-transform: uppercase; color: var(--ink-2); font-weight: 600;
+    }
+    .cover-inner h1 { font-size: 116px; line-height: 0.95; color: var(--ink); font-weight: 600; letter-spacing: -2px; }
+    .cover-inner .subtitle {
+      font-family: var(--serif); font-size: 36px; font-style: italic; font-weight: 500;
+      color: var(--ink-2); margin-top: 18px; max-width: 28ch;
+    }
+
+    /* ============ section ============ */
+    .section-slide { display: grid; grid-template-columns: 1fr 1.1fr; gap: 40px; align-items: center; height: 100%; }
+    .section-slide .big-num {
+      font-family: var(--serif); font-size: 340px; font-weight: 500;
+      color: var(--paper); opacity: 0.2; line-height: 0.8; letter-spacing: -8px;
+    }
+    .section-slide .kapitel {
+      font-family: var(--mono); font-size: 18px; letter-spacing: 2px;
+      text-transform: uppercase; color: var(--ocker); margin-bottom: 20px; font-weight: 700;
+    }
+    .section-slide .kapitel::before { content: "§ "; }
+    .section-slide h1 { font-size: 96px; line-height: 0.98; color: var(--paper); max-width: 14ch; font-weight: 600; letter-spacing: -1.5px; }
+    .section-slide .lede { font-size: 32px; margin-top: 22px; max-width: 26ch; font-weight: 500; }
+
+    /* ============ question ============ */
+    .question-slide { flex: 1; display: flex; flex-direction: column; justify-content: center; }
+    .question-slide h1 { font-size: 96px; line-height: 1; max-width: 17ch; color: var(--paper); font-weight: 600; letter-spacing: -1.5px; }
+    .question-slide .lede { font-size: 34px; margin-top: 32px; max-width: 38ch; font-weight: 500; }
+
+    /* ============ content ============ */
+    .content-slide { flex: 1; display: flex; flex-direction: column; justify-content: center; }
+    .content-slide h1 { font-size: 72px; line-height: 1; margin-bottom: 36px; max-width: 18ch; color: var(--ink); font-weight: 600; letter-spacing: -1px; }
+    .content-slide .body-text { font-size: 28px; line-height: 1.45; max-width: 32em; font-weight: 500; }
+    .bullets { margin-top: 28px; padding: 0; list-style: none; }
+    .bullets li {
+      display: grid; grid-template-columns: 44px 1fr; gap: 22px;
+      padding: 16px 0; border-top: 2px solid rgba(74, 63, 51, 0.2);
+      font-family: var(--sans); font-size: 28px; line-height: 1.4; font-weight: 500;
+    }
+    .bullets li:first-child { border-top: none; }
+    .bullets .index {
+      font-family: var(--mono); font-size: 24px; font-weight: 700;
+      color: var(--ocker); padding-top: 2px;
+    }
+
+    /* ============ twocol ============ */
+    .twocol-slide { flex: 1; display: flex; flex-direction: column; justify-content: center; }
+    .twocol-slide h1 { font-size: 62px; line-height: 1; margin-bottom: 36px; color: var(--ink); font-weight: 600; letter-spacing: -0.8px; }
+    .twocol { display: grid; grid-template-columns: 1fr 1px 1fr; gap: 40px; align-items: start; }
+    .twocol .divider { background: var(--rule); height: 100%; min-height: 260px; }
+    .twocol .col-label {
+      font-family: var(--mono); font-size: 18px; letter-spacing: 2px;
+      text-transform: uppercase; font-weight: 700; margin-bottom: 16px;
+    }
+    .twocol .col:nth-child(1) .col-label { color: var(--bordeaux); }
+    .twocol .col:nth-child(3) .col-label { color: var(--marin); }
+    .twocol .col-body { font-family: var(--sans); font-size: 26px; line-height: 1.45; color: var(--ink); font-weight: 500; }
+
+    /* ============ timeline ============ */
+    .timeline-slide { flex: 1; display: flex; flex-direction: column; }
+    .timeline-slide h1 { font-size: 62px; line-height: 1; margin-bottom: 60px; color: var(--ink); font-weight: 600; letter-spacing: -0.8px; }
+    .timeline-h { flex: 1; position: relative; display: flex; align-items: flex-start; }
+    .timeline-h::before {
+      content: ""; position: absolute; left: 0; right: 0; top: 34px;
+      height: 4px; background: var(--ocker);
+    }
+    .timeline-h .events {
+      display: grid; grid-auto-columns: 1fr; grid-auto-flow: column;
+      width: 100%; gap: 14px;
+    }
+    .timeline-h .event { position: relative; padding-top: 60px; }
+    .timeline-h .dot {
+      position: absolute; left: 0; top: 24px;
+      width: 22px; height: 22px; border-radius: 50%;
+      background: var(--paper); border: 5px solid var(--bordeaux);
+    }
+    .timeline-h .event.hedi .dot { border-color: var(--ocker); }
+    .timeline-h .year {
+      font-family: var(--mono); font-size: 20px; color: var(--bordeaux);
+      font-weight: 700; letter-spacing: 1px;
+    }
+    .timeline-h .event.hedi .year { color: var(--ocker); }
+    .timeline-h .title {
+      font-family: var(--serif); font-size: 24px; font-style: italic;
+      font-weight: 600; color: var(--ink); margin-top: 8px; line-height: 1.1;
+    }
+    .timeline-h .note { font-size: 18px; color: var(--ink); margin-top: 10px; line-height: 1.35; font-weight: 500; }
+
+    /* ============ quote ============ */
+    .quote-slide {
+      flex: 1; position: relative; display: flex; flex-direction: column;
+      justify-content: center; padding-left: 96px;
+    }
+    .quote-slide .mark-open {
+      position: absolute; top: -40px; left: -10px;
+      font-family: var(--serif); font-size: 240px; line-height: 1;
+      color: var(--ocker); font-weight: 600;
+    }
+    .quote-slide blockquote {
+      margin: 0;
+      font-family: var(--serif); font-size: 54px; font-style: italic; font-weight: 600;
+      line-height: 1.25; color: var(--paper); max-width: 24ch; letter-spacing: -0.5px;
+    }
+    .quote-slide .attribution {
+      margin-top: 44px; font-size: 30px; font-weight: 700; color: var(--ocker);
+    }
+    .quote-slide .attribution::before { content: "— "; }
+    .quote-slide .context {
+      margin-top: 10px;
+      font-family: var(--mono); font-size: 16px; letter-spacing: 2px;
+      text-transform: uppercase; color: var(--paper); opacity: 0.8; font-weight: 600;
+    }
+
+    /* ============ callout ============ */
+    section.callout-outer { padding: 36px !important; }
+    section.callout-outer.fakta { background: var(--marin) !important; }
+    section.callout-outer.tips { background: var(--oliv) !important; }
+    section.callout-outer.varning { background: var(--bordeaux) !important; }
+    section.callout-outer.kalla { background: var(--ink) !important; }
+    section.callout-outer.begrepp { background: var(--ocker) !important; }
+    .callout-inner {
+      background: var(--paper-2); width: 100%; height: 100%;
+      padding: 56px 72px;
+      display: flex; flex-direction: column; justify-content: space-between;
+    }
+    .callout-inner .top {
+      display: flex; justify-content: space-between;
+      font-family: var(--mono); font-size: 18px; letter-spacing: 2px;
+      text-transform: uppercase; font-weight: 800;
+    }
+    .callout-inner .bottom {
+      display: flex; justify-content: space-between;
+      font-family: var(--mono); font-size: 15px; letter-spacing: 2px;
+      text-transform: uppercase; font-weight: 600; color: var(--ink-2);
+    }
+    .callout-outer.varning .callout-inner .top { color: var(--bordeaux); }
+    .callout-inner h1 {
+      font-family: var(--serif); font-size: 64px; font-style: italic;
+      font-weight: 600; line-height: 1.05; color: var(--ink); max-width: 22ch; margin: 0;
+    }
+    .callout-inner .body-text {
+      font-size: 30px; line-height: 1.45; color: var(--ink); font-weight: 500;
+      margin-top: 28px; max-width: 26em;
+    }
+
+    /* ============ discuss ============ */
+    .discuss-slide { flex: 1; display: flex; flex-direction: column; justify-content: center; }
+    .discuss-slide h1 { font-size: 62px; line-height: 1; margin-bottom: 40px; color: var(--paper); letter-spacing: -0.8px; font-weight: 600; }
+    .questions { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 18px; }
+    .questions li {
+      display: grid; grid-template-columns: 60px 1fr; gap: 28px;
+      font-family: var(--sans); font-size: 28px; line-height: 1.35; color: var(--paper); font-weight: 500;
+    }
+    .questions .roman {
+      font-family: var(--serif); font-style: italic; font-size: 40px; font-weight: 600;
+      color: var(--ocker); padding-top: 4px;
+    }
+
+    /* ============ close ============ */
+    .close-slide { flex: 1; display: flex; flex-direction: column; }
+    .close-slide h1 { font-size: 64px; line-height: 1; margin-bottom: 32px; color: var(--ink); font-weight: 600; letter-spacing: -0.8px; }
+    .takeaways { list-style: none; padding: 0; margin: 0 0 40px; max-width: 42em; }
+    .takeaways li {
+      padding: 12px 0 12px 32px; position: relative;
+      font-family: var(--sans); font-size: 28px; line-height: 1.45; color: var(--ink); font-weight: 500;
+    }
+    .takeaways li::before {
+      content: "▪"; color: var(--bordeaux); position: absolute;
+      left: 0; top: 12px; font-size: 26px;
+    }
+    .next-steps {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: auto;
+    }
+    .next-box { background: var(--paper-2); padding: 24px 28px; border-left: 4px solid var(--ocker); }
+    .next-box:last-child { border-left-color: var(--marin); }
+    .next-box .label {
+      font-family: var(--mono); font-size: 18px; letter-spacing: 2px;
+      text-transform: uppercase; color: var(--ink-2); margin-bottom: 12px; font-weight: 700;
+    }
+    .next-box .text {
+      font-family: var(--serif); font-size: 26px; font-style: italic; font-weight: 500;
+      color: var(--ink); line-height: 1.35;
+    }
+
+    .reveal .progress { color: var(--bordeaux); }
+    .reveal .controls { color: var(--ink-2); }
+  </style>
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+      <!-- 1: COVER -->
+      <section class="cover-outer">
+        <div class="cover-inner">
+          <div class="top">
+            <span>Arkiv · v2 · Lektionsomslag</span>
+            <span>Historia 1b</span>
+          </div>
+          <div>
+            <h1>Vägen till <em>kriget</em></h1>
+            <div class="subtitle">Aggression och <strong>appeasement</strong>. Och vad som hände <em>sedan</em>.</div>
+          </div>
+          <div class="bottom">
+            <span>Aktör och struktur · Lektion 06 / 10</span>
+            <span>01 / 16</span>
+          </div>
+        </div>
+        <aside class="notes">
+          Lektionens första slide. Detta är den sista lektionen före Förintelsen-blocket — den binder ihop mellankrigstidens analys (L5) med vägen till krig och Förintelsens första stadier (L7). Bordeaux-ramen signalerar att vi närmar oss något dramatiskt.
+        </aside>
+      </section>
+
+      <!-- 2: SECTION -->
+      <section style="background: var(--bordeaux) !important;">
+        <div class="chrome dark" style="background: var(--bordeaux);">
+          <div class="masthead">
+            <span>Historia 1b · Aktör och struktur</span>
+            <span>Lektion 06 / 10</span>
+          </div>
+          <div class="body section-slide">
+            <div class="big-num">06</div>
+            <div>
+              <div class="kapitel">Kapitel 06 · Mot Auschwitz</div>
+              <h1>Aggression och <em>appeasement</em></h1>
+              <div class="lede">Sex år av territoriell utvidgning. En premiärminister som åkte hem och lovade fred.</div>
+            </div>
+          </div>
+          <div class="baseline">
+            <span>Arkiv · v2</span>
+            <span>02 / 16</span>
+          </div>
+        </div>
+        <aside class="notes">
+          Kapitelmarkering. Säg: "L5 visade hur totalitarismen blev möjlig. L6 visar vad totalitarismen sedan gjorde — först i fredstid genom hot, sedan i krig. Och L6 sätter scenen för Förintelsen som vi börjar i L7."
+        </aside>
+      </section>
+
+      <!-- 3: CONTENT — Retrieval -->
+      <section>
+        <div class="chrome paper">
+          <div class="masthead">
+            <span>Historia 1b · Aktör och struktur</span>
+            <span>Lektion 06 / 10</span>
+          </div>
+          <div class="body content-slide">
+            <div class="eyebrow">Retrieval · 8 min</div>
+            <h1>Vad mindes ni från <em>mellankrigstiden</em>?</h1>
+            <ul class="bullets">
+              <li class="fragment"><span class="index">01</span><span>Vad hette Tysklands republik <u>1919–33</u>?</span></li>
+              <li class="fragment"><span class="index">02</span><span>Vad hände <mark>1929</mark> som gjorde Hitler möjlig?</span></li>
+              <li class="fragment"><span class="index">03</span><span>Vilket är ett <strong>fascistisk/nazistiskt</strong> kärnbegrepp?</span></li>
+            </ul>
+          </div>
+          <div class="baseline">
+            <span>Arkiv · v2</span>
+            <span>03 / 16</span>
+          </div>
+        </div>
+        <aside class="notes">
+          EPA: 3 min enskilt, 2 min par, 3 min helklass. Fokus på hur strukturer möjliggjorde totalitarismen — det är poängen från L5 som L6 bygger vidare på.
+        </aside>
+      </section>
+
+      <!-- 4: QUESTION — Kontrafaktisk -->
+      <section style="background: var(--mossgron) !important;">
+        <div class="chrome dark" style="background: var(--mossgron);">
+          <div class="masthead">
+            <span>Historia 1b · Aktör och struktur</span>
+            <span>Lektion 06 / 10</span>
+          </div>
+          <div class="body question-slide">
+            <div class="eyebrow">September 1938</div>
+            <h1>Alla kunde stoppat Hitler. <mark>Varför</mark> gjorde ingen det?</h1>
+            <div class="lede">Wehrmacht var <em>svag</em>. Tjeckoslovakien hade starka gränsbefästningar. Storbritannien och Frankrike hade militär överlägsenhet. Och ändå.</div>
+          </div>
+          <div class="baseline">
+            <span>Arkiv · v2</span>
+            <span>04 / 16</span>
+          </div>
+        </div>
+        <aside class="notes">
+          Den kontrafaktiska kroken. Driver hela lektionen: varför gjorde aktörer som *kunde* välja en sak ändå det motsatta? Detta är aktör vs struktur på sin mest skarpa.
+        </aside>
+      </section>
+
+      <!-- 5: TIMELINE — Hitlers expansion -->
+      <section>
+        <div class="chrome paper">
+          <div class="masthead">
+            <span>Historia 1b · Aktör och struktur</span>
+            <span>Lektion 06 / 10</span>
+          </div>
+          <div class="body timeline-slide">
+            <h1>Hitlers <em>expansion</em> 1936–39</h1>
+            <div class="timeline-h">
+              <div class="events">
+                <div class="event fragment">
+                  <div class="dot"></div>
+                  <div class="year">mar 1936</div>
+                  <div class="title">Rhen<em>landet</em></div>
+                  <div class="note">Återmilitariseras. Versailles bryts. <strong>Inget svar</strong>.</div>
+                </div>
+                <div class="event fragment">
+                  <div class="dot"></div>
+                  <div class="year">mar 1938</div>
+                  <div class="title">Anschluss</div>
+                  <div class="note">Österrike annekteras. Många österrikare jublar.</div>
+                </div>
+                <div class="event fragment">
+                  <div class="dot"></div>
+                  <div class="year">sep 1938</div>
+                  <div class="title">München</div>
+                  <div class="note">Sudetlandet överlämnas. <mark>Peace for our time</mark>.</div>
+                </div>
+                <div class="event fragment">
+                  <div class="dot"></div>
+                  <div class="year">mar 1939</div>
+                  <div class="title">Tjecko<em>slovakien</em></div>
+                  <div class="note">Hitler tar resten. Appeasement faller.</div>
+                </div>
+                <div class="event fragment">
+                  <div class="dot"></div>
+                  <div class="year">aug 1939</div>
+                  <div class="title">Molotov–Ribbentrop</div>
+                  <div class="note">Två ideologiska motståndare delar Östeuropa.</div>
+                </div>
+                <div class="event fragment">
+                  <div class="dot"></div>
+                  <div class="year">1 sep 1939</div>
+                  <div class="title">Polen</div>
+                  <div class="note"><strong>Kriget börjar.</strong></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="baseline">
+            <span>Arkiv · v2</span>
+            <span>05 / 16</span>
+          </div>
+        </div>
+        <aside class="notes">
+          Klicka fram en händelse i taget (fragments). Varje steg gör nästa steg tänkbart — det är mönstret att framhäva. Vid Tjeckoslovakien mars 1939: poängen är att Hitler bröt avtalet öppet, och västs reaktion var rådvill.
+        </aside>
+      </section>
+
+      <!-- 6: QUOTE — Chamberlain -->
+      <section style="background: var(--ink) !important;">
+        <div class="chrome dark" style="background: var(--ink);">
+          <div class="masthead">
+            <span>Historia 1b · Aktör och struktur</span>
+            <span>Lektion 06 / 10</span>
+          </div>
+          <div class="body quote-slide">
+            <div class="mark-open">"</div>
+            <blockquote>Jag tror att detta är <em>fred för vår tid</em>. Gå hem och <u>sov gott</u>.</blockquote>
+            <div class="attribution">Neville Chamberlain</div>
+            <div class="context">Downing Street · 30 september 1938</div>
+          </div>
+          <div class="baseline">
+            <span>Arkiv · v2</span>
+            <span>06 / 16</span>
+          </div>
+        </div>
+        <aside class="notes">
+          Människor jublade i Londons gator. Chamberlain var en hjälte. Betona att han <strong>inte</strong> var dum — han hade skäl. Att förstå skälen är inte att ursäkta resultatet. Detta är historisk empati som intellektuell disciplin.
+        </aside>
+      </section>
+
+      <!-- 7: CONTENT — Varför appeasement? -->
+      <section>
+        <div class="chrome paper">
+          <div class="masthead">
+            <span>Historia 1b · Aktör och struktur</span>
+            <span>Lektion 06 / 10</span>
+          </div>
+          <div class="body content-slide">
+            <div class="eyebrow">Strukturella skäl</div>
+            <h1>Varför <em>appeasement</em>?</h1>
+            <ul class="bullets">
+              <li class="fragment"><span class="index">01</span><span><u>Minnet av FVK</u>. En generation dog 1914–18. Ingen ville riskera det igen utan tvingande skäl.</span></li>
+              <li class="fragment"><span class="index">02</span><span><u>Ekonomin</u>. Storbritannien var försvagat av depressionen. Militärens kostnader var <strong>politiskt omöjliga</strong>.</span></li>
+              <li class="fragment"><span class="index">03</span><span><u>Strategisk bedömning</u>. Tiden ansågs arbeta för de allierade — köp tid, rusta sen.</span></li>
+            </ul>
+          </div>
+          <div class="baseline">
+            <span>Arkiv · v2</span>
+            <span>07 / 16</span>
+          </div>
+        </div>
+        <aside class="notes">
+          Dessa är <em>strukturella</em> skäl. Chamberlain var aktör, men inom starka strukturella begränsningar. Det är aktör/struktur-modellen i sin renaste form: handlingsutrymme finns, men är begränsat.
+        </aside>
+      </section>
+
+      <!-- 8: QUOTE — Molotov-Ribbentrop -->
+      <section style="background: var(--ink) !important;">
+        <div class="chrome dark" style="background: var(--ink);">
+          <div class="masthead">
+            <span>Historia 1b · Aktör och struktur</span>
+            <span>Lektion 06 / 10</span>
+          </div>
+          <div class="body quote-slide">
+            <div class="mark-open">"</div>
+            <blockquote>...gränsen för de <em>intressesfärer</em> som tillhör Tyskland och USSR ska utgöras av <u>linjen för floderna Narev, Visla och San</u>.</blockquote>
+            <div class="attribution">Molotov–Ribbentrop-pakten · hemligt tilläggsprotokoll</div>
+            <div class="context">Moskva · 23 augusti 1939</div>
+          </div>
+          <div class="baseline">
+            <span>Arkiv · v2</span>
+            <span>08 / 16</span>
+          </div>
+        </div>
+        <aside class="notes">
+          Två ideologiska motståndare delar Östeuropa — utan att tillfråga dem som bor där. Internationell realism: ideologi överges när statsintresset kräver. Hitler (nazist) och Stalin (kommunist) skulle krossa varandra senare, men 1939 var de pragmatiska allierade.
+        </aside>
+      </section>
+
+      <!-- 9: TWOCOL — Två tolkningar -->
+      <section>
+        <div class="chrome paper">
+          <div class="masthead">
+            <span>Historia 1b · Aktör och struktur</span>
+            <span>Lektion 06 / 10</span>
+          </div>
+          <div class="body twocol-slide">
+            <h1>Två <em>tolkningar</em> av München</h1>
+            <div class="twocol">
+              <div class="col fragment">
+                <div class="col-label">Tolkning A</div>
+                <div class="col-body">Chamberlain var <strong>naiv</strong> och moraliskt svag. Han hade kunnat stoppat Hitler men valde att tro på en diktator. <em>Resultatet</em> bevisar att appeasement misslyckades.</div>
+              </div>
+              <div class="divider"></div>
+              <div class="col fragment">
+                <div class="col-label">Tolkning B</div>
+                <div class="col-body">Chamberlain gjorde det <strong>bästa möjliga</strong> givet en omöjlig situation. Han visste inte vad vi vet idag. Han köpte tid att rusta upp.</div>
+              </div>
+            </div>
+          </div>
+          <div class="baseline">
+            <span>Arkiv · v2</span>
+            <span>09 / 16</span>
+          </div>
+        </div>
+        <aside class="notes">
+          Båda tolkningar är giltiga argumentationsmodeller. LM 5 i renaste form: jämför förklaringsmodeller. Eleverna ska kunna *företräda* båda innan de väljer. Det är vad A-nivå handlar om.
+        </aside>
+      </section>
+
+      <!-- 10: DISCUSS — EPA -->
+      <section style="background: var(--mossgron) !important;">
+        <div class="chrome dark" style="background: var(--mossgron);">
+          <div class="masthead">
+            <span>Historia 1b · Aktör och struktur</span>
+            <span>Lektion 06 / 10</span>
+          </div>
+          <div class="body discuss-slide">
+            <div class="eyebrow">Guidad övning · 25 min · EPA</div>
+            <h1>Läs <em>källorna</em>. Diskutera <em>besluten</em>.</h1>
+            <ol class="questions">
+              <li class="fragment"><span class="roman">I.</span><span>Vad sade Chamberlain? Vad <strong>avslöjade</strong> det hemliga protokollet?</span></li>
+              <li class="fragment"><span class="roman">II.</span><span>Var Chamberlains beslut <em>rationellt</em> givet vad han <u>visste</u> i september 1938?</span></li>
+              <li class="fragment"><span class="roman">III.</span><span>Vad säger Molotov–Ribbentrop om <strong>realism</strong> i internationell politik?</span></li>
+            </ol>
+          </div>
+          <div class="baseline">
+            <span>Arkiv · v2</span>
+            <span>10 / 16</span>
+          </div>
+        </div>
+        <aside class="notes">
+          EPA: 10 min enskilt, 8 min par, 7 min helklass. Tillåt elever att svara "jag vet inte" om de motiverar det. Historisk osäkerhet är intellektuellt ärligt.
+        </aside>
+      </section>
+
+      <!-- 11: DISCUSS — Skrivuppgift -->
+      <section style="background: var(--mossgron) !important;">
+        <div class="chrome dark" style="background: var(--mossgron);">
+          <div class="masthead">
+            <span>Historia 1b · Aktör och struktur</span>
+            <span>Lektion 06 / 10</span>
+          </div>
+          <div class="body discuss-slide">
+            <div class="eyebrow">Självständig övning · 15 min</div>
+            <h1>Var München <em>rimligt</em> eller ett <mark>misslyckande</mark>?</h1>
+            <ol class="questions">
+              <li class="fragment"><span class="roman">I.</span><span>Minst <strong>ETT</strong> argument FÖR att Chamberlain gjorde rätt.</span></li>
+              <li class="fragment"><span class="roman">II.</span><span>Minst <strong>ETT</strong> argument MOT.</span></li>
+              <li class="fragment"><span class="roman">III.</span><span>Ditt eget ställningstagande — motiverat.</span></li>
+              <li class="fragment"><span class="roman">IV.</span><span><u>Regel:</u> bara det Chamberlain <em>visste</em> i september 1938.</span></li>
+            </ol>
+          </div>
+          <div class="baseline">
+            <span>Arkiv · v2</span>
+            <span>11 / 16</span>
+          </div>
+        </div>
+        <aside class="notes">
+          15 minuters skrivande. Minst 250 ord. Eleverna ska presentera båda sidor INNAN de landar. Det är A-nivå-kravet. Cirkulera och stötta med skrivmallen för E-elever.
+        </aside>
+      </section>
+
+      <!-- 12: CONTENT — Hitler räknade fel (aktör/struktur-poängen för krigsutbrottet) -->
+      <section>
+        <div class="chrome paper">
+          <div class="masthead">
+            <span>Historia 1b · Aktör och struktur</span>
+            <span>Lektion 06 / 10</span>
+          </div>
+          <div class="body content-slide">
+            <div class="eyebrow">Krigsutbrottet · aktör/struktur</div>
+            <h1>Hitler <em>räknade fel</em></h1>
+            <ul class="bullets">
+              <li class="fragment"><span class="index">01</span><span><u>Aktör</u>: Hitler valde att anfalla Polen 1 sep 1939. Han trodde UK/Fr skulle <em>backa igen</em> — mönstret från Rhenlandet, Anschluss, München.</span></li>
+              <li class="fragment"><span class="index">02</span><span><u>Struktur</u>: i <mark>mars 1939</mark>, efter Tjeckoslovakien, hade UK/Fr garanterat <strong>Polens säkerhet</strong>. Garantin var en konsekvens av Hitlers tidigare brott.</span></li>
+              <li class="fragment"><span class="index">03</span><span>Aktören Hitler skapade strukturen som <em>band</em> UK/Fr. När han räknade aktör hade strukturen ändrats. <strong>Den 3 september förklarade de krig.</strong></span></li>
+            </ul>
+          </div>
+          <div class="baseline">
+            <span>Arkiv · v2</span>
+            <span>12 / 16</span>
+          </div>
+        </div>
+        <aside class="notes">
+          Detta är lektionens analytiska kulmen — aktör/struktur-paradoxen i sin tydligaste form. Hitlers tidigare aggression som <em>aktör</em> skapade strukturella band (Polen-garantin) som senare tvingade andra aktörer att handla mot honom. Hans felräkning var att han trodde aktör räcker — han glömde att han själv hade ändrat strukturen. Lyft fram denna paradox explicit. Detta är vad LM 2 (samspelet aktör–struktur) handlar om i kärnan.
+        </aside>
+      </section>
+
+      <!-- 13: TIMELINE — Krigsutbrottet 1939-40 -->
+      <section>
+        <div class="chrome paper">
+          <div class="masthead">
+            <span>Historia 1b · Aktör och struktur</span>
+            <span>Lektion 06 / 10</span>
+          </div>
+          <div class="body timeline-slide">
+            <h1>Krigsutbrottet — <em>när vänster stod fast</em></h1>
+            <div class="timeline-h">
+              <div class="events">
+                <div class="event fragment">
+                  <div class="dot"></div>
+                  <div class="year">1 sep 1939</div>
+                  <div class="title">Polen</div>
+                  <div class="note">Tyskland anfaller. <em>Gleiwitz-incidenten</em> iscensätts som förevändning.</div>
+                </div>
+                <div class="event fragment">
+                  <div class="dot"></div>
+                  <div class="year">3 sep 1939</div>
+                  <div class="title">Krigs<em>förklaring</em></div>
+                  <div class="note">UK och Frankrike förklarar krig. <strong>Vändpunkten.</strong></div>
+                </div>
+                <div class="event fragment">
+                  <div class="dot"></div>
+                  <div class="year">17 sep 1939</div>
+                  <div class="title">Sovjet anfaller öster</div>
+                  <div class="note">Enligt hemliga protokollet. Polen delas.</div>
+                </div>
+                <div class="event fragment">
+                  <div class="dot"></div>
+                  <div class="year">39–40</div>
+                  <div class="title"><em>Sittkriget</em></div>
+                  <div class="note">Krigsförklaring utan strid. UK/Fr hjälper inte Polen operativt.</div>
+                </div>
+                <div class="event fragment">
+                  <div class="dot"></div>
+                  <div class="year">apr 1940</div>
+                  <div class="title">Norge, Danmark</div>
+                  <div class="note">Sittkriget tar slut.</div>
+                </div>
+                <div class="event fragment">
+                  <div class="dot"></div>
+                  <div class="year">maj 1940</div>
+                  <div class="title">Frankrike <em>anfalls</em></div>
+                  <div class="note">Belgien, Holland, Luxemburg också. Blixtkrig-doktrinen testas.</div>
+                </div>
+                <div class="event fragment">
+                  <div class="dot"></div>
+                  <div class="year">22 jun 1940</div>
+                  <div class="title">Frankrike <mark>faller</mark></div>
+                  <div class="note">Sex veckor. <strong>Nu</strong> är kriget på riktigt.</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="baseline">
+            <span>Arkiv · v2</span>
+            <span>13 / 16</span>
+          </div>
+        </div>
+        <aside class="notes">
+          Klicka fram en händelse i taget. Pedagogiska nyckelpunkter: (1) 3 sep krigsförklaring som "vändpunkt" — kontrast till München-mönstret. (2) Sittkriget visar att krigsförklaring inte = aktiv strid. UK/Fr stod inte upp för Polen operativt. (3) Frankrikes fall på sex veckor är där "kriget" blir riktigt — Wehrmacht är inte längre svag. Förintelsen kommer att ske mot bakgrund av tysk militär framgång.
+        </aside>
+      </section>
+
+      <!-- 14: TIMELINE — Vägen till Sighet 1941-44 -->
+      <section>
+        <div class="chrome paper">
+          <div class="masthead">
+            <span>Historia 1b · Aktör och struktur</span>
+            <span>Lektion 06 / 10</span>
+          </div>
+          <div class="body timeline-slide">
+            <h1>Vägen till <em>Sighet</em> — 1941–44</h1>
+            <div class="timeline-h">
+              <div class="events">
+                <div class="event fragment">
+                  <div class="dot"></div>
+                  <div class="year">jun 1941</div>
+                  <div class="title">Barbarossa</div>
+                  <div class="note">Pakten bryts. Tyskland invaderar Sovjet. <em>Förintelsens arena öppnas.</em></div>
+                </div>
+                <div class="event fragment">
+                  <div class="dot"></div>
+                  <div class="year">jan 1942</div>
+                  <div class="title">Wannsee</div>
+                  <div class="note">"Slutliga lösningen" planeras byråkratiskt.</div>
+                </div>
+                <div class="event fragment">
+                  <div class="dot"></div>
+                  <div class="year">1943–44</div>
+                  <div class="title">Vändning</div>
+                  <div class="note">Stalingrad. El Alamein. Italien. <strong>Tyskland förlorar.</strong></div>
+                </div>
+                <div class="event fragment hedi">
+                  <div class="dot"></div>
+                  <div class="year">mar 1944</div>
+                  <div class="title">Ungern <em>ockuperas</em></div>
+                  <div class="note">Desperat drag — hinna mörda judarna innan kriget tar slut.</div>
+                </div>
+                <div class="event fragment hedi">
+                  <div class="dot"></div>
+                  <div class="year">apr 1944</div>
+                  <div class="title">Sighet</div>
+                  <div class="note">En 19-årig flicka heter <strong>Hédi Fried</strong>.</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="baseline">
+            <span>Arkiv · v2</span>
+            <span>14 / 16</span>
+          </div>
+        </div>
+        <aside class="notes">
+          Denna slide är bryggan till L7. Gå snabbare än krigsutbrottet — detta är inte huvudfokus i L6. Poängen: Förintelsen sker <em>inom</em> kriget, inte före eller efter, och Ungerns ockupation är ett desperat drag av en redan förlorande aggressor. Ockerpunkter signalerar var L7 börjar.
+        </aside>
+      </section>
+
+      <!-- 13: CALLOUT — Exit ticket -->
+      <section class="callout-outer varning">
+        <div class="callout-inner">
+          <div class="top">
+            <span>▸ Exit ticket</span>
+            <span>Lektion 06 / 10</span>
+          </div>
+          <div>
+            <h1>Var Münchenfördraget <em>rimligt</em> eller ett <u>moraliskt misslyckande</u>?</h1>
+            <div class="body-text"><strong>Kort motivering.</strong> Inget rätt svar — sorteras efter argumentationskvalitet.</div>
+          </div>
+          <div class="bottom">
+            <span>Arkiv · v2 · Callout</span>
+            <span>15 / 16</span>
+          </div>
+        </div>
+        <aside class="notes">
+          5 min skriftligt. Sortera efter argumentationskvalitet: (1) presenterar båda sidor innan landning, (2) bara en sida, (3) slogan utan argument. Hög 2+3 → L7 startar med kort återblick.
+        </aside>
+      </section>
+
+      <!-- 14: CLOSE — Preview L7 -->
+      <section>
+        <div class="chrome paper">
+          <div class="masthead">
+            <span>Historia 1b · Aktör och struktur</span>
+            <span>Lektion 06 / 10</span>
+          </div>
+          <div class="body close-slide">
+            <div class="eyebrow">Nästa lektion</div>
+            <h1>Sighet <em>1939–44</em> — när lagarna kom</h1>
+            <ul class="takeaways">
+              <li class="fragment">Vi möter <strong>Hédi Fried</strong> — född 1924, en flicka i en småstad i nuvarande Rumänien.</li>
+              <li class="fragment">Vi följer hennes familj genom Förintelsens <em>första stadier</em>: vardag → utestängning → ghetto.</li>
+              <li class="fragment"><u>Förintelsen-blocket</u> börjar. Fyra lektioner med tyngd.</li>
+            </ul>
+            <div class="next-steps">
+              <div class="next-box">
+                <div class="label">Före L7</div>
+                <div class="text">Tänk på <em>"när är det allvar?"</em>-frågan. Sandkorn på sandkorn.</div>
+              </div>
+              <div class="next-box">
+                <div class="label">Ton</div>
+                <div class="text">Människa <em>först</em>, offer sedan. Vi börjar lugnt.</div>
+              </div>
+            </div>
+          </div>
+          <div class="baseline">
+            <span>Arkiv · v2</span>
+            <span>16 / 16</span>
+          </div>
+        </div>
+        <aside class="notes">
+          Etisk preview till L7. Hint till eleverna att Förintelsen-blocket är emotionellt tungt. Erbjud samtal vid behov. Tonen lugn.
+        </aside>
+      </section>
+
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/reveal.js"></script>
+  <script>
+    Reveal.initialize({
+      hash: true,
+      slideNumber: false,
+      width: 1280,
+      height: 720,
+      margin: 0,
+      transition: 'fade',
+      controls: true,
+      progress: true
+    });
+  </script>
+</body>
+</html>
