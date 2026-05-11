@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lektion 2 — Sighet 1944: ghetto, tåg, rampen | Förintelsen</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/reveal.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&family=Inter+Tight:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* ============ Arkiv v2.1 — designtokens ============ */
+    :root {
+      --ink: #1F1A15;
+      --ink-2: #4A3F33;
+      --paper: #F4EDE1;
+      --paper-2: #EBE1CF;
+      --rule: #2A221A;
+      --bordeaux: #7A2E2E;
+      --marin: #2C3E55;
+      --oliv: #5A6A3A;
+      --ocker: #B8862F;
+      --kritbla: #5A7A9A;
+      --mossgron: #3E5A3E;
+      --tegel: #C96442;
+      --serif: "Cormorant Garamond", "EB Garamond", Georgia, serif;
+      --sans: "Inter Tight", "Work Sans", system-ui, sans-serif;
+      --mono: "JetBrains Mono", ui-monospace, monospace;
+    }
+
+    html, body { background: var(--ink); }
+    .reveal { font-family: var(--sans); color: var(--ink); font-size: 28px; font-weight: 500; }
+    .reveal .slides { text-align: left; }
+    .reveal .slides section { background: var(--paper); padding: 0; height: 100%; }
+    .reveal .slides section.present { display: flex !important; flex-direction: column; }
+
+    /* ============ Gemensam chrome ============ */
+    .chrome {
+      width: 100%; height: 100%;
+      padding: 32px 56px 28px;
+      display: flex; flex-direction: column;
+      position: relative; overflow: hidden;
+    }
+    .chrome.paper { background: var(--paper); color: var(--ink); }
+    .chrome.dark { color: var(--paper); }
+    .chrome .masthead {
+      display: flex; justify-content: space-between; align-items: baseline;
+      font-family: var(--mono); font-size: 16px; letter-spacing: 2px;
+      text-transform: uppercase; font-weight: 600; flex-shrink: 0;
+    }
+    .chrome .baseline {
+      display: flex; justify-content: space-between; align-items: baseline;
+      font-family: var(--mono); font-size: 15px; letter-spacing: 2px;
+      text-transform: uppercase; font-weight: 600; flex-shrink: 0;
+    }
+    .chrome.paper .masthead { color: var(--ink-2); border-bottom: 2px solid var(--rule); padding-bottom: 12px; }
+    .chrome.paper .baseline { color: var(--ink-2); border-top: 2px solid var(--rule); padding-top: 12px; }
+    .chrome.dark .masthead { color: var(--paper); opacity: 0.7; border-bottom: 2px solid rgba(244,237,225,0.27); padding-bottom: 12px; }
+    .chrome.dark .baseline { color: var(--paper); opacity: 0.7; border-top: 2px solid rgba(244,237,225,0.27); padding-top: 12px; }
+    .chrome .body { flex: 1; display: flex; flex-direction: column; min-height: 0; padding: 32px 0; overflow: hidden; }
+
+    /* ============ Typografi v2.1 ============ */
+    .reveal h1, .reveal h2, .reveal h3 {
+      font-family: var(--serif); color: inherit; font-weight: 600;
+      letter-spacing: -0.015em; text-transform: none; margin: 0;
+    }
+    .reveal h1 { line-height: 1; }
+    .reveal h3 {
+      font-family: var(--sans); font-size: 22px; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 2px;
+    }
+    .reveal em { font-style: italic; font-family: var(--serif); font-weight: 600; }
+    .reveal strong, .reveal b { font-weight: 800; }
+    .reveal mark {
+      background: rgba(184, 134, 47, 0.4); color: inherit;
+      padding: 0 8px; border-radius: 2px; font-weight: 700;
+    }
+    .reveal u {
+      text-decoration: underline; text-decoration-color: var(--bordeaux);
+      text-decoration-thickness: 4px; text-underline-offset: 6px; font-weight: 700;
+    }
+    .chrome.dark mark { background: rgba(184, 134, 47, 0.55); }
+    .chrome.dark u { text-decoration-color: var(--ocker); }
+
+    .eyebrow {
+      font-family: var(--mono); font-size: 18px; letter-spacing: 2px;
+      text-transform: uppercase; font-weight: 700;
+      margin-bottom: 16px; color: var(--bordeaux);
+    }
+    .eyebrow::before { content: "▸ "; }
+    .chrome.dark .eyebrow { color: var(--ocker); }
+
+    .lede {
+      font-family: var(--serif); font-style: italic; font-weight: 500;
+      font-size: 32px; line-height: 1.3; margin-top: 22px;
+      color: var(--ink-2); max-width: 32ch;
+    }
+    .chrome.dark .lede { color: var(--paper); opacity: 0.9; }
+
+    .body-text {
+      font-family: var(--sans); font-size: 28px; line-height: 1.45;
+      max-width: 32em; font-weight: 500;
+    }
+
+    /* ============ cover ============ */
+    section.cover-outer { background: var(--bordeaux) !important; padding: 36px !important; }
+    .cover-inner {
+      background: var(--paper); width: 100%; height: 100%;
+      padding: 56px 72px; display: flex; flex-direction: column; justify-content: space-between;
+    }
+    .cover-inner .top {
+      display: flex; justify-content: space-between;
+      font-family: var(--mono); font-size: 17px; letter-spacing: 2px;
+      text-transform: uppercase; color: var(--bordeaux); font-weight: 700;
+    }
+    .cover-inner .bottom {
+      display: flex; justify-content: space-between;
+      font-family: var(--mono); font-size: 16px; letter-spacing: 2px;
+      text-transform: uppercase; color: var(--ink-2); font-weight: 600;
+    }
+    .cover-inner h1 { font-size: 116px; line-height: 0.95; color: var(--ink); font-weight: 600; letter-spacing: -2px; }
+    .cover-inner .subtitle {
+      font-family: var(--serif); font-size: 36px; font-style: italic; font-weight: 500;
+      color: var(--ink-2); margin-top: 18px; max-width: 28ch;
+    }
+
+    /* ============ section ============ */
+    .section-slide { display: grid; grid-template-columns: 1fr 1.1fr; gap: 40px; align-items: center; height: 100%; }
+    .section-slide .big-num {
+      font-family: var(--serif); font-size: 340px; font-weight: 500;
+      color: var(--paper); opacity: 0.2; line-height: 0.8; letter-spacing: -8px;
+    }
+    .section-slide .kapitel {
+      font-family: var(--mono); font-size: 18px; letter-spacing: 2px;
+      text-transform: uppercase; color: var(--ocker); margin-bottom: 20px; font-weight: 700;
+    }
+    .section-slide .kapitel::before { content: "§ "; }
+    .section-slide h1 { font-size: 96px; line-height: 0.98; color: var(--paper); max-width: 14ch; font-weight: 600; letter-spacing: -1.5px; }
+    .section-slide .lede { font-size: 32px; margin-top: 22px; max-width: 26ch; font-weight: 500; }
+
+    /* ============ content ============ */
+    .content-slide { flex: 1; display: flex; flex-direction: column; justify-content: center; }
+    .content-slide h1 { font-size: 72px; line-height: 1; margin-bottom: 36px; max-width: 18ch; color: var(--ink); font-weight: 600; letter-spacing: -1px; }
+    .content-slide .body-text { font-size: 28px; line-height: 1.45; max-width: 32em; font-weight: 500; }
+    .bullets { margin-top: 28px; padding: 0; list-style: none; }
+    .bullets li {
+      display: grid; grid-template-columns: 44px 1fr; gap: 22px;
+      padding: 16px 0; border-top: 2px solid rgba(74, 63, 51, 0.2);
+      font-family: var(--sans); font-size: 28px; line-height: 1.4; font-weight: 500;
+    }
+    .bullets li:first-child { border-top: none; }
+    .bullets .index {
+      font-family: var(--mono); font-size: 24px; font-weight: 700;
+      color: var(--ocker); padding-top: 2px;
+    }
+
+    /* ============ quote ============ */
+    .quote-slide {
+      flex: 1; position: relative; display: flex; flex-direction: column;
+      justify-content: center; padding-left: 96px;
+    }
+    .quote-slide .mark-open {
+      position: absolute; top: -40px; left: -10px;
+      font-family: var(--serif); font-size: 240px; line-height: 1;
+      color: var(--ocker); font-weight: 600;
+    }
+    .quote-slide blockquote {
+      margin: 0;
+      font-family: var(--serif); font-size: 52px; font-style: italic; font-weight: 600;
+      line-height: 1.25; color: var(--paper); max-width: 24ch; letter-spacing: -0.5px;
+    }
+    .quote-slide .attribution {
+      margin-top: 44px; font-size: 30px; font-weight: 700; color: var(--ocker);
+    }
+    .quote-slide .attribution::before { content: "— "; }
+    .quote-slide .context {
+      margin-top: 10px;
+      font-family: var(--mono); font-size: 16px; letter-spacing: 2px;
+      text-transform: uppercase; color: var(--paper); opacity: 0.8; font-weight: 600;
+    }
+
+    /* ============ callout ============ */
+    section.callout-outer { padding: 36px !important; }
+    section.callout-outer.varning { background: var(--bordeaux) !important; }
+    section.callout-outer.kalla { background: var(--ink) !important; }
+    .callout-inner {
+      background: var(--paper-2); width: 100%; height: 100%;
+      padding: 56px 72px;
+      display: flex; flex-direction: column; justify-content: space-between;
+    }
+    .callout-inner .top {
+      display: flex; justify-content: space-between;
+      font-family: var(--mono); font-size: 18px; letter-spacing: 2px;
+      text-transform: uppercase; font-weight: 800;
+    }
+    .callout-inner .bottom {
+      display: flex; justify-content: space-between;
+      font-family: var(--mono); font-size: 15px; letter-spacing: 2px;
+      text-transform: uppercase; font-weight: 600; color: var(--ink-2);
+    }
+    .callout-outer.varning .callout-inner .top { color: var(--bordeaux); }
+    .callout-inner h1 {
+      font-family: var(--serif); font-size: 64px; font-style: italic;
+      font-weight: 600; line-height: 1.05; color: var(--ink); max-width: 22ch; margin: 0;
+    }
+    .callout-inner .body-text {
+      font-size: 30px; line-height: 1.45; color: var(--ink); font-weight: 500;
+      margin-top: 28px; max-width: 26em;
+    }
+
+    /* ============ discuss ============ */
+    .discuss-slide { flex: 1; display: flex; flex-direction: column; justify-content: center; }
+    .discuss-slide h1 { font-size: 62px; line-height: 1; margin-bottom: 40px; color: var(--paper); letter-spacing: -0.8px; font-weight: 600; }
+    .questions { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 18px; }
+    .questions li {
+      display: grid; grid-template-columns: 60px 1fr; gap: 28px;
+      font-family: var(--sans); font-size: 28px; line-height: 1.35; color: var(--paper); font-weight: 500;
+    }
+    .questions .roman {
+      font-family: var(--serif); font-style: italic; font-size: 40px; font-weight: 600;
+      color: var(--ocker); padding-top: 4px;
+    }
+
+    /* ============ close ============ */
+    .close-slide { flex: 1; display: flex; flex-direction: column; }
+    .close-slide h1 { font-size: 64px; line-height: 1; margin-bottom: 32px; color: var(--ink); font-weight: 600; letter-spacing: -0.8px; }
+    .takeaways { list-style: none; padding: 0; margin: 0 0 40px; max-width: 42em; }
+    .takeaways li {
+      padding: 12px 0 12px 32px; position: relative;
+      font-family: var(--sans); font-size: 28px; line-height: 1.45; color: var(--ink); font-weight: 500;
+    }
+    .takeaways li::before {
+      content: "▪"; color: var(--bordeaux); position: absolute;
+      left: 0; top: 12px; font-size: 26px;
+    }
+    .next-steps {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: auto;
+    }
+    .next-box { background: var(--paper-2); padding: 24px 28px; border-left: 4px solid var(--ocker); }
+    .next-box:last-child { border-left-color: var(--marin); }
+    .next-box .label {
+      font-family: var(--mono); font-size: 18px; letter-spacing: 2px;
+      text-transform: uppercase; color: var(--ink-2); margin-bottom: 12px; font-weight: 700;
+    }
+    .next-box .text {
+      font-family: var(--serif); font-size: 26px; font-style: italic; font-weight: 500;
+      color: var(--ink); line-height: 1.35;
+    }
+
+    .reveal .progress { color: var(--bordeaux); }
+    .reveal .controls { color: var(--ink-2); }
+  </style>
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+      <!-- 1: COVER -->
+      <section class="cover-outer">
+        <div class="cover-inner">
+          <div class="top">
+            <span>Arkiv · v2 · Lektionsomslag</span>
+            <span>Historia 1a1</span>
+          </div>
+          <div>
+            <h1>Sighet <em>1944</em></h1>
+            <div class="subtitle">Ghetto. Tåg. <strong>Rampen.</strong> Tre steg på åtta veckor.</div>
+          </div>
+          <div class="bottom">
+            <span>Andra världskriget och Förintelsen · L 02 / 04</span>
+            <span>01 / 11</span>
+          </div>
+        </div>
+        <aside class="notes">
+          Lektion 2 av 4. Den tyngsta i bågen tillsammans med L3. Etisk inramning innan ni går in: säg explicit att lektionen behandlar deportation och ankomsten till Auschwitz, att ni kommer beskriva det i ord och inte visa grafiska bilder, och att eleverna kan säga till om något känns för mycket. Hédi-fotot från L1 kan stå framme på katedern som påminnelse om vem vi följer.
+        </aside>
+      </section>
+
+      <!-- 2: CONTENT — Retrieval -->
+      <section>
+        <div class="chrome paper">
+          <div class="masthead">
+            <span>Historia 1a1 · Andra världskriget och Förintelsen</span>
+            <span>Lektion 02 / 04</span>
+          </div>
+          <div class="body content-slide">
+            <div class="eyebrow">Introduktion · 5 min</div>
+            <h1>Vi mindes från <em>förra gången</em></h1>
+            <ul class="bullets">
+              <li class="fragment"><span class="index">01</span><span>Vad är <u>antisemitism</u>?</span></li>
+              <li class="fragment"><span class="index">02</span><span>Vad innebar <mark>Nürnberglagarna 1935</mark> för judiska familjer i Tyskland?</span></li>
+              <li class="fragment"><span class="index">03</span><span>Vart var Hédi och hennes familj år <strong>1938</strong> — och hur långt borta var allt detta?</span></li>
+            </ul>
+          </div>
+          <div class="baseline">
+            <span>Arkiv · v2</span>
+            <span>02 / 11</span>
+          </div>
+        </div>
+        <aside class="notes">
+          Snabb retrieval med no-hands-up. 30 sek tystnad per fråga, sedan 1–2 svar. Svar på fråga 3: Sighet, Ungern (annekterat 1940), långt borta från Berlin — och ändå skulle lagarna nå dit. Det blir bryggan till idag.
+        </aside>
+      </section>
+
+      <!-- 3: QUOTE — Hédi om våren 1944 -->
+      <section style="background: var(--ink) !important;">
+        <div class="chrome dark" style="background: var(--ink);">
+          <div class="masthead">
+            <span>Historia 1a1 · Andra världskriget och Förintelsen</span>
+            <span>Lektion 02 / 04</span>
+          </div>
+          <div class="body quote-slide">
+            <div class="mark-open">"</div>
+            <blockquote>Sandkorn läggs till sandkorn, och innan man vet ordet av har man en <u>sandhög</u> framför sig.</blockquote>
+            <div class="attribution">Hédi Fried</div>
+            <div class="context">Skärvor av ett liv · Natur &amp; Kultur</div>
+          </div>
+          <div class="baseline">
+            <span>Arkiv · v2</span>
+            <span>03 / 11</span>
+          </div>
+        </div>
+        <aside class="notes">
+          Hédis sandkornsmetafor från <em>Skärvor av ett liv</em>. Repris från L1 — men nu landar metaforen i ett <em>specifikt</em> ögonblick: våren 1944, då sandhögen plötsligt syntes. Säg: "Idag ser vi vad som händer när sandkornen blir en mur. Åtta veckor i Hédis liv."
+        </aside>
+      </section>
+
+      <!-- 4: SECTION — Tre steg på åtta veckor -->
+      <section style="background: var(--bordeaux) !important;">
+        <div class="chrome dark" style="background: var(--bordeaux);">
+          <div class="masthead">
+            <span>Historia 1a1 · Andra världskriget och Förintelsen</span>
+            <span>Lektion 02 / 04</span>
+          </div>
+          <div class="body section-slide">
+            <div class="big-num">02</div>
+            <div>
+              <div class="kapitel">Kapitel 02 · Vägen till lägret</div>
+              <h1>Tre steg på <em>åtta veckor</em></h1>
+              <div class="lede">Mars 1944: Tyskland ockuperar Ungern. Maj 1944: Hédi står på rampen i Auschwitz.</div>
+            </div>
+          </div>
+          <div class="baseline">
+            <span>Arkiv · v2</span>
+            <span>04 / 11</span>
+          </div>
+        </div>
+        <aside class="notes">
+          Kapitelmarkering. Lyft fram tempot: i åtta veckor från Tysklands ankomst i Ungern till deportationen till Auschwitz. När Ungern ockuperades hade Tyskland redan förlorat kriget i öst — det är en <em>desperat fas</em> där maskineriet jagar tid. Ungerns judar var ungefär en miljon — 437 000 deporterades på sju veckor.
+        </aside>
+      </section>
+
+      <!-- 5: CONTENT — Steg 1: Ghettot -->
+      <section>
+        <div class="chrome paper">
+          <div class="masthead">
+            <span>Historia 1a1 · Andra världskriget och Förintelsen</span>
+            <span>Lektion 02 / 04</span>
+          </div>
+          <div class="body content-slide">
+            <div class="eyebrow">Steg 1 · april 1944</div>
+            <h1>Sighetghettot — <em>staden krymper</em></h1>
+            <ul class="bullets">
+              <li class="fragment"><span class="index">▪</span><span>Tysk ockupation <mark>mars 1944</mark>. Eichmann anländer Budapest med deportationsplaner färdiga.</span></li>
+              <li class="fragment"><span class="index">▪</span><span>I Sighet: judar samlas i två getton — ca <strong>14 000 personer</strong> på några kvarter. Familjen Fried tvingas dit.</span></li>
+              <li class="fragment"><span class="index">▪</span><span>Ett <u>ghetto</u> är en avgränsad stadsdel där en grupp tvingas bo isolerad. <em>Inte ett läger</em> — men förberedelse.</span></li>
+            </ul>
+          </div>
+          <div class="baseline">
+            <span>Arkiv · v2</span>
+            <span>05 / 11</span>
+          </div>
+        </div>
+        <aside class="notes">
+          Begrepp introduceras "när Hédi möter det". Lyft fram att ghettot var en organisatorisk teknik — koncentrera människor på en plats för att lätt kunna transportera bort dem. Att kalla det "förvar" är felaktigt — syftet var deportation. Sighetghettot fanns i 4–5 veckor.
+        </aside>
+      </section>
+
+      <!-- 6: CONTENT — Steg 2: Tåget -->
+      <section>
+        <div class="chrome paper">
+          <div class="masthead">
+            <span>Historia 1a1 · Andra världskriget och Förintelsen</span>
+            <span>Lektion 02 / 04</span>
+          </div>
+          <div class="body content-slide">
+            <div class="eyebrow">Steg 2 · maj 1944</div>
+            <h1>Tåget — <em>tre dygn</em> i godsvagn</h1>
+            <ul class="bullets">
+              <li class="fragment"><span class="index">▪</span><span><u>Deportation</u> = tvångsförflyttning av en folkgrupp, ofta till läger. Inga rättigheter, ingen information om mål.</span></li>
+              <li class="fragment"><span class="index">▪</span><span><mark>80–100 personer</mark> per godsvagn. Ingen mat. En hink för avföring. Försluten utifrån.</span></li>
+              <li class="fragment"><span class="index">▪</span><span>Hédi, syster Livia, föräldrarna — alla i samma vagn. Cirka tre dygn till <strong>Auschwitz-Birkenau</strong>.</span></li>
+            </ul>
+          </div>
+          <div class="baseline">
+            <span>Arkiv · v2</span>
+            <span>06 / 11</span>
+          </div>
+        </div>
+        <aside class="notes">
+          Beskriv villkoren sakligt och kort — inte sensationellt. Eleverna behöver känna tyngden av <em>resan</em> innan vi når rampen. Säg: "När tåget anlände visste inte familjen att Auschwitz var en mördarstation. Det visste få utanför Tyskland innan kriget tog slut." Det är centralt för bystander-frågan i L3.
+        </aside>
+      </section>
+
+      <!-- 7: CONTENT — Steg 3: Rampen -->
+      <section>
+        <div class="chrome paper">
+          <div class="masthead">
+            <span>Historia 1a1 · Andra världskriget och Förintelsen</span>
+            <span>Lektion 02 / 04</span>
+          </div>
+          <div class="body content-slide">
+            <div class="eyebrow">Steg 3 · ankomst Auschwitz</div>
+            <h1>Rampen — <em>fem sekunder</em></h1>
+            <ul class="bullets">
+              <li class="fragment"><span class="index">▪</span><span><u>Selektion</u>: en SS-läkare pekar — vänster eller höger. Arbetsföra åt ena hållet, alla andra åt det andra.</span></li>
+              <li class="fragment"><span class="index">▪</span><span>De som pekades "vänster": <mark>direkt till gaskammaren</mark>. Barn, äldre, sjuka, mödrar med små barn.</span></li>
+              <li class="fragment"><span class="index">▪</span><span>Hédi och Livia: höger. Hédis <strong>föräldrar</strong>: vänster. De såg dem aldrig igen. Det här var Auschwitz som <u>förintelseläger</u>.</span></li>
+            </ul>
+          </div>
+          <div class="baseline">
+            <span>Arkiv · v2</span>
+            <span>07 / 11</span>
+          </div>
+        </div>
+        <aside class="notes">
+          Den tyngsta slidan i lektionen. Tala långsamt. Begreppet förintelseläger införs här — Auschwitz-Birkenau var både koncentrationsläger och förintelseläger samtidigt. Selektionen var en byråkratisk teknik som skiljde "användbara kroppar" från "kroppar att förstöra". Femton sekunder per familj. Hédi var 19 år. Föräldrarna 50-tal. Det är vad strukturen tar bort.
+        </aside>
+      </section>
+
+      <!-- 8: QUOTE — Hédi på rampen -->
+      <section style="background: var(--ink) !important;">
+        <div class="chrome dark" style="background: var(--ink);">
+          <div class="masthead">
+            <span>Historia 1a1 · Andra världskriget och Förintelsen</span>
+            <span>Lektion 02 / 04</span>
+          </div>
+          <div class="body quote-slide">
+            <div class="mark-open">"</div>
+            <blockquote>Mina föräldrar gick åt det andra hållet. Jag visste inte då att jag aldrig <u>skulle se</u> dem igen.</blockquote>
+            <div class="attribution">Hédi Fried · ungefärlig återgivning</div>
+            <div class="context">Verifieras mot Skärvor av ett liv · [VERIFIERA]</div>
+          </div>
+          <div class="baseline">
+            <span>Arkiv · v2</span>
+            <span>08 / 11</span>
+          </div>
+        </div>
+        <aside class="notes">
+          Citatet är en ungefärlig återgivning av Hédis återblickande beskrivning av selektionen — verifiera mot <em>Skärvor av ett liv</em> innan undervisning och justera ord om så behövs. Läs citatet långsamt, två gånger. Vänta. Lämna luft. Övergå sedan lugnt till elevaktiviteten — inte rusha.
+        </aside>
+      </section>
+
+      <!-- 9: DISCUSS — EPA -->
+      <section style="background: var(--mossgron) !important;">
+        <div class="chrome dark" style="background: var(--mossgron);">
+          <div class="masthead">
+            <span>Historia 1a1 · Andra världskriget och Förintelsen</span>
+            <span>Lektion 02 / 04</span>
+          </div>
+          <div class="body discuss-slide">
+            <div class="eyebrow">Elevaktivitet · 15 min · EPA</div>
+            <h1>Vad <em>såg vi</em> hända?</h1>
+            <ol class="questions">
+              <li class="fragment"><span class="roman">I.</span><span>Förklara med egna ord vad <strong>selektion</strong> innebar. <u>Vad avgjorde</u> vem som dog direkt?</span></li>
+              <li class="fragment"><span class="roman">II.</span><span>Familjen Fried visste inte vad som väntade. Vad <em>kunde</em> de ha vetat? Vad var <mark>dolt</mark>?</span></li>
+              <li class="fragment"><span class="roman">III.</span><span>Skriv en kort mening: <em>"Det jag tänker på efter dagens lektion är..."</em></span></li>
+            </ol>
+          </div>
+          <div class="baseline">
+            <span>Arkiv · v2</span>
+            <span>09 / 11</span>
+          </div>
+        </div>
+        <aside class="notes">
+          EPA: 5 min enskilt, 5 min par, 5 min helklass. Använd standardversion eller förenklad version av Hédi-utdraget som stöd. Fråga III är reflekterande — den ska finnas men inte tolkas. Den ger eleverna utrymme att lämna lektionen utan att ha sagt "fel sak". Cirkulera lugnt. Stötta utan att fördjupa själv.
+        </aside>
+      </section>
+
+      <!-- 10: CALLOUT — Exit ticket -->
+      <section class="callout-outer varning">
+        <div class="callout-inner">
+          <div class="top">
+            <span>▸ Exit ticket</span>
+            <span>Lektion 02 / 04</span>
+          </div>
+          <div>
+            <h1>Vad var <em>selektionen</em> — och <u>vad avgjorde</u>?</h1>
+            <div class="body-text"><strong>Förklara med egna ord</strong>, max fyra meningar. Använd minst ett av begreppen <em>ghetto · deportation · selektion · förintelseläger</em>.</div>
+          </div>
+          <div class="bottom">
+            <span>Arkiv · v2 · Callout</span>
+            <span>10 / 11</span>
+          </div>
+        </div>
+        <aside class="notes">
+          5 min skriftligt. Samla in fysiskt. Sortera i tre högar: konkret + använder begrepp / delvis / generella påståenden. Hög 2+3 → L3:s introduktion repeterar selektion + ghetto innan vi går in i lägertillvaron.
+        </aside>
+      </section>
+
+      <!-- 11: CLOSE — Preview L3 -->
+      <section>
+        <div class="chrome paper">
+          <div class="masthead">
+            <span>Historia 1a1 · Andra världskriget och Förintelsen</span>
+            <span>Lektion 02 / 04</span>
+          </div>
+          <div class="body close-slide">
+            <div class="eyebrow">Nästa lektion</div>
+            <h1>Lägret — <em>och frågan</em></h1>
+            <ul class="takeaways">
+              <li class="fragment">Vi följer Hédi inne i <strong>Auschwitz</strong> och senare Bergen-Belsen.</li>
+              <li class="fragment">Vi möter <em>bystander</em>-frågan: hur kunde en hel värld titta bort?</li>
+              <li class="fragment"><u>Förvarning</u>: L3 är tung. Men efter kommer L4 — vittnet, befrielsen, det vi minns.</li>
+            </ul>
+            <div class="next-steps">
+              <div class="next-box">
+                <div class="label">Om idag</div>
+                <div class="text">Tala med någon hemma om det känns kvar. Du kan alltid komma till mig eller elevhälsan.</div>
+              </div>
+              <div class="next-box">
+                <div class="label">Till L3</div>
+                <div class="text">Ta med dig <em>frågan</em>: hur kunde det här ske i ett <em>civiliserat</em> Europa?</div>
+              </div>
+            </div>
+          </div>
+          <div class="baseline">
+            <span>Arkiv · v2</span>
+            <span>11 / 11</span>
+          </div>
+        </div>
+        <aside class="notes">
+          Etisk landning. Säg explicit att L2 har varit tung och att L3 är tung också, men att L4 vänder mot vittnet och det vi minns — bågen leder mot mening och hopp, inte bara förlust. Erbjud samtal efter lektionen. Hänvisa till elevhälsan vid behov. Tonen lugn, inte rusha. Stå kvar 1–2 minuter efter att klockan slagit — det är när elever som mår dåligt brukar närma sig.
+        </aside>
+      </section>
+
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/reveal.js"></script>
+  <script>
+    Reveal.initialize({
+      hash: true,
+      slideNumber: false,
+      width: 1280,
+      height: 720,
+      margin: 0,
+      transition: 'fade',
+      controls: true,
+      progress: true
+    });
+  </script>
+</body>
+</html>
