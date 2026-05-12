@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lektion 3 — Mönstret avslöjas</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/reveal.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Inter+Tight:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --ink: #1F1A15; --ink-2: #4A3F33;
+      --paper: #F4EDE1; --paper-2: #EBE1CF;
+      --rule: #2A221A;
+      --bordeaux: #7A2E2E; --marin: #2C3E55; --oliv: #5A6A3A; --ocker: #B8862F;
+      --kritbla: #5A7A9A; --mossgron: #3E5A3E; --tegel: #C96442;
+      --serif: "Cormorant Garamond", Georgia, serif;
+      --sans: "Inter Tight", system-ui, sans-serif;
+      --mono: "JetBrains Mono", ui-monospace, monospace;
+    }
+    html, body { background: var(--ink); }
+    .reveal { font-family: var(--sans); color: var(--ink); font-size: 28px; font-weight: 500; }
+    .reveal .slides { text-align: left; }
+    .reveal .slides section { background: var(--paper); padding: 0; height: 100%; }
+    .reveal .slides section.present { display: flex !important; flex-direction: column; }
+
+    /* Chrome */
+    .chrome { width: 100%; height: 100%; padding: 32px 56px 28px; display: flex; flex-direction: column; position: relative; overflow: hidden; box-sizing: border-box; }
+    .chrome.paper { background: var(--paper); color: var(--ink); }
+    .chrome.dark { color: var(--paper); }
+    .chrome .masthead { display: flex; justify-content: space-between; align-items: baseline; font-family: var(--mono); font-size: 16px; letter-spacing: 2px; text-transform: uppercase; font-weight: 600; flex-shrink: 0; padding-bottom: 12px; }
+    .chrome .baseline { display: flex; justify-content: space-between; align-items: baseline; font-family: var(--mono); font-size: 15px; letter-spacing: 2px; text-transform: uppercase; font-weight: 600; flex-shrink: 0; padding-top: 12px; }
+    .chrome.paper .masthead { color: var(--ink-2); border-bottom: 2px solid var(--rule); }
+    .chrome.paper .baseline { color: var(--ink-2); border-top: 2px solid var(--rule); }
+    .chrome.dark .masthead { color: var(--paper); opacity: 0.7; border-bottom: 2px solid rgba(244,237,225,0.27); }
+    .chrome.dark .baseline { color: var(--paper); opacity: 0.7; border-top: 2px solid rgba(244,237,225,0.27); }
+    .chrome .body { flex: 1; display: flex; flex-direction: column; min-height: 0; padding: 32px 0; overflow: hidden; }
+
+    /* Typografi */
+    .reveal h1, .reveal h2, .reveal h3 { font-family: var(--serif); color: inherit; font-weight: 600; letter-spacing: -0.015em; text-transform: none; margin: 0; }
+    .reveal h1 { line-height: 1; }
+    .reveal h3 { font-family: var(--sans); font-size: 22px; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; }
+    .reveal em { font-style: italic; font-family: var(--serif); font-weight: 600; }
+    .reveal strong, .reveal b { font-weight: 800; }
+    .reveal mark { background: rgba(184,134,47,0.4); color: inherit; padding: 0 8px; border-radius: 2px; font-weight: 700; }
+    .reveal u { text-decoration: underline; text-decoration-color: var(--bordeaux); text-decoration-thickness: 4px; text-underline-offset: 6px; font-weight: 700; }
+    .chrome.dark mark { background: rgba(184,134,47,0.55); }
+    .chrome.dark u { text-decoration-color: var(--ocker); }
+
+    .eyebrow { font-family: var(--mono); font-size: 18px; letter-spacing: 2px; text-transform: uppercase; font-weight: 700; margin-bottom: 16px; color: var(--bordeaux); }
+    .eyebrow::before { content: "▸ "; }
+    .chrome.dark .eyebrow { color: var(--ocker); }
+    .lede { font-family: var(--serif); font-style: italic; font-weight: 500; font-size: 32px; line-height: 1.3; margin-top: 22px; color: var(--ink-2); max-width: 32ch; }
+    .chrome.dark .lede { color: var(--paper); opacity: 0.9; max-width: 38ch; }
+    .body-text { font-family: var(--sans); font-size: 28px; line-height: 1.45; max-width: 32em; font-weight: 500; }
+
+    /* COVER */
+    .cover-outer { background: var(--bordeaux) !important; padding: 36px; box-sizing: border-box; }
+    .cover-inner { background: var(--paper); height: 100%; padding: 56px 72px; display: flex; flex-direction: column; justify-content: space-between; box-sizing: border-box; }
+    .cover-inner .top { display: flex; justify-content: space-between; font-family: var(--mono); font-size: 17px; letter-spacing: 2px; text-transform: uppercase; }
+    .cover-inner .top span:first-child { color: var(--bordeaux); font-weight: 700; }
+    .cover-inner .top span:last-child { color: var(--ink-2); font-weight: 600; }
+    .cover-inner h1 { font-size: 116px; font-weight: 600; line-height: 1; letter-spacing: -2px; color: var(--ink); }
+    .cover-inner .subtitle { font-family: var(--serif); font-style: italic; font-weight: 500; font-size: 36px; color: var(--ink-2); margin-top: 28px; max-width: 22ch; }
+    .cover-inner .bottom { display: flex; justify-content: space-between; font-family: var(--mono); font-size: 16px; letter-spacing: 2px; text-transform: uppercase; color: var(--ink-2); font-weight: 600; }
+
+    /* SECTION */
+    .section-slide { position: relative; }
+    .section-slide .big-num { position: absolute; top: -20px; right: -20px; font-family: var(--serif); font-size: 340px; font-weight: 500; opacity: 0.2; letter-spacing: -8px; line-height: 0.85; }
+    .section-slide .kapitel { font-family: var(--mono); font-size: 18px; letter-spacing: 2px; text-transform: uppercase; font-weight: 700; color: var(--ocker); margin-bottom: 16px; }
+    .section-slide h1 { font-size: 96px; font-weight: 600; line-height: 1; max-width: 16ch; }
+    .section-slide .lede { color: var(--paper); opacity: 0.9; max-width: 26ch; }
+
+    /* QUESTION */
+    .question-slide h1 { font-size: 104px; font-weight: 600; line-height: 1.05; max-width: 15ch; }
+    .question-slide .lede { max-width: 38ch; font-size: 34px; }
+
+    /* CONTENT */
+    .content-slide h1 { font-size: 72px; font-weight: 600; max-width: 18ch; margin-bottom: 36px; line-height: 1.05; }
+    .content-slide .body-text { margin-bottom: 24px; }
+    .bullets { list-style: none; padding: 0; margin: 0; }
+    .bullets li { display: flex; gap: 24px; padding: 16px 0; font-size: 28px; font-weight: 500; line-height: 1.4; border-bottom: 2px solid rgba(74,63,51,0.33); }
+    .bullets li:last-child { border-bottom: none; }
+    .bullets li .index { font-family: var(--mono); font-size: 24px; font-weight: 700; color: var(--ocker); width: 44px; flex-shrink: 0; padding-top: 4px; }
+    .bullets li > span:last-child { flex: 1; max-width: 32em; }
+
+    /* TABLE */
+    .table-slide h1 { font-size: 56px; font-weight: 600; margin-bottom: 24px; line-height: 1.05; }
+    .table-slide .body-text { font-size: 24px; margin-bottom: 18px; max-width: 42em; }
+    .arkiv-table { width: 100%; border-collapse: collapse; }
+    .arkiv-table th { font-family: var(--mono); font-size: 16px; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; color: var(--ink-2); padding: 14px 18px; text-align: left; border-bottom: 2px solid var(--rule); }
+    .arkiv-table th:nth-child(2) { color: var(--bordeaux); }
+    .arkiv-table th:nth-child(3) { color: var(--marin); }
+    .arkiv-table td { font-family: var(--serif); font-size: 22px; font-weight: 500; padding: 16px 18px; border-bottom: 1px solid rgba(42,34,26,0.2); vertical-align: top; line-height: 1.35; }
+    .arkiv-table td:first-child { font-weight: 700; font-family: var(--sans); font-size: 20px; text-transform: uppercase; letter-spacing: 1px; color: var(--ink); }
+    .arkiv-table tr.done td { opacity: 0.55; }
+    .arkiv-table tr.active td { background: rgba(184,134,47,0.12); }
+
+    /* DISCUSS */
+    .discuss-slide h1 { font-size: 62px; font-weight: 600; max-width: 18ch; margin-bottom: 24px; line-height: 1.05; letter-spacing: -0.5px; }
+    .discuss-slide .questions { list-style: none; padding: 0; margin: 0; }
+    .discuss-slide .questions li { display: flex; gap: 24px; padding: 14px 0; align-items: baseline; }
+    .discuss-slide .questions .roman { font-family: var(--serif); font-style: italic; font-size: 36px; font-weight: 600; color: var(--ocker); width: 60px; flex-shrink: 0; }
+    .discuss-slide .questions li > span:last-child { font-size: 26px; font-weight: 500; color: var(--paper); flex: 1; max-width: 32em; }
+
+    /* CALLOUT */
+    .callout-outer { padding: 36px; box-sizing: border-box; }
+    .callout-outer.fakta { background: var(--marin) !important; }
+    .callout-outer.begrepp { background: var(--ocker) !important; }
+    .callout-outer.varning { background: var(--bordeaux) !important; }
+    .callout-inner { background: var(--paper-2); height: 100%; padding: 56px 72px; display: flex; flex-direction: column; justify-content: space-between; box-sizing: border-box; }
+    .callout-inner .top { display: flex; justify-content: space-between; font-family: var(--mono); font-size: 18px; letter-spacing: 2px; text-transform: uppercase; }
+    .callout-outer.fakta .callout-inner .top span:first-child { font-weight: 800; color: var(--marin); }
+    .callout-outer.begrepp .callout-inner .top span:first-child { font-weight: 800; color: var(--ocker); }
+    .callout-outer.varning .callout-inner .top span:first-child { font-weight: 800; color: var(--bordeaux); }
+    .callout-inner .top span:last-child { color: var(--ink-2); font-weight: 600; }
+    .callout-inner h1 { font-family: var(--serif); font-style: italic; font-size: 64px; font-weight: 600; color: var(--ink); max-width: 22ch; line-height: 1.05; }
+    .callout-inner .body-text { font-size: 28px; max-width: 30em; margin-top: 28px; line-height: 1.4; }
+    .callout-inner .quote-line { font-family: var(--serif); font-style: italic; font-size: 30px; font-weight: 500; border-left: 4px solid var(--bordeaux); padding-left: 24px; margin-top: 22px; color: var(--ink-2); max-width: 28em; line-height: 1.3; }
+    .callout-inner .bottom { display: flex; justify-content: space-between; font-family: var(--mono); font-size: 16px; letter-spacing: 2px; text-transform: uppercase; color: var(--ink-2); font-weight: 600; }
+
+    /* VIEWING */
+    .viewing-slide { display: flex; flex-direction: column; justify-content: center; align-items: flex-start; }
+    .viewing-slide h1 { font-size: 120px; font-weight: 600; line-height: 1; max-width: 14ch; }
+    .viewing-slide .lede { color: var(--paper); opacity: 0.9; max-width: 32ch; font-size: 36px; margin-top: 32px; }
+    .viewing-slide .meta { font-family: var(--mono); font-size: 18px; letter-spacing: 2px; text-transform: uppercase; font-weight: 700; color: var(--ocker); margin-bottom: 16px; }
+
+    /* MECHANISM CHAIN — för "varför ledande" */
+    .chain { display: grid; grid-template-columns: repeat(4, 1fr) auto; gap: 14px; margin-top: 28px; align-items: stretch; }
+    .chain-step { background: var(--paper-2); border-left: 4px solid var(--bordeaux); padding: 18px 20px; display: flex; flex-direction: column; }
+    .chain-step:nth-child(1) { border-left-color: var(--marin); }
+    .chain-step:nth-child(3) { border-left-color: var(--ocker); }
+    .chain-step:nth-child(5) { border-left-color: var(--bordeaux); }
+    .chain-step:nth-child(7) { border-left-color: var(--mossgron); }
+    .chain-step .num { font-family: var(--mono); font-size: 14px; font-weight: 700; letter-spacing: 2px; color: var(--ocker); margin-bottom: 6px; }
+    .chain-step .label { font-family: var(--serif); font-style: italic; font-size: 24px; font-weight: 600; color: var(--ink); line-height: 1.1; margin-bottom: 6px; }
+    .chain-step .desc { font-family: var(--sans); font-size: 16px; font-weight: 500; line-height: 1.35; color: var(--ink-2); }
+    .chain-arrow { display: flex; align-items: center; justify-content: center; font-family: var(--serif); font-size: 36px; font-weight: 700; color: var(--ocker); opacity: 0.6; }
+
+    /* CLOSE */
+    .close-slide h1 { font-size: 64px; font-weight: 600; margin-bottom: 32px; }
+    .takeaways { list-style: none; padding: 0; margin: 0 0 28px; }
+    .takeaways li { font-size: 26px; font-weight: 500; line-height: 1.4; padding: 8px 0 8px 28px; position: relative; max-width: 36em; }
+    .takeaways li::before { content: "▪"; position: absolute; left: 0; color: var(--bordeaux); font-size: 32px; line-height: 1; }
+    .next-steps { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 12px; }
+    .next-box { padding: 22px 26px; }
+    .next-box.exit { background: rgba(184,134,47,0.18); border-left: 4px solid var(--ocker); }
+    .next-box.next { background: rgba(44,62,85,0.12); border-left: 4px solid var(--marin); }
+    .next-box .label { font-family: var(--mono); font-size: 16px; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 8px; color: var(--ink-2); }
+    .next-box .text { font-family: var(--serif); font-style: italic; font-size: 24px; font-weight: 500; color: var(--ink); line-height: 1.3; }
+
+    .reveal .progress { color: var(--bordeaux); }
+    .reveal .controls { color: var(--ink-2); }
+  </style>
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+      <!-- 01 · COVER -->
+      <section class="cover-outer">
+        <div class="cover-inner">
+          <div class="top">
+            <span>Rätten och samhället · Kevinfallet och processrätten</span>
+            <span>Lektion 03 / 06</span>
+          </div>
+          <div>
+            <h1><em>Mönstret</em> avslöjas</h1>
+            <div class="subtitle">Avsnitt 2 — varför <strong>ledande frågor</strong> är farligare än de låter</div>
+          </div>
+          <div class="bottom">
+            <span>Arkiv · v2 · Kursomslag</span>
+            <span>01 / 13</span>
+          </div>
+        </div>
+        <aside class="notes">
+          Öppning (ca 1 min). Säg: "Förra gången hörde ni ledande frågor. Idag ska ni förstå *varför* de är farliga — inte bara känna det. Och ni ska se hur ett mönster växer fram över flera förhör."
+          Be eleverna ta fram matrisen och L2:s anteckningar. Datorerna fram endast om de används aktivt.
+        </aside>
+      </section>
+
+      <!-- 02 · QUESTION (mossgrön) — retrieval review -->
+      <section style="background: var(--mossgron) !important;">
+        <div class="chrome dark" style="background: var(--mossgron);">
+          <div class="masthead">
+            <span>Rätten och samhället · Lektion 03</span>
+            <span>Fas 1 · 5 min · retrieval</span>
+          </div>
+          <div class="body question-slide">
+            <div class="eyebrow">Retrieval — från L2</div>
+            <h1>Tre frågor — <em>utan</em> att titta</h1>
+            <div class="lede"><strong>1.</strong> Vad är en ledande fråga? · <strong>2.</strong> Vilka särskilda regler gäller barnförhör? · <strong>3.</strong> Vad menas med <em>oskuldspresumtionen</em>?</div>
+          </div>
+          <div class="baseline">
+            <span>Arkiv · v2</span>
+            <span>02 / 13</span>
+          </div>
+        </div>
+        <aside class="notes">
+          Fas 1 — Retrieval review (5 min). 2 min skrivande → 3 min gemensam genomgång.
+          Använd era exit tickets från L2 som signal: om många missade "varför processrätten brast" gav vag förklaring (typ "det var fel"), då behöver vi extra tid på mekanismerna idag — det är hela poängen med L3.
+          Fråga 3 är "lift-back" från L1 — påminn om att oskuldspresumtionen är navet de hela tiden ska återkomma till.
+        </aside>
+      </section>
+
+      <!-- 03 · CONTENT — Återblick matrisen -->
+      <section>
+        <div class="chrome paper">
+          <div class="masthead">
+            <span>Rätten och samhället · Lektion 03</span>
+            <span>Fas 1 · slut · 2 min</span>
+          </div>
+          <div class="body content-slide">
+            <div class="eyebrow">Var står vi i matrisen?</div>
+            <h1>Första raden — <em>Polisförhör</em></h1>
+            <ul class="bullets">
+              <li><span class="index">→</span><span><strong>Vad hände:</strong> upprepade förhör, ledande frågor, otydlig dokumentation, vuxna saknades.</span></li>
+              <li><span class="index">→</span><span><strong>Vad borde hänt:</strong> öppna frågor, full dokumentation, vårdnadshavare/särskild företrädare närvarande, specialutbildad förhörsledare.</span></li>
+              <li><span class="index">▸</span><span>Idag bygger vi <mark>raden Bevis &amp; beviskrav</mark> — men först ska vi förstå mekanismen.</span></li>
+            </ul>
+          </div>
+          <div class="baseline">
+            <span>Arkiv · v2</span>
+            <span>03 / 13</span>
+          </div>
+        </div>
+        <aside class="notes">
+          Fas 1 slut (2 min). Snabb sammanfattning. Eleverna ska se att de redan har en rad ifylld — det skapar momentum.
+          Hänvisa till exit tickets: lyft 1-2 starka formuleringar du sett från L2 (utan namn). Det visar att du läst och skapar mer engagemang inför dagens skrivande.
+          Bro: "Förra lektionen såg ni *att* ledande frågor är problem. Idag ska ni förstå *varför* — och det är vad er exit ticket idag handlar om."
+        </aside>
+      </section>
+
+      <!-- 04 · CONTENT — Dagens mål -->
+      <section>
+        <div class="chrome paper">
+          <div class="masthead">
+            <span>Rätten och samhället · Lektion 03</span>
+            <span>Fas 2 · 1 min</span>
+          </div>
+          <div class="body content-slide">
+            <div class="eyebrow">Dagens mål</div>
+            <h1>Vad ska vi <em>klara av</em> idag?</h1>
+            <ul class="bullets">
+              <li class="fragment"><span class="index">01</span><span><strong>Förstå</strong> mekanismen: hur ledande frågor påverkar minnet — <em>kontaminering</em>.</span></li>
+              <li class="fragment"><span class="index">02</span><span><strong>Se</strong> avsnitt 2 av <em>Fallet Kevin</em> — hur mönstret växer över flera förhör.</span></li>
+              <li class="fragment"><span class="index">03</span><span><strong>Fylla i</strong> matrisens andra rad: <mark>bevis &amp; beviskrav</mark>.</span></li>
+            </ul>
+          </div>
+          <div class="baseline">
+            <span>Arkiv · v2</span>
+            <span>04 / 13</span>
+          </div>
+        </div>
+        <aside class="notes">
+          Fas 2 — Målaktivering (1 min). Visa progressivt. Säg: "Idag är mekanism-lektionen. När ni går härifrån ska ni kunna förklara — inte bara peka."
+        </aside>
+      </section>
+
+      <!-- 05 · SECTION (bordeaux) — Mekanismen -->
+      <section style="background: var(--bordeaux) !important;">
+        <div class="chrome dark" style="background: var(--bordeaux);">
+          <div class="masthead">
+            <span>Rätten och samhället · Lektion 03</span>
+            <span>Fas 3 · 8 min</span>
+          </div>
+          <div class="body section-slide">
+            <div class="big-num">01</div>
+            <div>
+              <div class="kapitel">§ Kapitel 01</div>
+              <h1>Mekanismen <em>bakom</em> mönstret</h1>
+              <div class="lede">En ledande fråga är inte bara olämplig — den kan skapa minnen som aldrig fanns.</div>
+            </div>
+          </div>
+          <div class="baseline">
+            <span>Arkiv · v2</span>
+            <span>05 / 13</span>
+          </div>
+        </div>
+        <aside class="notes">
+          Fas 3 (ca 30 sek). Övergång. Säg: "Ni har sett att förhören var problematiska. Nu ska ni förstå *vad* som händer i ett barns huvud när frågorna är fel."
+        </aside>
+      </section>
+
+      <!-- 06 · CONTENT — Kedjan från fråga till falskt minne -->
+      <section>
+        <div class="chrome paper">
+          <div class="masthead">
+            <span>Rätten och samhället · Lektion 03</span>
+            <span>Fas 3 · 4 min</span>
+          </div>
+          <div class="body content-slide">
+            <div class="eyebrow">Mekanismen i fyra steg</div>
+            <h1>Från <em>fråga</em> till <em>falskt minne</em></h1>
+            <div class="chain">
+              <div class="chain-step">
+                <div class="num">01</div>
+                <div class="label">Ledande fråga</div>
+                <div class="desc">"Du knuffade Kevin, eller hur?" — frågan bär ett svar i sig.</div>
+              </div>
+              <div class="chain-arrow">→</div>
+              <div class="chain-step">
+                <div class="num">02</div>
+                <div class="label">Suggestion</div>
+                <div class="desc">Barnet plockar upp förhörsledarens förväntan — vill ge "rätt" svar.</div>
+              </div>
+              <div class="chain-arrow">→</div>
+              <div class="chain-step">
+                <div class="num">03</div>
+                <div class="label">Upprepning</div>
+                <div class="desc">Frågan ställs igen — och igen. Berättelsen bekräftas tills den känns sann.</div>
+              </div>
+              <div class="chain-arrow">→</div>
+              <div class="chain-step">
+                <div class="num">04</div>
+                <div class="label">Kontaminerat minne</div>
+                <div class="desc">Barnet "minns" händelsen som aldrig hände. Förhörsmetoden <u>skapade</u> bevisningen.</div>
+              </div>
+            </div>
+          </div>
+          <div class="baseline">
+            <span>Arkiv · v2</span>
+            <span>06 / 13</span>
+          </div>
+        </div>
+        <aside class="notes">
+          Fas 3 (4 min). Det här är dagens kärna. Gå långsamt genom kedjan. Be eleverna kopiera den till anteckningsboken — den ska sitta inför exit ticket.
+          [VERIFIERA: Forskningen om suggestibilitet hos barnvittnen är väletablerad — Elizabeth Loftus är klassikern. Stephen Ceci har specifikt forskat på barns minnesbildning under förhör. Inom svensk rätt har Sven Å Christianson varit central. Nämn gärna en namne om eleverna vill ha referens — men dubbelkolla aktuella verk innan.]
+          Pedagogisk fälla att undvika: säg INTE att barnet "ljuger". Det är fel mekanism. Barnet TROR på sitt nya minne — det är just det som är problemet.
+          Worked example: rita på tavlan en alternativ kedja där förhörsledaren ställer öppna frågor → barnet återger eget minne → ingen kontaminering. Kontrasten gör mekanismen synlig.
+        </aside>
+      </section>
+
+      <!-- 07 · CALLOUT (begrepp ocker) — Objektivitetsplikten fördjupad -->
+      <section class="callout-outer begrepp">
+        <div class="callout-inner">
+          <div class="top">
+            <span>▸ Princip</span>
+            <span>Lektion 03 / 06</span>
+          </div>
+          <div>
+            <h1>Sanningssökande, <em>inte</em> bekräftelsejakt</h1>
+            <div class="body-text">Förundersökningsledarens <strong>objektivitetsplikt</strong> (23 kap 4 § RB) innebär att även det som talar för den <u>misstänktes oskuld</u> ska utredas. Ledande frågor bryter mot denna princip — de letar bara efter bekräftelse av en hypotes.</div>
+            <div class="quote-line">När hypotesen "pojkarna gjorde det" blir styrande, sållas det som motsäger den bort. Det är <em>bekräftelsebias</em> i juridisk skrud. <strong>[VERIFIERA paragrafhänvisning.]</strong></div>
+          </div>
+          <div class="bottom">
+            <span>Arkiv · v2 · Princip</span>
+            <span>07 / 13</span>
+          </div>
+        </div>
+        <aside class="notes">
+          Fas 3 (3 min). Återkoppla till L1, slide 6 — då sa vi att objektivitetsplikten finns. Idag konkretiserar vi den genom Kevinfallets förhörsmetod.
+          [VERIFIERA: 23 kap 4 § rättegångsbalken är rätt paragraf för objektivitetsplikt i förundersökning. Dubbelkolla aktuell lydelse.]
+          Brygga till kognition: "Inom forskning kallar man det 'bekräftelsebias' — vi söker information som stödjer vår hypotes och avfärdar det som motsäger. Det är mänskligt. Men i en förundersökning är det förbjudet."
+          Slänger in mål 3-ingång: vi bygger nu mot lektion 5 där vi diskuterar *varför* reglerna finns. Bekräftelsebias är kärnan i svaret.
+        </aside>
+      </section>
+
+      <!-- 08 · CONTENT — Tre saker att leta efter -->
+      <section>
+        <div class="chrome paper">
+          <div class="masthead">
+            <span>Rätten och samhället · Lektion 03</span>
+            <span>Fas 3 · slut · 2 min</span>
+          </div>
+          <div class="body content-slide">
+            <div class="eyebrow">Under visningen — leta efter</div>
+            <h1>Tre saker att <em>anteckna</em></h1>
+            <ul class="bullets">
+              <li class="fragment"><span class="index">01</span><span><strong>Upprepning:</strong> ser ni samma fråga komma tillbaka i nya former? <mark>Bygger berättelsen på sig själv?</mark></span></li>
+              <li class="fragment"><span class="index">02</span><span><strong>Bevisvärde:</strong> vad räknades som "bevis" av polisen? Skulle det hållit i en domstol med <em>"utom rimligt tvivel"</em>?</span></li>
+              <li class="fragment"><span class="index">03</span><span><strong>Objektivitet:</strong> letar utredarna efter <u>vad som hände</u> — eller efter att <u>bekräfta</u> en hypotes?</span></li>
+            </ul>
+          </div>
+          <div class="baseline">
+            <span>Arkiv · v2</span>
+            <span>08 / 13</span>
+          </div>
+        </div>
+        <aside class="notes">
+          Fas 3 slut (2 min). Tre kolumner i anteckningsboken igen. Fokus är skarpare än L2 — nu letar de efter mekanismer, inte enskilda misstag.
+          Stöd mot E: påminn dem att de får använda kedjan från slide 6 som mall. "När ni hör en ledande fråga — fråga er: vad var steg 2, 3, 4?"
+          Utmaning mot A: "Försök hitta ett tillfälle där en utredare *bröt mönstret* — ställde en öppen fråga, lyssnade på ett motsägande svar. Finns det? Vad hände då?"
+        </aside>
+      </section>
+
+      <!-- 09 · VIEWING (ink) -->
+      <section style="background: var(--ink) !important;">
+        <div class="chrome dark" style="background: var(--ink);">
+          <div class="masthead">
+            <span>Rätten och samhället · Lektion 03</span>
+            <span>Visning · 60 min</span>
+          </div>
+          <div class="body viewing-slide">
+            <div class="meta">▸ Avsnitt 2 av 3</div>
+            <h1><em>Vi tittar nu</em></h1>
+            <div class="lede">Fallet Kevin — avsnitt 2. SVT Play. <strong>Mekanismen</strong> ni precis lärt er — leta efter den i förhören.</div>
+          </div>
+          <div class="baseline">
+            <span>Arkiv · v2</span>
+            <span>09 / 13</span>
+          </div>
+        </div>
+        <aside class="notes">
+          Visning (60 min). [VERIFIERA: Avsnitt 2 av "Fallet Kevin", SVT Play. Cirka 58-60 min. Dubbelkolla tillgänglighet före lektion.]
+          Du som lärare: notera tidpunkter där eleverna reagerar starkt — bra material för matrisarbetet efter.
+          Pausläge: pausa INTE. Helhetsupplevelsen är poängen — sönderhackad analys missar mönsterbildningen som hela episoden visar.
+          Backup om tekniken strular: ge eleverna istället ett transkript-utdrag att analysera med kedjan från slide 6 som verktyg.
+        </aside>
+      </section>
+
+      <!-- 10 · SECTION (marin) — Matrisen fortsätter -->
+      <section style="background: var(--marin) !important;">
+        <div class="chrome dark" style="background: var(--marin);">
+          <div class="masthead">
+            <span>Rätten och samhället · Lektion 03</span>
+            <span>Fas 4 · 5 min</span>
+          </div>
+          <div class="body section-slide">
+            <div class="big-num">02</div>
+            <div>
+              <div class="kapitel">§ Kapitel 02</div>
+              <h1>Matrisen — <em>andra raden</em></h1>
+              <div class="lede">Bevis och beviskrav. Vad räknades som bevis 1998 — och vad borde räknats?</div>
+            </div>
+          </div>
+          <div class="baseline">
+            <span>Arkiv · v2</span>
+            <span>10 / 13</span>
+          </div>
+        </div>
+        <aside class="notes">
+          Fas 4 (ca 20 sek på övergångsslajd). Ge eleverna 30 sek tystnad efter avsnittet om de behöver det. Avsnitt 2 är ofta starkare än 1 — mönstret blir tydligt.
+          Säg: "Förra gången skrev ni *vad* som hände. Idag ska ni dessutom analysera *vad det betyder* för bevisvärdet."
+        </aside>
+      </section>
+
+      <!-- 11 · TABLE — matrisen, raden bevis & beviskrav -->
+      <section>
+        <div class="chrome paper">
+          <div class="masthead">
+            <span>Rätten och samhället · Lektion 03</span>
+            <span>Fas 4 · 5 min · individuellt</span>
+          </div>
+          <div class="body table-slide">
+            <div class="eyebrow">Matrisen — raden Bevis &amp; beviskrav</div>
+            <h1>Hade <em>bevisen</em> hållit i en domstol?</h1>
+            <p class="body-text">Fyll i raden. Tänk: vad fanns det egentligen för bevis utöver pojkarnas egna utsagor? Och vad var värdet på <strong>utsagor</strong> som tagits fram med ledande frågor?</p>
+            <table class="arkiv-table">
+              <thead>
+                <tr>
+                  <th>Moment i processen</th>
+                  <th>Vad hände faktiskt</th>
+                  <th>Vad borde hänt enligt processrätten</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="done">
+                  <td>Polisförhör</td>
+                  <td><em>(klar — L2)</em></td>
+                  <td><em>(klar — L2)</em></td>
+                </tr>
+                <tr class="active">
+                  <td>Bevis &amp; beviskrav</td>
+                  <td><em>Ex: pojkarnas egna utsagor — framtagna med ledande frågor — utgjorde grunden. Saknades teknisk bevisning som styrkte berättelsen.</em></td>
+                  <td><em>Ex: bevisen ska vara <strong>oberoende</strong> av varandra och hålla för "utom rimligt tvivel". Utsagor från kontaminerade förhör har mycket lågt bevisvärde.</em></td>
+                </tr>
+                <tr>
+                  <td>Avskrivning</td>
+                  <td><em>(fortsätter L4)</em></td>
+                  <td><em>(fortsätter L4)</em></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="baseline">
+            <span>Arkiv · v2</span>
+            <span>11 / 13</span>
+          </div>
+        </div>
+        <aside class="notes">
+          Fas 4 (5 min). Exempelraden är stöd — inte facit. Cirkulera och titta över axlar.
+          Stöd mot E: använd exempeltexten direkt. Säg: "Ni får skriva av — men förklara *varför* utsagorna har lågt bevisvärde."
+          Utmaning mot A: "Lägg till en extra dimension: vilket samband finns mellan rad 1 (förhören) och rad 2 (bevisen)? Hur orsakar det första det andra?"
+          Nyckelpoäng som ska komma fram i klassen: bevisen var till stor del *resultatet* av förhörsmetoden — inte oberoende bevisning. Det är pedagogiskt centralt för att förstå varför fallet kunde skrivas av 2018.
+        </aside>
+      </section>
+
+      <!-- 12 · DISCUSS (mossgrön) — par-delning -->
+      <section style="background: var(--mossgron) !important;">
+        <div class="chrome dark" style="background: var(--mossgron);">
+          <div class="masthead">
+            <span>Rätten och samhället · Lektion 03</span>
+            <span>Fas 4 · slut · 3 min · par</span>
+          </div>
+          <div class="body discuss-slide">
+            <div class="eyebrow">Stäm av med bordsgrannen</div>
+            <h1>Inför <em>exit ticket</em></h1>
+            <ol class="questions">
+              <li class="fragment"><span class="roman">I.</span><span>Förklara <strong>kedjan</strong> för varandra — från ledande fråga till kontaminerat minne.</span></li>
+              <li class="fragment"><span class="roman">II.</span><span>Vilken <em>princip</em> bröt utredarna mot när de använde ledande frågor?</span></li>
+              <li class="fragment"><span class="roman">III.</span><span>Vad <u>förlorar man</u> som rättsstat när bevisningen är kontaminerad?</span></li>
+            </ol>
+          </div>
+          <div class="baseline">
+            <span>Arkiv · v2</span>
+            <span>12 / 13</span>
+          </div>
+        </div>
+        <aside class="notes">
+          Fas 4 slut (3 min). EPA-par. Det här är direkt förberedelse för exit ticket — eleverna pratar igenom svaret innan de skriver det.
+          Cirkulera. Plocka upp en stark formulering och säg: "Det är så er exit ticket kan låta." (utan att avslöja vem som sa det)
+          Fråga III är preview för L5 (rättssäkerhet). Inget krav på fullständigt svar — bara att de tänker tanken.
+        </aside>
+      </section>
+
+      <!-- 13 · CLOSE -->
+      <section>
+        <div class="chrome paper">
+          <div class="masthead">
+            <span>Rätten och samhället · Lektion 03</span>
+            <span>Fas 5 · 2 min</span>
+          </div>
+          <div class="body close-slide">
+            <div class="eyebrow">Innan vi avslutar</div>
+            <h1><em>Tre saker</em> att ta med</h1>
+            <ul class="takeaways">
+              <li class="fragment">Ledande frågor är farliga eftersom de <em>skapar</em> minnen — inte bara förvränger dem. Kedjan: fråga → suggestion → upprepning → kontaminering.</li>
+              <li class="fragment"><em>Objektivitetsplikten</em> (23 kap 4 § RB) kräver att även det som talar för oskuld utreds — ledande frågor är bekräftelsejakt och bryter mot principen.</li>
+              <li class="fragment">När bevisen är <u>kontaminerade</u> rasar beviskravet "utom rimligt tvivel" — utsagorna är inte oberoende.</li>
+            </ul>
+            <div class="next-steps">
+              <div class="next-box exit">
+                <div class="label">Exit ticket</div>
+                <div class="text">Förklara med egna ord: <em>varför är ledande frågor problematiska?</em> Använd minst en mekanism (kedjan) <strong>och</strong> en juridisk princip.</div>
+              </div>
+              <div class="next-box next">
+                <div class="label">Nästa lektion</div>
+                <div class="text">Lektion 04 — <em>avsnitt 3</em>. Rättens efterspel: vad innebär det att fallet skrevs av?</div>
+              </div>
+            </div>
+          </div>
+          <div class="baseline">
+            <span>Arkiv · v2</span>
+            <span>13 / 13</span>
+          </div>
+        </div>
+        <aside class="notes">
+          Fas 5 — Avslut (2 min). Visa takeaways progressivt. Läs exit ticket-frågan högt: "Mekanism *och* princip — båda. Annars halvt svar."
+          Två krav i en fråga (mekanism + princip) är pedagogiskt medvetet — det tvingar fram både kognitiv förståelse (mekanismen) och juridisk förankring (principen). Det är så mål 2 (tillämpning) operationaliseras.
+          Sortera exit tickets i tre högar (båda kraven uppfyllda / ett av två / vag) — informerar L4 retrieval review.
+          Preview L4: "Nästa gång ser vi sista avsnittet. Då pratar vi om avskrivning — minns ni från L1 att 'skrivs av' INTE är samma som 'frikänd'? Det blir centralt."
+        </aside>
+      </section>
+
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/reveal.js"></script>
+  <script>
+    Reveal.initialize({
+      hash: true,
+      slideNumber: false,
+      width: 1280,
+      height: 720,
+      margin: 0,
+      transition: 'fade',
+      controls: true,
+      progress: true
+    });
+  </script>
+</body>
+</html>
