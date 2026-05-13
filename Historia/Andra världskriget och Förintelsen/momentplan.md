@@ -1,10 +1,10 @@
 ---
 created: 2026-05-07
-updated: 2026-05-07
+updated: 2026-05-13
 created_by: claude-opus-4-7
 updated_by: claude-opus-4-7
 agent_version: 03.26
-status: planering klar (steg 1-4); generering parkerad till ny session — se generationsplan.md
+status: planering klar (steg 1-4); designsystem bytt till Arkiv v2.1 (2026-05-13); generering parkerad till ny session — se generationsplan.md
 ---
 
 # Momentplan: Andra världskriget och Förintelsen
@@ -37,7 +37,7 @@ status: planering klar (steg 1-4); generering parkerad till ny session — se ge
   - Evidensbaserad pedagogik: retrieval practice (prio 1), scaffolding, kognitiv konflikt, interleaving
   - Lärarledda genomgångar med tydlig modellering
   - Differentiering: standard- *och* förenklad textversion produceras alltid
-  - Designsystem: navy `#1B3A5C`, guld `#C8A951`, crème bakgrund; Calibri 13pt brödtext; Georgia rubriker
+  - Designsystem: **Arkiv v2.1** — Papper `#F4EDE1`, Bläck `#1F1A15`, Bordeaux `#7A2E2E` (signatur), Marin `#2C3E55`, Oliv `#5A6A3A`, Ocker `#B8862F`, Mossgrön `#3E5A3E`; Cormorant Garamond (rubriker/citat), Inter Tight (brödtext), JetBrains Mono (metadata/versaler). Inga emojis — typografiska tecken `▸ ● ▪ § №`.
   - Flashcards: landskap-A4, 2×2-rutnät, baksidor byter rader, "vänd på långsidan"
   - Frågedatabaser i CSV-format med Bloom-tagg
 

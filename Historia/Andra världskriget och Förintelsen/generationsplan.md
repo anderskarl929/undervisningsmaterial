@@ -1,10 +1,12 @@
 ---
 created: 2026-05-07
-updated: 2026-05-07
+updated: 2026-05-13
 created_by: claude-opus-4-7
 updated_by: claude-opus-4-7
 agent_version: 03.26
 purpose: Självförsörjande arbetsorder för att generera allt material för momentet "Andra världskriget och Förintelsen" (Historia 1a1) i en ny session efter /clear
+changelog:
+  - 2026-05-13 — Designsystemet bytt från Historia 1a1-eget (navy/guld/crème, Calibri/Georgia) till **Arkiv v2.1** (Papper/Bläck/Bordeaux, Cormorant Garamond/Inter Tight/JetBrains Mono). Uppgift 4 (presentationer) och Uppgift 6 (momentöversikt) omskrivna. Lektion 1 är redan genererad med det gamla systemet och behöver regenereras om enhetlighet är viktig.
 ---
 
 # Generationsplan: Andra världskriget och Förintelsen
@@ -17,7 +19,7 @@ Detta dokument är en **fullständig arbetsorder** för en ny session med rent k
 
 1. Läs hela denna fil först.
 2. Läs också `momentplan.md` för bakgrund.
-3. Läs kursminnet: `.claude/planera-moment/minne/historia-1a1.md` — *särskilt viktigt eftersom det avviker från skillens defaults (4-fasstruktur istället för sex-fas, eget designsystem istället för Arkiv v2.1).*
+3. Läs kursminnet: `.claude/planera-moment/minne/historia-1a1.md` — *särskilt viktigt eftersom det avviker från skillens defaults (4-fasstruktur istället för sex-fas).* **OBS:** Designsystemet är uppdaterat — detta moment använder **Arkiv v2.1** (inte det tidigare navy/guld/crème-systemet). Om kursminnet fortfarande anger det gamla systemet, gäller Arkiv v2.1 för detta moment.
 4. Aktivera NotebookLM Historia 1a1: `notebooklm use 1bc8bd88-16ca-4b2a-b8c6-c62e6dcf2bce`
 5. Generera material i ordning enligt **§ Genereringsuppgifter** nedan, **en uppgift i taget**, och be läraren godkänna varje innan du fortsätter.
 6. Avsluta med att uppdatera kursminnet enligt skillens avslutningsinstruktioner.
@@ -34,7 +36,7 @@ Detta dokument är en **fullständig arbetsorder** för en ny session med rent k
 | **Pedagogisk ansats** | **Ansats A — Narrativ ankarpedagogik** (Hédis berättelse driver varje lektion; begrepp introduceras *"när Hédi möter dem"*) |
 | **Omfång** | 7 lektioner × 40 min |
 | **Bedömning** | Skriftligt prov efter L7 |
-| **Designsystem** | Historia 1a1 — navy/guld/crème (INTE Arkiv v2.1) |
+| **Designsystem** | **Arkiv v2.1** — Papper/Bläck/Bordeaux/Marin/Oliv/Ocker, Cormorant Garamond + Inter Tight + JetBrains Mono |
 | **Differentiering** | Standard + förenklad version av varje arbetsblad/elevtext |
 | **Status detta moment** | Omarbetning av tidigare "Världskrigen"-moment (2026-03-29) |
 | **NotebookLM** | Aktiverad. Innehåller *A History of World Societies* + *The Penguin History of the World*. **Hédi Fried saknas** — använd Claudes inbyggda kunskap med `[VERIFIERA]`. Primo Levi finns dokumenterad och kan användas som komplement. |
@@ -79,7 +81,7 @@ Från `.claude/planera-moment/minne/historia-1a1.md`:
 - **Differentiering inbyggd:** alla material i två versioner (standard + förenklad)
 - **Frågor taggade med Bloom-nivå** + kopplade till E/C/A explicit
 - **Frågedatabaser i CSV-format**
-- **Eget designsystem** (se nedan)
+- **Arkiv v2.1** som designsystem (se nedan) — detta moment bryter från kursminnets gamla navy/guld/crème
 - **Flashcards i specifikt format** (se nedan)
 - **Konstruktiv alignment** (Blooms taxonomi, bedömningskriterier per uppgift)
 - **Gränsfallsanalys** vid bedömning (C/A, E/C, F/E-gränser)
@@ -87,23 +89,78 @@ Från `.claude/planera-moment/minne/historia-1a1.md`:
 
 ---
 
-## § Designsystem för Historia 1a1
+## § Designsystem — Arkiv v2.1
 
-| Element | Värde |
-|---------|-------|
-| Primärfärg (navy) | `#1B3A5C` |
-| Accentfärg (guld) | `#C8A951` |
-| Bakgrund | crème [VERIFIERA exakt hex genom att titta på tidigare moment-material i `Brain/` eller `Undervisningsmaterial/Historia/`] |
-| Brödtext | Calibri 13pt med generös radavstånd |
-| Rubriker | Georgia |
-| Flashcards | Landskaps-A4, 2×2-rutnät, baksidor måste byta rader (rad 1↔rad 2), kolumner behålls. Motsvarar **långsides-flip**. Titelsida: "vänd på långsidan" |
+Detta moment använder **Arkiv v2.1** — användarens generella designsystem för allt undervisningsmaterial. Akademisk, lugn, bokig estetik med varm papperston. Full spec finns i `/slides`-skillen och i `resources/sam3-globalisering-vardag-till-varldssystem/Arkiv-deck-spec-v2.md`.
 
-**Innan generering:** sök efter tidigare moment för Historia 1a1 (t.ex. "Industriella revolutionen", "Världskrigen") för att finna exakta värden för crème och eventuella malldokument:
-```bash
-find "/home/anders/Second brain" -path "*/Historia/*" -name "*.docx" 2>/dev/null | head
-find "/home/anders/Second brain" -path "*/Historia/*" -name "*.html" 2>/dev/null | head
-ls /tmp/undervisningsmaterial/Historia/ 2>/dev/null  # eller klona repot
-```
+### Färger
+
+| Roll | Namn | Hex | Användning |
+|------|------|-----|------------|
+| Bakgrund | Papper | `#F4EDE1` | Standardbakgrund |
+| Bakgrund alt. | Papper 2 | `#EBE1CF` | Informationsrutor, sekundära ytor |
+| Text | Bläck | `#1F1A15` | All primär text |
+| Text sek. | Bläck 2 | `#4A3F33` | Metadata, bildtexter |
+| Linje | Regel | `#2A221A` | Ramar, skiljelinjer |
+| Accent 1 | **Bordeaux** | `#7A2E2E` | Signaturfärg · rubriker · citat · etiskt tunga teman (L4, L5, L6) |
+| Accent 2 | Marin | `#2C3E55` | Fakta · analys · statistik |
+| Accent 3 | Oliv | `#5A6A3A` | Tips · reflektion · "bra exempel" |
+| Accent 4 | Ocker | `#B8862F` | Highlight · årtal · viktigt begrepp |
+| Accent 5 | Kritblå | `#5A7A9A` | Tema-slides bakgrund |
+| Accent 6 | Mossgrön | `#3E5A3E` | Frågor/reflektion (discuss-slides) |
+| Accent 7 | Tegel | `#C96442` | Varm highlight när ocker är för blek |
+
+Max **tre** accentfärger per slide.
+
+### Typografi
+
+| Roll | Font | Storlek | Stil |
+|------|------|---------|------|
+| Display/H1 | Cormorant Garamond | 88–104 px | 500, tillåten 600 bold |
+| H2 | Cormorant Garamond | 40 px | 500, ofta kursiv |
+| H3 | Inter Tight | 22 px | 600 uppercase, 1 px ls |
+| Brödtext | Inter Tight | 22/32 | 400 |
+| Brödtext stor | Inter Tight | 26/36 | 400 (frågor/citat) |
+| Ingress | Cormorant Garamond | 30 px | 400 kursiv |
+| Label/meta | JetBrains Mono | 13–14 px | 500, versaler, 2 px ls |
+| Citat | Cormorant Garamond | 42–54 px | 500 kursiv |
+| Siffror XL | Cormorant Garamond | 160–240 px | 400 (fokusslides) |
+
+Minsta tillåtna storlek på slide: 18 px (metadata). Allt annat minst 22 px.
+
+### Betoningsverktyg (fyra)
+
+| Syntax | Effekt |
+|--------|--------|
+| `*ord*` | Kursiv Cormorant |
+| `**ord**` | Bold |
+| `==ord==` | Ocker markeringsfärg bakom (`#B8862F33`) |
+| `__ord__` | Bordeaux understreck (3 px solid `#7A2E2E`) |
+
+Max **två** betonade ord per rubrik, max **fem** per brödtextstycke.
+
+### Signaturdrag
+
+- Ett kursivt nyckelord per rubrik (`*ord*`) — aldrig bold
+- Frågor som rubriker där det passar
+- Typografiska tecken: `▸ ● ▪ § №` — **aldrig emojis**
+- Mono-versaler med 2 px letter-spacing för metadata
+- Tunna regler (1.5 px linjer) som strukturelement
+
+### Flashcards
+
+Landskaps-A4, 2×2-rutnät, baksidor måste byta rader (rad 1↔rad 2), kolumner behålls. Motsvarar **långsides-flip**. Titelsida: "vänd på långsidan".
+
+Färgsättning i Arkiv-paletten: papper-bakgrund med bordeaux/marin/ocker som accenter (inte navy/guld).
+
+### Palett per slidetema (för detta moment)
+
+Eftersom momentet är etiskt tungt och narrativt:
+- **L1–L2 (Hédis vardag, krigets utbrott):** Papper + bordeaux som rubrikkulör — varma, mänskliga ton
+- **L3 (Sighet stängs in):** Marin för fakta + bordeaux för Hédis citat
+- **L4–L5 (deportation, läger):** Bordeaux eller bläck som helyta-bakgrund (Mönster B) på de tyngsta slides — quote-slides med Hédis röst i paper-färg
+- **L6 (analys):** Mossgrön bakgrund på question/discuss-slides; ocker för nyckelbegrepp (`bystander`, `folkmord`)
+- **L7 (befrielsen + vittnet):** Oliv som accent — reflektion och arv
 
 ---
 
@@ -212,8 +269,10 @@ För varje lektion enligt 4-fasstrukturen (40 min):
 
 **Word-specifikation** (per kursminnet och `.claude/skills/docx/SKILL.md`):
 - A4 (11906 × 16838 DXA), 1″-marginaler
-- Rubriker som Heading 1/Heading 2 (Georgia om möjligt, annars Calibri bold)
-- Brödtext Calibri 13pt
+- Rubriker som Heading 1/Heading 2 (**Cormorant Garamond** om möjligt, annars systemserif som Georgia)
+- Brödtext **Inter Tight 12pt** (eller systemsans som Calibri 12pt om Inter inte finns)
+- Bordeaux `#7A2E2E` som rubrikkulör; Bläck `#1F1A15` för brödtext
+- Papper `#F4EDE1` som sidbakgrund (om Word-mallen stödjer sidfärg) eller paper-färgade rutor för callouts
 - Tidsplaneringen som riktig tabell (DXA, ej percentage)
 - Bullets med `LevelFormat.BULLET`
 - Sidfot: "Historia 1a1 · Andra världskriget och Förintelsen · Lektion N"
@@ -279,36 +338,44 @@ fråga,svar,bloom_nivå,e_c_a,lektion,begrepp,kategori
 
 Spara: `Undervisningsmaterial/Historia/Andra världskriget och Förintelsen/fragedatabas.csv`
 
-### Uppgift 4: 7 presentationer (Historia 1a1-designsystem)
+### Uppgift 4: 7 presentationer (Arkiv v2.1)
 
-⚠ **INTE Arkiv v2.1** — använd kursens eget designsystem (navy/guld/crème, Calibri/Georgia).
-
-Format: HTML med reveal.js eller PowerPoint (.pptx) — välj det som matchar tidigare moment i kursen. Sök efter tidigare presentationer i Historia 1a1 för att se vilket format som används:
-
-```bash
-find "/home/anders/Second brain" -path "*/Historia/*" -name "*.pptx" 2>/dev/null | head
-find "/home/anders/Second brain" -path "*/Historia/*" -name "presentation*" 2>/dev/null | head
-```
+Använd **Arkiv v2.1** — användarens designsystem för allt undervisningsmaterial. Format: HTML (16:9, 1280×720 px) genererad via `/slides`-skillen, som redan är Arkiv-native.
 
 **Innehåll per presentation (~10–14 slides per 40 min-lektion):**
-- Titelsida med lektion N + tema
-- Lektionens mål (elevvänligt språk)
-- Krok från Hédis text
-- Innehållsslides: faktagenomgång + Hédis citat omväxlande
-- Begreppsslides (en per nyckelbegrepp som introduceras i lektionen)
-- Diskussionsfråga eller EPA-slide
-- Avslutsslide med exit ticket-fråga + preview nästa lektion
+- **`cover`** — Titelsida med lektion N + tema (Mönster D: bordeaux-ram + paper-yta)
+- **`question`** — Lektionens stora fråga eller Hédi-krok (Mönster B: mossgrön eller bordeaux helyta)
+- **`content`** — Faktagenomgång (Mönster A: paper + bordeaux eyebrow)
+- **`quote`** — Hédis citat (Mönster B: bläck eller bordeaux helyta, gigantiskt öppnande `"` i ocker)
+- **`callout`** — Begreppsslides (en per nyckelbegrepp; Mönster D ramad — ramfärg `ocker` för begrepp)
+- **`timeline`** — Tidslinje där relevant (paper + ockerfärgad linje)
+- **`discuss`** — Diskussionsfråga eller EPA-slide (Mönster B: mossgrön bakgrund, romerska siffror i ocker)
+- **`close`** — Avslutsslide med exit ticket-fråga + preview nästa lektion (Mönster A: paper + färgade rutor i botten)
 - Talarnoter på varje slide
 
-**Designprinciper:**
-- Navy `#1B3A5C` som primärfärg
-- Guld `#C8A951` som accent
-- Crème bakgrund [VERIFIERA hex]
-- Calibri 13pt brödtext (storlek upp för slidesvy: minst 24pt)
-- Georgia rubriker
-- **INGA emojis** — typografiska tecken (▸ ● ▪ §) får användas
+**Designprinciper (Arkiv v2.1):**
+- Papper `#F4EDE1` standardbakgrund; Bläck `#1F1A15` text
+- **Bordeaux `#7A2E2E`** som signaturfärg — rubriker, citat, etiskt tunga teman
+- Marin `#2C3E55` för fakta/analys; Mossgrön `#3E5A3E` för diskussion; Ocker `#B8862F` för highlight/årtal; Oliv `#5A6A3A` för reflektion
+- Cormorant Garamond rubriker/citat; Inter Tight brödtext; JetBrains Mono metadata/versaler
+- Betoning: `*kursiv*`, `**bold**`, `==ocker-highlight==`, `__bordeaux-understreck__` (max 2 per rubrik, max 5 per stycke)
+- **INGA emojis** — typografiska tecken `▸ ● ▪ § №` får användas
 - Familjefoton + kartor framför grafiska bilder
-- Källhänvisningar på fakta-slides
+- Källhänvisningar i mono 13 px på fakta-slides
+
+**Frontmatter per deck:**
+```yaml
+---
+system: arkiv
+version: 2
+course: Historia 1a1
+module: Andra världskriget och Förintelsen
+lesson: N
+palette: bordeaux   # bordeaux för L1-L5, mossgrön för L6, oliv för L7
+---
+```
+
+**Etiskt tunga lektioner (L4, L5):** använd `quote`-slides med bläck-helyta för Hédis röst — paper-färg text, gigantiskt ocker `"`. Undvik för många färgvarianter — låt tyngden ligga i citaten själva.
 
 Spara: `Undervisningsmaterial/Historia/Andra världskriget och Förintelsen/presentation-lektion-N.html` (eller `.pptx` om kurskonventionen är så)
 
@@ -354,7 +421,7 @@ Korta beskrivningar. Eleven återger Förintelsens stadier eller Hédis öde.
 
 Self-contained HTML-fil enligt `.claude/skills/html-momentoversikt/SKILL.md`.
 
-**Anpassa designen till Historia 1a1-paletten** — navy/guld/crème, Georgia rubriker, Calibri brödtext. INTE skillens default historiapalett.
+**Anpassa designen till Arkiv v2.1** — Papper `#F4EDE1` bakgrund, Bläck `#1F1A15` text, Bordeaux `#7A2E2E` som signaturfärg för rubriker, Cormorant Garamond rubriker, Inter Tight brödtext, JetBrains Mono metadata. Inga emojis — typografiska tecken `▸ ● ▪ § №`.
 
 **Innehåll:**
 - Header: "Andra världskriget och Förintelsen — Historia 1a1"
@@ -382,7 +449,7 @@ Spara: `Undervisningsmaterial/Historia/Andra världskriget och Förintelsen/mome
 - ~40 kort med nyckelbegrepp + datum/personer/platser
 - Framsida: en tydlig fråga (aldrig sammansatt)
 - Baksida: ett kort svar
-- Designsystem: navy bakgrund eller crème-papper med navy/guld element
+- Designsystem **Arkiv v2.1:** Papper `#F4EDE1`-bakgrund med Bordeaux `#7A2E2E` rubriker och Ocker `#B8862F` accenter; Cormorant Garamond för begreppen, Inter Tight för förklaringar, JetBrains Mono för kategori-labels. Alt: Bläck `#1F1A15` helyta-baksida med paper-färg text för tyngre begrepp (folkmord, "den slutliga lösningen").
 
 **Sök efter tidigare flashcards** för att se exakt format:
 ```bash
